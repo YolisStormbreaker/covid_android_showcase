@@ -1,26 +1,15 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-    buildscript {
-        ext.kotlin_version = "1.3.72"
-        repositories {
-            google()
-            jcenter()
-        }
-        dependencies {
-            classpath "com.android.tools.build:gradle:4.0.0-beta05"
-            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-            // NOTE: Do not place your application dependencies here; they belong
-            // in the individual module build.gradle.kts files
-        }
-    }
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-    allprojects {
-        repositories {
-            google()
-            jcenter()
-        }
+// all projects = root project + sub projects
+allprojects {
+    repositories {
+        google()
+        jcenter()
     }
+}
 
-    task clean (type: Delete) {
-        delete rootProject.buildDir
-    }
+// JVM target applied to all Kotlin tasks across all sub-projects
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+}
