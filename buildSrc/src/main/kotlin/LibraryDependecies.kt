@@ -58,7 +58,7 @@ object LibraryDependecies {
 		const val PlayCore                  =   "com.google.android.play:core:${LibraryVersion.PLAY_CORE}"
 
 		object Design {
-			const val Cardview                  =   "androidx.cardview:cardview:${LibraryVersion.SUPPORT_CARD_VIEW}"
+			const val CardView                  =   "androidx.cardview:cardview:${LibraryVersion.SUPPORT_CARD_VIEW}"
 			const val ConstraintLayout          =   "androidx.constraintlayout:constraintlayout:${LibraryVersion.CONSTRAINT_LAYOUT}"
 			const val CoordinatorLayout         =   "androidx.coordinatorlayout:coordinatorlayout:${LibraryVersion.COORDINATOR_LAYOUT}"
 			const val Material                  =   "com.google.android.material:material:${LibraryVersion.MATERIAL}"
