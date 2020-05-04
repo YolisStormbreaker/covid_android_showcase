@@ -1,41 +1,64 @@
 plugins {
-    id ("com.android.application")
-    kotlin ("android")
-    kotlin ("android.extensions")
-    kotlin ("kapt")
+	id(GradlePluginId.ANDROID_APPLICATION)
+	kotlin("android")
+	kotlin("android.extensions")
+	kotlin("kapt")
+	id(GradlePluginId.GOOGLE_GMS_PLUGIN)
+	id(GradlePluginId.CRASHLYTICS_PLUGIN)
+	id(GradlePluginId.SAFE_ARGS)
+	id(GradlePluginId.GRADLE_UPDATE_PLUGIN)
 }
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion("29.0.3")
+	compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
+	buildToolsVersion(AndroidConfig.BUILD_TOOLS_VERSION)
 
-    defaultConfig {
-        applicationId = "com.yolisstorm.covidpulse"
-        minSdkVersion(21)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
+	defaultConfig {
+		applicationId = AndroidConfig.ID
+		minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
+		targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
+		versionCode = AndroidConfig.VERSION_CODE
+		versionName = AndroidConfig.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+		testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
+	}
 
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
+	buildTypes {
+		getByName(BuildType.RELEASE) {
+			isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
+			proguardFiles("proguard-android.txt", "proguard-rules.pro")
+		}
+
+		getByName(BuildType.DEBUG) {
+			isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
+		}
+
+		compileOptions {
+			sourceCompatibility = JavaVersion.VERSION_1_8
+			targetCompatibility = JavaVersion.VERSION_1_8
+		}
+	}
+
+	compileOptions {
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
+	}
+
+	kotlinOptions {
+		jvmTarget = JavaVersion.VERSION_1_8.toString()
+	}
+
 }
 
 dependencies {
-    val kotlin_version = "1.3.72"
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}")
-    implementation ("androidx.core:core-ktx:1.2.0")
-    implementation ("androidx.appcompat:appcompat:1.1.0")
-    implementation ("androidx.constraintlayout:constraintlayout:1.1.3")
-    testImplementation ("junit:junit:4.12")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.1")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.2.0")
+
+	api(project(ModuleDependency.LIBRARY_BASE))
+	debugImplementation(LibraryDependencies.Main.Leakcanary)
+
+	api(LibraryDependencies.AndroidSupport.Design.ConstraintLayout)
+	api(LibraryDependencies.AndroidSupport.Design.Material)
+
+	api(LibraryDependencies.Navigation.FragmentKtx)
+	api(LibraryDependencies.Navigation.UiKtx)
 
 }

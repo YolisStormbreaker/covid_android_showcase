@@ -1,4 +1,6 @@
-
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.DependencyHandlerScope
+import org.gradle.kotlin.dsl.dependencies
 
 private object LibraryVersion {
 
@@ -23,7 +25,7 @@ private object LibraryVersion {
 	const val G_MAPS_UTILS_KTX              =   "0.3.1"
 	const val GSON                          =   "2.8.6"
 	const val LEAKCANARY                    =   "2.2"
-	const val LIFECYCLE                     =   "2.3.0-alpha02"
+	const val LIFECYCLE                     =   "2.2.0"
 	const val MATERIAL_CALENDAR             =   "1.7.0"
 	const val MATERIAL                      =   "1.2.0-alpha06"
 	const val OKHTTP_3                      =   "4.6.0"
@@ -45,7 +47,7 @@ private object LibraryVersion {
 
 }
 
-object LibraryDependecies {
+object LibraryDependencies {
 
 	object AndroidSupport {
 
@@ -107,7 +109,7 @@ object LibraryDependecies {
 	}
 	
 	object Kotlin {
-		const val Core                      =   "org.jetbrains.kotlinx:kotlinx-coroutines-core:${CoreVersion.KOTLIN_CORE}"
+		const val Core                      =   "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${CoreVersion.KOTLIN_CORE}"
 		object Coroutines {
 			const val Core                  =   "org.jetbrains.kotlinx:kotlinx-coroutines-core:${CoreVersion.COROUTINES_ANDROID}"
 			const val Android               =   "org.jetbrains.kotlinx:kotlinx-coroutines-android:${CoreVersion.COROUTINES_ANDROID}"
@@ -120,9 +122,9 @@ object LibraryDependecies {
 		const val Compiler                  =   "androidx.lifecycle:lifecycle-compiler:${LibraryVersion.LIFECYCLE}"
 		const val Coroutines                =   "androidx.lifecycle:lifecycle-livedata-ktx:${LibraryVersion.LIFECYCLE}"
 		const val Java8                     =   "androidx.lifecycle:lifecycle-common-java8:${LibraryVersion.LIFECYCLE}"
-		const val LivedataExtensions        =   "androidx.lifecycle:lifecycle-extensions:${LibraryVersion.LIFECYCLE}"
+		const val Extensions                =   "androidx.lifecycle:lifecycle-extensions:${LibraryVersion.LIFECYCLE}"
 		const val LivedataKtx               =   "androidx.lifecycle:lifecycle-livedata-ktx:${LibraryVersion.LIFECYCLE}"
-		const val ViewmodelKtx              =   "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibraryVersion.LIFECYCLE}"
+		const val ViewModelKtx              =   "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibraryVersion.LIFECYCLE}"
 		const val Runtime                   =   "androidx.lifecycle:lifecycle-runtime:${LibraryVersion.LIFECYCLE}"
 	}
 
@@ -175,4 +177,6 @@ object LibraryDependecies {
 		const val Testing                    =  "androidx.work:work-testing:${LibraryVersion.WORK_MANAGER}"
 	}
 
+
 }
+

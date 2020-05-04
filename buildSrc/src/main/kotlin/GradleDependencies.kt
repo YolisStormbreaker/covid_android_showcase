@@ -6,7 +6,7 @@ object GradlePluginVersion {
 	const val CRASHLYTICS_GRADLE            =   CoreVersion.CRASHLYTICS_GRADLE
 	const val KOTLIN                        =   CoreVersion.KOTLIN
 	const val GOOGLE_GMS                    =   CoreVersion.GMS_GOOGLE_SERVICES
-	const val GRADLE_VERSION_PLUGIN         =   "0.22.0"
+	const val GRADLE_UPDATER_VERSION_PLUGIN =   "0.28.0"
 	const val SAFE_ARGS                     =   CoreVersion.NAVIGATION
 }
 
@@ -20,7 +20,7 @@ object GradlePluginId {
 	const val KOTLIN_SERIALIZATION          =   "org.jetbrains.kotlin.serialization"
 	const val GOOGLE_GMS_PLUGIN             =   "com.google.gms.google-services"
 	const val CRASHLYTICS_PLUGIN            =   "com.google.firebase.crashlytics"
-	const val GRADLE_VERSION_PLUGIN         =   "com.github.ben-manes.versions"
+	const val GRADLE_UPDATE_PLUGIN          =   "com.github.ben-manes.versions"
 	const val SAFE_ARGS                     =   "androidx.navigation.safeargs.kotlin"
 }
 
@@ -32,8 +32,8 @@ object GradleOldWayPlugins {
 	const val SAFE_ARGS                     =   "androidx.navigation:navigation-safe-args-gradle-plugin:${GradlePluginVersion.SAFE_ARGS}"
 }
 
-fun RepositoryHandler.addRepos() {
-	google()
-	jcenter()
-	maven { url = URI.create("https://jitpack.io") }
+fun addRepos(handler : RepositoryHandler) {
+	handler.google()
+	handler.jcenter()
+	handler.maven { url = URI.create("https://jitpack.io") }
 }
