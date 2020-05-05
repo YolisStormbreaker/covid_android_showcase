@@ -11,6 +11,7 @@ private object LibraryVersion {
 	const val CONSTRAINT_LAYOUT             =   "2.0.0-beta4"
 	const val COORDINATOR_LAYOUT            =   "1.1.0"
 	const val CORE_KTX                      =   "1.3.0-rc01"
+	const val FIREBASE_AUTH                 =   "19.1.0"
 	const val FIREBASE_CRASHLYTICS          =   "2.10.1"
 	const val FIREBASE_CORE                 =   "17.2.0"
 	const val FIREBASE_KTX                  =   "19.1.0"
@@ -83,6 +84,7 @@ object LibraryDependencies {
 
 	object Firebase {
 		const val Analytics                 =  "com.google.firebase:firebase-analytics:${LibraryVersion.FIREBASE_CORE}"
+		const val Auth                      =  "com.google.firebase:firebase-auth:${LibraryVersion.FIREBASE_AUTH}"
 		const val CommonKtx                 =  "com.google.firebase:firebase-common-ktx:${LibraryVersion.FIREBASE_KTX}"
 		const val Core                      =  "com.google.firebase:firebase-core:${LibraryVersion.FIREBASE_CORE}"
 		const val Crashlytics               =  "com.crashlytics.sdk.android:crashlytics:${LibraryVersion.FIREBASE_CRASHLYTICS}"

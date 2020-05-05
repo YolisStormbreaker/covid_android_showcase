@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="instagram_package_name" translatable="false">com.instagram.android</string>
+	<string name="instagram_url" translatable="false">http://instagram.com/_u/</string>
+
+	<string name="whatsapp_package_name" translatable="false">com.whatsapp</string>
+	<string name="whatsapp_url" translatable="false">https://api.whatsapp.com/send?phone=</string>
+
+	<string name="viber_package_name" translatable="false">com.viber.voip</string>
+	<string name="viber_url" translatable="false">viber://chat?number=</string>
+
+	<string name="telegram_package_name" translatable="false">org.telegram.messenger</string>
+	<string name="telegram_url" translatable="false">tg://resolve?domain=</string>
+
+	<string name="support_mail_subject">Message from app</string>
+	<string name="support_email_title">Send email</string>
+	<string name="support_instagram_title">Choose Instagram app</string>
+	<string name="support_whatsapp_title">Choose Whatsapp app</string>
+	<string name="support_viber_title">Choose Viber app</string>
+	<string name="support_telegram_title">Choose Telegram app</string>
+
+	<string name="currency_placeholder" translatable="false">%1$s %2$.02f %3$s</string>
+	<string name="currency_monthly_placeholder">%1$s %2$.02f %3$s per month</string>
+	<string name="default_currency_symbol" translatable="false">₽</string>
+
+	<string name="hour_minutes_template" translatable="false">%1$02d:%2$02d</string>
+
+</resources>

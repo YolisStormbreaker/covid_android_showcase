@@ -1,3 +1,3 @@
-include(":library_base")
+include(":library_common")
 include(":app")
 rootProject.name = "COVID Pulse"
