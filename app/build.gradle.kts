@@ -65,6 +65,7 @@ android {
 dependencies {
 
 	api(project(ModuleDependency.LibraryCommon))
+	api(project(ModuleDependency.LibraryFirebaseAnalytics))
 	debugImplementation(LibraryDependencies.Main.Leakcanary)
 
 	api(LibraryDependencies.AndroidSupport.Design.ConstraintLayout)
