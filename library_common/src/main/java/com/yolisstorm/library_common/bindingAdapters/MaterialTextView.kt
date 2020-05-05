@@ -1,9 +1,13 @@
 package com.yolisstorm.library_common.bindingAdapters
 
+import android.os.Build
+import android.text.Html
 import android.text.format.DateUtils
 import android.view.View
+import android.widget.TextView
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
+import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textview.MaterialTextView
 import com.yolisstorm.library.base.R
@@ -93,8 +97,7 @@ fun MaterialTextView.setCurrencyValue(
 	}
 }
 
-
-@BindingAdapter("formattedRelativeDate")
+@BindingAdapter("app:formattedRelativeDate")
 fun MaterialTextView.setRelativeDate(relativeDate: Calendar?) {
 	relativeDate?.let {
 		text = DateUtils.getRelativeDateTimeString(
@@ -107,7 +110,7 @@ fun MaterialTextView.setRelativeDate(relativeDate: Calendar?) {
 	}
 }
 
-@BindingAdapter("formattedTime", "isNeedDifferentBetweenNow", requireAll = false)
+@BindingAdapter("app:formattedTime", "app:isNeedDifferentBetweenNow", requireAll = false)
 fun MaterialTextView.setTime(date: Calendar?, isNeedDifferentBetweenNow: Boolean?) {
 	date?.let {
 		var millis =
@@ -142,14 +145,14 @@ fun MaterialTextView.setTime(date: Calendar?, isNeedDifferentBetweenNow: Boolean
 	}
 }
 
-@BindingAdapter("formattedCalendarDate")
+@BindingAdapter("app:formattedCalendarDate")
 fun MaterialTextView.setCalendarDMY(date: Calendar?) {
 	date?.let {
 		setFormattedDate(it.time)
 	}
 }
 
-@BindingAdapter("formattedDate")
+@BindingAdapter("app:formattedDate")
 fun MaterialTextView.setDateDMY(date: Date?) {
 	date?.let {
 		setFormattedDate(it)
@@ -158,4 +161,53 @@ fun MaterialTextView.setDateDMY(date: Date?) {
 
 private fun MaterialTextView.setFormattedDate(date: Date) {
 	text = date.getFormattedDate()
+}
+
+@BindingAdapter("app:styledHtmlText")
+fun MaterialTextView.setStyledHtmlText(styledText: String?) {
+	styledText?.let {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			setText(
+				Html.fromHtml(it, HtmlCompat.FROM_HTML_MODE_LEGACY),
+				TextView.BufferType.SPANNABLE
+			)
+		} else {
+			setText(Html.fromHtml(it), TextView.BufferType.SPANNABLE)
+		}
+	}
+}
+
+@BindingAdapter(
+	"app:givenName",
+	"app:middleName",
+	"app:familyName",
+	"app:stringResForReplace",
+	requireAll = false
+)
+fun MaterialTextView.setFormattedName(
+	givenName: String?,
+	middleName: String?,
+	familyName: String?,
+	stringResForReplace: String? = null
+) {
+	Timber.d("$givenName, $familyName, $middleName")
+	when {
+		familyName != null && givenName != null -> {
+			visibility = View.VISIBLE
+			text = resources.getString(
+				R.string.given_family_middle_names,
+				givenName,
+				familyName,
+				middleName ?: ""
+			)
+		}
+		(familyName == null || middleName == null || givenName == null) && stringResForReplace != null -> {
+			visibility = View.VISIBLE
+			text = stringResForReplace
+		}
+		else -> {
+			text = ""
+		}
+	}
+
 }
