@@ -7,7 +7,7 @@ object AndroidDefaultConfig {
 	const val VERSION_CODE = 1
 	const val VERSION_NAME = "0.0.1"
 
-	const val ID = "com.yolisstorm.covid_pulse_full"
+	const val ID = "com.yolisstorm.covid_pulse"
 	const val TEST_INSTRUMENTATION_RUNNER = "android.support.test.runner.AndroidJUnitRunner"
 }
 

@@ -2,7 +2,6 @@ plugins {
 	id(GradlePluginId.ANDROID_LIBRARY)
 	id(GradlePluginId.KOTLIN_ANDROID)
 	id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
-	kotlin("kapt")
 }
 
 android {
@@ -43,7 +42,7 @@ android {
 		jvmTarget = JavaVersion.VERSION_1_8.toString()
 	}
 
-	dataBinding.isEnabled = true
+	buildFeatures.dataBinding = true
 }
 
 dependencies {
