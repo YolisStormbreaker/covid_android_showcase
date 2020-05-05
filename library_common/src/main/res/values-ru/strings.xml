@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="support_mail_subject">Сообщение из приложения</string>
+	<string name="support_email_title">Отправить email</string>
+	<string name="support_instagram_title">Выберите приложение Instagram</string>
+	<string name="support_whatsapp_title">Выберите приложение Whatsapp</string>
+	<string name="support_viber_title">Выберите приложение Viber</string>
+	<string name="support_telegram_title">Выберите приложение Telegram</string>
+
+
+	<string name="currency_monthly_placeholder">%1$s %2$.02f %3$s/Мес.</string>
+
+</resources>

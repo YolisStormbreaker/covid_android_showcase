@@ -10,19 +10,31 @@ plugins {
 }
 
 android {
-	compileSdkVersion(AndroidConfig.COMPILE_SDK_VERSION)
-	buildToolsVersion(AndroidConfig.BUILD_TOOLS_VERSION)
+	compileSdkVersion(AndroidDefaultConfig.COMPILE_SDK_VERSION)
+	buildToolsVersion(AndroidDefaultConfig.BUILD_TOOLS_VERSION)
 
 	defaultConfig {
-		applicationId = AndroidConfig.ID
-		minSdkVersion(AndroidConfig.MIN_SDK_VERSION)
-		targetSdkVersion(AndroidConfig.TARGET_SDK_VERSION)
-		versionCode = AndroidConfig.VERSION_CODE
-		versionName = AndroidConfig.VERSION_NAME
+		applicationId = AndroidDefaultConfig.ID
+		minSdkVersion(AndroidDefaultConfig.MIN_SDK_VERSION)
+		targetSdkVersion(AndroidDefaultConfig.TARGET_SDK_VERSION)
+		versionCode = AndroidDefaultConfig.VERSION_CODE
+		versionName = AndroidDefaultConfig.VERSION_NAME
 
-		testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
+		testInstrumentationRunner = AndroidDefaultConfig.TEST_INSTRUMENTATION_RUNNER
 	}
-
+	flavorDimensions("version")
+	productFlavors {
+		create(WithAddPulse.flavorName) {
+			applicationIdSuffix  = WithAddPulse.applicationIdSuffix
+			versionCode = WithAddPulse.versionCode
+			versionNameSuffix  = WithAddPulse.versionNameSuffix
+		}
+		create(FullPulse.flavorName) {
+			applicationIdSuffix  = FullPulse.applicationIdSuffix
+			versionCode = FullPulse.versionCode
+			versionNameSuffix  = FullPulse.versionNameSuffix
+		}
+	}
 	buildTypes {
 		getByName(BuildType.RELEASE) {
 			isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
@@ -52,7 +64,8 @@ android {
 
 dependencies {
 
-	api(project(ModuleDependency.LIBRARY_BASE))
+	api(project(ModuleDependency.LibraryCommon))
+	api(project(ModuleDependency.LibraryFirebaseAnalytics))
 	debugImplementation(LibraryDependencies.Main.Leakcanary)
 
 	api(LibraryDependencies.AndroidSupport.Design.ConstraintLayout)
