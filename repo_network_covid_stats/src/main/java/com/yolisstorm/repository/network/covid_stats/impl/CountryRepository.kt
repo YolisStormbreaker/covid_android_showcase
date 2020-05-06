@@ -1,5 +1,7 @@
 package com.yolisstorm.repository.network.covid_stats.impl
 
+import android.Manifest
+import androidx.annotation.RequiresPermission
 import com.yolisstorm.repository.network.covid_stats.dto.Country
 import com.yolisstorm.repository.network.covid_stats.helpers.models.NetworkResultWrapper
 import com.yolisstorm.repository.network.covid_stats.helpers.safeApiCall
@@ -15,6 +17,7 @@ class CountryRepository(
 	private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ICountryRepository {
 
+	@RequiresPermission(Manifest.permission.INTERNET)
 	override suspend fun getListOfCountries(): Flow<NetworkResultWrapper<List<Country>>> =
 		flow {
 			emit(

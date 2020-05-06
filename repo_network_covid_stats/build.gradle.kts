@@ -45,9 +45,12 @@ android {
 
 dependencies {
 
+    implementation(LibraryDependencies.Firebase.Crashlytics)
+
     api(LibraryDependencies.Main.Timber)
 
     api(LibraryDependencies.Kotlin.Coroutines.Android)
+    api(LibraryDependencies.AndroidSupport.CoreKtx)
 
     implementation(LibraryDependencies.Main.Gson)
     implementation(LibraryDependencies.Okhttp.Main)
