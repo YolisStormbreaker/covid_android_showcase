@@ -1,4 +1,4 @@
-package com.yolisstorm.repository.network.covid_stats.helpers.models
+package com.yolisstorm.data_sources.network.covid_stats.helpers.models
 
 import java.lang.Exception
 

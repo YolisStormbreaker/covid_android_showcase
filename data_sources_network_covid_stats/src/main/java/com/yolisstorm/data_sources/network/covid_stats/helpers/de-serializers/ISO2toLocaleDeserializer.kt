@@ -1,4 +1,4 @@
-package com.yolisstorm.repository.network.covid_stats.helpers.`de-serializers`
+package com.yolisstorm.data_sources.network.covid_stats.helpers.`de-serializers`
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer

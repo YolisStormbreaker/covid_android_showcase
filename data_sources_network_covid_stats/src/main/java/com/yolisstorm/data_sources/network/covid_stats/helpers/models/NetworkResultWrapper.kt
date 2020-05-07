@@ -1,4 +1,4 @@
-package com.yolisstorm.repository.network.covid_stats.helpers.models
+package com.yolisstorm.data_sources.network.covid_stats.helpers.models
 
 sealed class NetworkResultWrapper<out T> {
 	data class Success<out T>(val value: T) : NetworkResultWrapper<T>()
