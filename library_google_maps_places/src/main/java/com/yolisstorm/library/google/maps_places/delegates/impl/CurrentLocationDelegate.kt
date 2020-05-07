@@ -172,13 +172,14 @@ class CurrentLocationDelegate(
 			?.addOnSuccessListener {
 				Timber.d("startLocationUpdates() -Network- All location settings are satisfied.")
 
-				if (checkLocationPermissionGranted(activity))
+				if (checkLocationPermissionGranted(activity)) {
 					mFusedLocationClient?.requestLocationUpdates(
 						mLocationRequest,
 						mLocationCallback,
 						Looper.myLooper()
 					)
-				_isNowRequestingLocationUpdates.value = true
+					_isNowRequestingLocationUpdates.value = true
+				}
 			}
 			?.addOnFailureListener { ex ->
 				ex as ApiException

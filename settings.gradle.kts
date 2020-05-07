@@ -1,4 +1,4 @@
-include(":repo_network_covid_stats")
+include(":data_sources_network_covid_stats")
 include(":library_google_maps_places")
 include(":library_firebase_analytics")
 include(":library_firebase_auth")
