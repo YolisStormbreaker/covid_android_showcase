@@ -25,7 +25,7 @@ private object LibraryVersion {
 	const val G_MAPS_PLACES                 =   "2.2.0"
 	const val G_MAPS_UTILS_KTX              =   "0.3.1"
 	const val GSON                          =   "2.8.6"
-	const val LEAKCANARY                    =   "2.2"
+	const val LEAKCANARY                    =   "2.3"
 	const val LIFECYCLE                     =   "2.2.0"
 	const val MATERIAL_CALENDAR             =   "1.7.0"
 	const val MATERIAL                      =   "1.2.0-alpha06"

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 
-data class Case(
+data class ShortCase(
 	@SerializedName("Country")
 	val country: String,
 	@SerializedName("CountryCode")
