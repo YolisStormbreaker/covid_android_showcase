@@ -104,9 +104,9 @@ object LibraryDependencies {
 	}
 
 	object Koin {
-		const val Koin                       =  "org.koin:koin-android:${CoreVersion.KOIN}"
+		const val Main                       =  "org.koin:koin-android:${CoreVersion.KOIN}"
 		const val Scope                      =  "org.koin:koin-android-scope:${CoreVersion.KOIN}"
-		const val Viewmodel                  =  "org.koin:koin-android-viewmodel:${CoreVersion.KOIN}"
+		const val ViewModel                  =  "org.koin:koin-android-viewmodel:${CoreVersion.KOIN}"
 		const val Test                       =  "org.koin:koin-test:${CoreVersion.KOIN}"
 	}
 	
@@ -138,10 +138,11 @@ object LibraryDependencies {
 
 	object Navigation {
 		const val FragmentKtx              =   "androidx.navigation:navigation-fragment-ktx:${CoreVersion.NAVIGATION}"
+		const val UiKtx                    =   "androidx.navigation:navigation-ui-ktx:${CoreVersion.NAVIGATION}"
 		const val RuntimeKtx               =   "androidx.navigation:navigation-runtime-ktx:${CoreVersion.NAVIGATION}"
+		const val DynamicFeature           =   "androidx.navigation:navigation-dynamic-features-fragment:${CoreVersion.NAVIGATION}"
 		const val SafeArgsPlugin           =   "androidx.navigation:navigation-safe-args-gradle-plugin:${CoreVersion.NAVIGATION}"
 		const val SafeArgsApplyPlugin      =   "androidx.navigation.safeargs.kotlin"
-		const val UiKtx                    =   "androidx.navigation:navigation-ui-ktx:${CoreVersion.NAVIGATION}"
 	}
 
 	object Okhttp {

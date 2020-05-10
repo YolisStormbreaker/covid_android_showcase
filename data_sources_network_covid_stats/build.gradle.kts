@@ -63,6 +63,8 @@ dependencies {
 	api(LibraryDependencies.Kotlin.Coroutines.Android)
 	api(LibraryDependencies.AndroidSupport.CoreKtx)
 
+	implementation(LibraryDependencies.Koin.Main)
+
 	implementation(LibraryDependencies.Main.Gson)
 	implementation(LibraryDependencies.Okhttp.Main)
 	implementation(LibraryDependencies.Okhttp.LoggingInterceptor)

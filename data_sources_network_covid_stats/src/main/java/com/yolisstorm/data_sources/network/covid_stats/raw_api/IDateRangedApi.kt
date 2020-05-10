@@ -1,6 +1,8 @@
 package com.yolisstorm.data_sources.network.covid_stats.raw_api
 
 import com.yolisstorm.data_sources.network.covid_stats.BuildConfig
+import com.yolisstorm.data_sources.network.covid_stats.dto.FullCase
+import com.yolisstorm.data_sources.network.covid_stats.dto.ShortCase
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -28,7 +30,7 @@ interface IDateRangedApi {
 		toDate: Date?,
 		@Query("from")
 		fromDate: Date?
-	)
+	) : List<ShortCase>
 
 	/**
 	 * Get data grouped by day with location tags of country by
@@ -49,7 +51,7 @@ interface IDateRangedApi {
 		toDate: Date?,
 		@Query("from")
 		fromDate: Date?
-	)
+	) : List<ShortCase>
 
 	/**
 	 * Get complete data grouped by day by country with a country location label between two dates.
@@ -67,7 +69,7 @@ interface IDateRangedApi {
 		toDate: Date?,
 		@Query("from")
 		fromDate: Date?
-	)
+	) : List<FullCase>
 
 	/**
 	 * Get data grouped by day for the country over a period of time
@@ -86,7 +88,7 @@ interface IDateRangedApi {
 		toDate: Date?,
 		@Query("from")
 		fromDate: Date?
-	)
+	) : List<ShortCase>
 
 	/**
 	 * Get data grouped by day for the country over a period of time
@@ -103,7 +105,7 @@ interface IDateRangedApi {
 		toDate: Date?,
 		@Query("from")
 		fromDate: Date?
-	)
+	) : List<FullCase>
 
 
 }
