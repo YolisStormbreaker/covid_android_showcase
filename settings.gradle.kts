@@ -1,7 +1,7 @@
-include(":data_sources_network_covid_stats")
-include(":library_google_maps_places")
-include(":library_firebase_analytics")
-include(":library_firebase_auth")
-include(":library_common")
+include(":data_sources:network:covid_stats")
+include(":libraries:google_maps_places")
+include(":libraries:firebase_analytics")
+include(":libraries:firebase_auth")
+include(":libraries:common")
 include(":app")
 rootProject.name = "COVID Pulse"

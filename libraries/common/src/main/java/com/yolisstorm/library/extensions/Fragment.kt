@@ -4,7 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import com.yolisstorm.library.base.R
+import com.yolisstorm.library.common.R
 
 fun Fragment.startNewWebIntent(url: String) =
 	url.also {

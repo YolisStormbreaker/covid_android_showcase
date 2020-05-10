@@ -10,7 +10,7 @@ import androidx.annotation.StringRes
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textview.MaterialTextView
-import com.yolisstorm.library.base.R
+import com.yolisstorm.library.common.R
 import com.yolisstorm.library.extensions.getFormattedDate
 import com.yolisstorm.library.utils.getColorWithVersion
 import timber.log.Timber
