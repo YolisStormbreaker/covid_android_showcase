@@ -15,6 +15,9 @@ android {
         versionName = AndroidDefaultConfig.VERSION_NAME
 
         testInstrumentationRunner = AndroidDefaultConfig.TEST_INSTRUMENTATION_RUNNER
+
+        buildConfigFieldFromGradleProperty("isNeedCommonLog", "Boolean")
+
     }
 
     buildTypes {
@@ -51,4 +54,23 @@ dependencies {
     implementation(LibraryDependencies.Koin.Main)
     implementation(LibraryDependencies.Firebase.Crashlytics)
 
+    api(LibraryDependencies.Kotlin.Coroutines.Android)
+
+}
+
+fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }
+
+fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigFieldFromGradleProperty(
+    gradlePropertyName: String,
+    type: String = "String"
+) {
+    val propertyValue =
+        project.properties[gradlePropertyName] as? String ?: com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
+            projectDir
+        )
+            .getProperty(gradlePropertyName) as? String
+    checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
+
+    val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
+    buildConfigField(type, androidResourceName, propertyValue)
 }
