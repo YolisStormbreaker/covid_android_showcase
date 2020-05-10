@@ -1,5 +1,5 @@
+
 buildscript {
-	val kotlin_version by extra("1.3.72")
 	addRepos(repositories)
 	dependencies {
 		classpath(GradleOldWayPlugins.ANDROID_GRADLE)
@@ -13,10 +13,33 @@ buildscript {
 
 plugins {
 	id("com.github.ben-manes.versions") version GradlePluginVersion.GRADLE_UPDATER_VERSION_PLUGIN
+	id(GradlePluginId.DETEKT) version GradlePluginVersion.DETEKT
 }
 
 allprojects {
+
 	addRepos(repositories)
+	apply(plugin = GradlePluginId.DETEKT)
+}
+
+subprojects {
+	tasks.withType<Test> {
+		maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
+	}
+
+	apply(plugin = GradlePluginId.DETEKT)
+
+	detekt {
+		config = files("${project.rootDir}/detekt.yml")
+		parallel = true
+		ignoreFailures = true // If set to `true` the build does not fail when the maxIssues count was reached. Defaults to `false`.
+		reports {
+			html {
+				enabled = true                                // Enable/Disable HTML report (default: true)
+				destination = file("build/reports/detekt.html") // Path where HTML report will be stored (default: `build/reports/detekt/detekt.html`)
+			}
+		}
+	}
 }
 
 

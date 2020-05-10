@@ -1,6 +1,4 @@
-package com.skishift.companion.utils
-
-import android.view.View
+package com.yolisstorm.library.utils.interfaces
 
 interface IOnSwipe {
 	fun onSwipeRight()

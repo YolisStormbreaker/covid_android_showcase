@@ -1,8 +1,8 @@
 package com.yolisstorm.data_sources.network.covid_stats.raw_api
 
 import com.yolisstorm.data_sources.network.covid_stats.BuildConfig
-import com.yolisstorm.data_sources.network.covid_stats.dto.ShortCase
 import com.yolisstorm.data_sources.network.covid_stats.dto.FullCase
+import com.yolisstorm.data_sources.network.covid_stats.dto.ShortCase
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -26,7 +26,7 @@ interface IDayOneApi {
 		countrySlug: String,
 		@Path("status_type")
 		statusType: String
-	) : List<ShortCase>
+	): List<ShortCase>
 
 	/**
 	 * Get total data by country places, Ungrouped by day for the selected case type,
@@ -44,7 +44,7 @@ interface IDayOneApi {
 		countrySlug: String,
 		@Path("status_type")
 		statusType: String
-	) : List<ShortCase>
+	): List<ShortCase>
 
 	/**
 	 * Get complete data for each type of case by country point,
@@ -60,7 +60,7 @@ interface IDayOneApi {
 		accessToken: String = BuildConfig.GRADLE_API_TOKEN,
 		@Path("country_slug")
 		countrySlug: String
-	) : List<FullCase>
+	): List<FullCase>
 
 	/**
 	 * Returns all cases starting from the first day of infection, grouped by country by day
@@ -74,7 +74,7 @@ interface IDayOneApi {
 		accessToken: String = BuildConfig.GRADLE_API_TOKEN,
 		@Path("country_slug")
 		countrySlug: String
-	) : List<FullCase>
+	): List<FullCase>
 
 	/**
 	 * Returns all cases starting from the first day of infection, grouped by country by day
@@ -90,6 +90,6 @@ interface IDayOneApi {
 		countrySlug: String,
 		@Path("status_type")
 		statusType: String
-	) : List<FullCase>
+	): List<FullCase>
 
 }
