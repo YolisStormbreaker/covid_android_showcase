@@ -1,7 +1,8 @@
-include(":data_sources:network:covid_stats")
-include(":libraries:google_maps_places")
+rootProject.name = "COVID Pulse"
+rootProject.buildFileName = "build.gradle.kts"
+include(":app")
+include(":libraries:common")
 include(":libraries:firebase_analytics")
 include(":libraries:firebase_auth")
-include(":libraries:common")
-include(":app")
-rootProject.name = "COVID Pulse"
+include(":libraries:google_maps_places")
+include(":data_sources:network:covid_statst")

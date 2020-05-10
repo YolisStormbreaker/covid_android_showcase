@@ -1,6 +1,6 @@
 import kotlin.reflect.full.memberProperties
 
-private const val FEATURE_PREFIX = ":feature_"
+private const val FEATURE_PREFIX = ":features"
 
 // "Module" means "project" in terminology of Gradle API. To be specific each "Android module" is a Gradle "subproject"
 @Suppress("unused")
