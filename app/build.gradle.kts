@@ -21,6 +21,9 @@ android {
 		versionName = AndroidDefaultConfig.VERSION_NAME
 
 		testInstrumentationRunner = AndroidDefaultConfig.TEST_INSTRUMENTATION_RUNNER
+
+		buildConfigField("FEATURE_MODULE_NAMES", getDynamicFeatureModuleNames())
+
 	}
 	flavorDimensions("version")
 	productFlavors {
@@ -74,4 +77,24 @@ dependencies {
 	api(LibraryDependencies.Navigation.FragmentKtx)
 	api(LibraryDependencies.Navigation.UiKtx)
 
+}
+
+fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {
+	val propertyValue = project.properties[gradlePropertyName] as? String
+	checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
+
+	val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
+	buildConfigField("String", androidResourceName, propertyValue)
+}
+
+fun getDynamicFeatureModuleNames() = ModuleDependency.getDynamicFeatureModules()
+	.map { it.replace(":feature_", "") }
+	.toSet()
+
+fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }
+
+fun com.android.build.gradle.internal.dsl.DefaultConfig.buildConfigField(name: String, value: Set<String>) {
+	// Generates String that holds Java String Array code
+	val strValue = value.joinToString(prefix = "{", separator = ",", postfix = "}", transform = { "\"$it\"" })
+	buildConfigField("String[]", name, strValue)
 }

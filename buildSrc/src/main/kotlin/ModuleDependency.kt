@@ -10,9 +10,11 @@ object ModuleDependency {
 /*    const val FEATURE_ALBUM = ":feature_album"
     const val FEATURE_PROFILE = ":feature_profile"
     const val FEATURE_FAVOURITE = ":feature_favourite"*/
-    const val LibraryCommon = ":library_common"
-    const val LibraryFirebaseAnalytics = ":library_firebase_analytics"
-    const val LibraryFirebaseAuth = ":library_firebase_auth"
+    const val LibraryCommon = ":libraries:common"
+    const val LibraryFirebaseAnalytics = ":libraries:firebase_analytics"
+    const val LibraryFirebaseAuth = ":libraries:firebase_auth"
+    const val LibraryGoogleMapsAndPlaces = ":libraries:google_maps_places"
+    const val DataSourceNetworkCovidStats = ":data_sources:network:covid_stats"
     //const val LIBRARY_TEST_UTILS = ":library_test_utils"
 
     // False positive" function can be private"
