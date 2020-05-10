@@ -3,6 +3,8 @@ import java.net.URI
 
 object GradlePluginVersion {
 	const val ANDROID_GRADLE                =   "4.0.0-beta05"
+	const val KTLINT_GRADLE                 =   "9.1.1"
+	const val DETEKT                        =   "1.4.0"
 	const val CRASHLYTICS_GRADLE            =   CoreVersion.CRASHLYTICS_GRADLE
 	const val KOTLIN                        =   CoreVersion.KOTLIN
 	const val GOOGLE_GMS                    =   CoreVersion.GMS_GOOGLE_SERVICES
@@ -11,6 +13,8 @@ object GradlePluginVersion {
 }
 
 object GradlePluginId {
+	const val DETEKT                        =   "io.gitlab.arturbosch.detekt"
+	const val KTLINT_GRADLE                 =   "org.jlleitschuh.gradle.ktlint"
 	const val ANDROID_APPLICATION           =   "com.android.application"
 	const val ANDROID_DYNAMIC_FEATURE       =   "com.android.dynamic-feature"
 	const val ANDROID_LIBRARY               =   "com.android.library"

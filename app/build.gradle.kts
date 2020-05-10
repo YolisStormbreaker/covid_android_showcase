@@ -2,7 +2,7 @@ plugins {
 	id(GradlePluginId.ANDROID_APPLICATION)
 	kotlin("android")
 	kotlin("android.extensions")
-	kotlin("kapt")
+	id(GradlePluginId.DETEKT)
 	id(GradlePluginId.GOOGLE_GMS_PLUGIN)
 	id(GradlePluginId.CRASHLYTICS_PLUGIN)
 	id(GradlePluginId.SAFE_ARGS)

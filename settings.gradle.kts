@@ -1,3 +1,4 @@
+include(":libraries:store")
 rootProject.name = "COVID Pulse"
 rootProject.buildFileName = "build.gradle.kts"
 include(":app")
