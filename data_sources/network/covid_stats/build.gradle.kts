@@ -57,6 +57,7 @@ android {
 dependencies {
 
 	implementation(LibraryDependencies.Firebase.Crashlytics)
+	implementation(project(ModuleDependency.LibraryCommon))
 
 	api(LibraryDependencies.Main.Timber)
 

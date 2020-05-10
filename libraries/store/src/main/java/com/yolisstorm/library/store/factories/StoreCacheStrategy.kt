@@ -8,7 +8,7 @@ data class StoreCacheStrategy(
 ) {
 	companion object {
 		fun getDefault(
-			expireAfterWrite: Duration = 10.minutes
+			expireAfterWrite: Duration = Duration.INFINITE
 		) =
 			StoreCacheStrategy(
 				expireAfterWrite = expireAfterWrite

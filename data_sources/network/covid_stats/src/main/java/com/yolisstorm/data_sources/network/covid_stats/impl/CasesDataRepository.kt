@@ -4,7 +4,7 @@ import android.Manifest
 import androidx.annotation.RequiresPermission
 import com.yolisstorm.data_sources.network.covid_stats.dto.Country
 import com.yolisstorm.data_sources.network.covid_stats.dto.Summary
-import com.yolisstorm.data_sources.network.covid_stats.helpers.models.NetworkResultWrapper
+import com.yolisstorm.library.common.resultWrappers.network.models.NetworkResultWrapper
 import com.yolisstorm.data_sources.network.covid_stats.helpers.safeApiInFlowCall
 import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICasesDataRepository
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.IDateRangedApi
