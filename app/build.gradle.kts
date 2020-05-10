@@ -54,6 +54,9 @@ android {
 		}
 	}
 
+	// Each feature module that is included in settings.gradle.kts is added here as dynamic feature
+	dynamicFeatures = ModuleDependency.getDynamicFeatureModules().toMutableSet()
+
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_1_8
 		targetCompatibility = JavaVersion.VERSION_1_8
@@ -70,6 +73,8 @@ dependencies {
 	api(project(ModuleDependency.LibraryCommon))
 	api(project(ModuleDependency.LibraryFirebaseAnalytics))
 	debugImplementation(LibraryDependencies.Main.Leakcanary)
+
+	implementation(LibraryDependencies.Koin.Main)
 
 	api(LibraryDependencies.AndroidSupport.Design.ConstraintLayout)
 	api(LibraryDependencies.AndroidSupport.Design.Material)
