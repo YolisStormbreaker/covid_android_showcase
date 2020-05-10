@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id(GradlePluginId.ANDROID_LIBRARY)
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
+    kotlin("kapt")
 }
 
 android {
@@ -54,6 +57,10 @@ dependencies {
     implementation(project(ModuleDependency.LibraryCommon))
     implementation(LibraryDependencies.Koin.Main)
     implementation(LibraryDependencies.Firebase.Crashlytics)
+
+    implementation(LibraryDependencies.Room.Runtime)
+    implementation(LibraryDependencies.Room.Ktx)
+    kapt(LibraryDependencies.Room.Compiler)
 
     api(LibraryDependencies.Kotlin.Coroutines.Android)
 
