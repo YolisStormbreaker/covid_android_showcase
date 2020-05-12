@@ -38,11 +38,17 @@ android {
 			isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
 		}
 
+		testOptions {
+			unitTests.isReturnDefaultValues = TestOptions.IS_RETURN_DEFAULT_VALUES
+		}
+
 		compileOptions {
 			sourceCompatibility = JavaVersion.VERSION_1_8
 			targetCompatibility = JavaVersion.VERSION_1_8
 		}
 	}
+
+
 
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_1_8
@@ -64,13 +70,15 @@ dependencies {
 	api(LibraryDependencies.Kotlin.Coroutines.Android)
 	api(LibraryDependencies.AndroidSupport.CoreKtx)
 
-	implementation(LibraryDependencies.Koin.Main)
+	implementation(LibraryDependencies.Koin.Core)
 
 	implementation(LibraryDependencies.Main.Gson)
 	implementation(LibraryDependencies.Okhttp.Main)
 	implementation(LibraryDependencies.Okhttp.LoggingInterceptor)
 	implementation(LibraryDependencies.Retrofit.Runtime)
 	implementation(LibraryDependencies.Retrofit.Converters.Gson)
+
+	addTestDependencies()
 
 }
 

@@ -50,6 +50,8 @@ dependencies {
 	api(LibraryDependencies.Kotlin.Reflection)
 	api(LibraryDependencies.Kotlin.Coroutines.Android)
 
+	api(LibraryDependencies.Main.Gson)
+
 	api(LibraryDependencies.AndroidSupport.PlayCore)
 
 	api(LibraryDependencies.Main.Timber)

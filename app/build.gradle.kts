@@ -52,6 +52,10 @@ android {
 			sourceCompatibility = JavaVersion.VERSION_1_8
 			targetCompatibility = JavaVersion.VERSION_1_8
 		}
+
+		testOptions {
+			unitTests.isReturnDefaultValues = TestOptions.IS_RETURN_DEFAULT_VALUES
+		}
 	}
 
 	// Each feature module that is included in settings.gradle.kts is added here as dynamic feature
@@ -74,7 +78,7 @@ dependencies {
 	api(project(ModuleDependency.LibraryFirebaseAnalytics))
 	debugImplementation(LibraryDependencies.Main.Leakcanary)
 
-	implementation(LibraryDependencies.Koin.Main)
+	implementation(LibraryDependencies.Koin.Core)
 
 	api(LibraryDependencies.AndroidSupport.Design.ConstraintLayout)
 	api(LibraryDependencies.AndroidSupport.Design.Material)
@@ -82,6 +86,7 @@ dependencies {
 	api(LibraryDependencies.Navigation.FragmentKtx)
 	api(LibraryDependencies.Navigation.UiKtx)
 
+	addTestDependencies()
 }
 
 fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigFieldFromGradleProperty(gradlePropertyName: String) {

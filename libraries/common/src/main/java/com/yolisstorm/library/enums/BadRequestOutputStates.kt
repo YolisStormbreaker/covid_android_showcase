@@ -1,4 +1,4 @@
-package com.yolisstorm.data_sources.network.covid_stats.enums
+package com.yolisstorm.library.enums
 
 import com.google.gson.annotations.SerializedName
 

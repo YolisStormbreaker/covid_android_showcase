@@ -3,7 +3,7 @@ package com.yolisstorm.library.store.factories.impl
 import android.os.Parcelable
 import com.yolisstorm.library.common.resultWrappers.network.NetworkResultWrapper
 import com.yolisstorm.library.store.factories.StoreCacheStrategy
-import com.yolisstorm.library.store.ledger_lair_database.LedgerOperationsDao
+import com.yolisstorm.library.store.ledger_lair_database.dao.LedgerOperationsDao
 import com.yolisstorm.library.store.factories.interfaces.IStoreForSoloItem
 import com.yolisstorm.library.store.models.StoreResponse
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package com.yolisstorm.library.store.ledger_lair_database
+package com.yolisstorm.library.store.ledger_lair_database.dao
 
 import androidx.room.Dao
 import java.util.*

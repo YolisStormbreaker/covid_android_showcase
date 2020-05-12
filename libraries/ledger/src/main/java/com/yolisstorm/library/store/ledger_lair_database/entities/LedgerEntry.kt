@@ -1,4 +1,4 @@
-package com.yolisstorm.library.store.ledger_lair_database
+package com.yolisstorm.library.store.ledger_lair_database.entities
 
 import androidx.room.Entity
 import androidx.room.Index
@@ -6,17 +6,12 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 
-@Entity(
-	indices = [
-		Index(
-			value = ["id"], unique = true
-		)
-	]
-)
+@Entity
 data class LedgerEntry (
 	@PrimaryKey(autoGenerate = true)
-	val id: UUID,
-	val referenceTableId: UUID,
+	val id: Long,
+	val objectIdInRefTable: Long,
+	val referenceTypeId: Long,
 	val creationDate : Date = Date(),
 	var lastUpdateDate : Date,
 	var checkSum : Int
