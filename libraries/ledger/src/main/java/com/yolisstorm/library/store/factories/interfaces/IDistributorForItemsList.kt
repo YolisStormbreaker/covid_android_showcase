@@ -4,7 +4,7 @@ import com.yolisstorm.library.store.models.StoreResponse
 import com.yolisstorm.library.store.models.StoreSimpleItem
 import kotlinx.coroutines.flow.Flow
 
-interface IStoreForItemsList<in D, T> {
+interface IDistributorForItemsList<in D, T> {
 
 	suspend fun getListFromStore() : Flow<StoreResponse<List<T>>>
 	suspend fun updateListInStore(newList: List<T>)

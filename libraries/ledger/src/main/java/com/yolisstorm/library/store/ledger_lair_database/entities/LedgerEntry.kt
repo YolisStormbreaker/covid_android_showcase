@@ -9,10 +9,11 @@ import java.util.*
 @Entity
 data class LedgerEntry (
 	@PrimaryKey(autoGenerate = true)
-	val id: Long,
+	val entryId: Long,
 	val objectIdInRefTable: Long,
 	val referenceTypeId: Long,
 	val creationDate : Date = Date(),
-	var lastUpdateDate : Date,
+	var lastUpdatedDate : Date,
+	var lastReadDate: Date,
 	var checkSum : Int
 )

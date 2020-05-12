@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 import kotlin.reflect.KClass
 
 @Entity
-data class LedgerReferenceType <T : Any> (
+data class LedgerReferenceType (
 	@PrimaryKey(autoGenerate = true)
 	val referenceId: Long,
-	val referenceClass: KClass<T>
+	val referenceClass: KClass<out Any>
 )
