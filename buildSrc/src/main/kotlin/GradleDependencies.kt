@@ -2,7 +2,7 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 import java.net.URI
 
 object GradlePluginVersion {
-	const val ANDROID_GRADLE                =   "4.0.0-beta05"
+	const val ANDROID_GRADLE                =   "4.0.0-rc01"
 	const val KTLINT_GRADLE                 =   "9.1.1"
 	const val DETEKT                        =   "1.4.0"
 	const val CRASHLYTICS_GRADLE            =   CoreVersion.CRASHLYTICS_GRADLE

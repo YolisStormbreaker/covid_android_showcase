@@ -10,10 +10,10 @@ import kotlin.reflect.KClass
 internal class LedgersConverters {
 
 	@TypeConverter
-	fun dateToLong(date: Date) : Long = date.time
+	fun dateToLong(date: Date?) : Long = date?.time ?: 0
 
 	@TypeConverter
-	fun longToDate(value : Long) : Date = Date(value)
+	fun longToDate(value : Long) : Date? = if (value == 0L) null else Date(value)
 
 	@TypeConverter
 	fun kClassToString(inputClass: KClass<out Any>) : String = inputClass.getFullName()

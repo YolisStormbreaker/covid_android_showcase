@@ -17,7 +17,7 @@ import kotlin.reflect.KClass
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class ReflectionUnitTest {
 
 	@Test
 	fun testTypeVisaVersaConversion() {

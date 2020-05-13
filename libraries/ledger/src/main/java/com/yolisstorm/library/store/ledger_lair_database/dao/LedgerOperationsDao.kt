@@ -23,13 +23,23 @@ interface LedgerOperationsDao {
 			)
 		)
 	}
+	@Update
+	suspend fun updateLedgerEntry(ledgerEntry: LedgerEntry)
 
 	@Transaction
-	@Query("SELECT * FROM LedgerReferenceType")
-	suspend fun getLedgersEntriesWithReferenceType() : List<LedgerEntryWithTypeReference>
+	@Query("SELECT * FROM LedgerReferenceType WHERE LedgerReferenceType.referenceId = :referenceTypeId")
+	suspend fun getLedgersEntriesWithReferenceType(referenceTypeId : Long) : LedgerEntryWithTypeReference
+	@Query("SELECT * FROM LedgerEntry WHERE LedgerEntry.objectIdInRefTable = :objectTableId")
+	suspend fun getLedgerEntryByObjectTableId(objectTableId : Long) : LedgerEntry?
+	@Query("SELECT * FROM LedgerReferenceType WHERE LedgerReferenceType.referenceClass = :referenceTypeClass")
+	suspend fun getLedgerReferenceType(referenceTypeClass: KClass<out Any>) : LedgerReferenceType?
 
 	@Delete
 	suspend fun removeEntry(ledgerEntry: LedgerEntry)
+	@Delete
+	suspend fun removeReferenceAndAllEntriesOfIt(ledgerEntryReferenceType: LedgerReferenceType)
+	@Query("DELETE FROM LedgerReferenceType WHERE LedgerReferenceType.referenceClass = :referenceTypeClass")
+	suspend fun removeReferenceAndAllEntriesOfIt(referenceTypeClass: KClass<out Any>)
 
 	@Query("DELETE FROM LedgerEntry")
 	suspend fun burnLedgerEntries()

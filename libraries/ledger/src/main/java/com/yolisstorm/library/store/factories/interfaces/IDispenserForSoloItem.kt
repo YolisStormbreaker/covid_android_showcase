@@ -1,11 +1,11 @@
 package com.yolisstorm.library.store.factories.interfaces
 
-import com.yolisstorm.library.store.models.StoreResponse
+import com.yolisstorm.library.store.models.DispenserResponse
 import kotlinx.coroutines.flow.Flow
 
-interface IDistributorForSoloItem<T> {
+interface IDispenserForSoloItem<T> {
 
-	suspend fun getItemFromStorage() : Flow<StoreResponse<T>>
+	suspend fun getItemFromStorage() : Flow<DispenserResponse<T>>
 	suspend fun updateItemInStorage(newItem: T)
 	suspend fun eraseItemFromStorage()
 

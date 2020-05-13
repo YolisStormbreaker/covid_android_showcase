@@ -2,12 +2,12 @@ package com.yolisstorm.library.store.models
 
 import java.lang.Exception
 
-sealed class StoreResponse<out T> {
-	data class Fresh<out T>(val value: T) : StoreResponse<T>()
-	data class Spoiled<out T>(val value: T) : StoreResponse<T>()
-	object Empty : StoreResponse<Nothing>()
-	object NotFound : StoreResponse<Nothing>()
-	data class Error(val error: Exception) : StoreResponse<Nothing>()
+sealed class DispenserResponse<out T> {
+	data class Fresh<out T>(val value: T) : DispenserResponse<T>()
+	data class Spoiled<out T>(val value: T) : DispenserResponse<T>()
+	object Empty : DispenserResponse<Nothing>()
+	object NotFound : DispenserResponse<Nothing>()
+	data class Error(val error: Exception) : DispenserResponse<Nothing>()
 	
 	override fun toString(): String {
 		return when (this) {

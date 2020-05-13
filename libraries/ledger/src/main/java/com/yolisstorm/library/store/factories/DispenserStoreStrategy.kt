@@ -11,7 +11,7 @@ import kotlin.time.*
  * Сбрасывается запросом на чтение данных, либо на их перезапись
  */
 @ExperimentalTime
-data class StoreCacheStrategy(
+data class DispenserStoreStrategy(
 	val expireAfterWrite: Duration,
 	val expireAfterRead: Duration
 ) {
@@ -20,7 +20,7 @@ data class StoreCacheStrategy(
 			expireAfterWrite: Duration = 30.days,
 			expireAfterRead: Duration = 15.days
 		) =
-			StoreCacheStrategy(
+			DispenserStoreStrategy(
 				expireAfterWrite = expireAfterWrite,
 				expireAfterRead = expireAfterRead
 			)
