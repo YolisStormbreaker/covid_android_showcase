@@ -1,10 +1,10 @@
 package com.yolisstorm.data_sources.network.covid_stats.helpers
 
 import com.google.gson.Gson
-import com.yolisstorm.data_sources.network.covid_stats.helpers.models.BadRequestOutput
-import com.yolisstorm.data_sources.network.covid_stats.helpers.models.ErrorOutputInterface
-import com.yolisstorm.data_sources.network.covid_stats.helpers.models.ModelStateErrorOutput
-import com.yolisstorm.data_sources.network.covid_stats.helpers.models.NetworkResultWrapper
+import com.yolisstorm.library.common.resultWrappers.network.BadRequestOutput
+import com.yolisstorm.library.common.resultWrappers.network.ErrorOutputInterface
+import com.yolisstorm.library.common.resultWrappers.network.ModelStateErrorOutput
+import com.yolisstorm.library.common.resultWrappers.network.NetworkResultWrapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

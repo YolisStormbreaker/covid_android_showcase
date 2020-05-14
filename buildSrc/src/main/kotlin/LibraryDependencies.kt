@@ -57,6 +57,7 @@ object LibraryDependencies {
 		const val AppCompat                 =   "androidx.appcompat:appcompat:${LibraryVersion.APPCOMPAT}"
 		const val CoreKtx                   =   "androidx.core:core-ktx:${LibraryVersion.CORE_KTX}"
 		const val CoreUtils                 =   "androidx.legacy:legacy-support-core-utils:${LibraryVersion.SUPPORT_CORE_UTILS}"
+		const val Paging                    =   "androidx.paging:paging-runtime:${LibraryVersion.PAGING}"
 		const val PlayCore                  =   "com.google.android.play:core:${LibraryVersion.PLAY_CORE}"
 
 		object Design {
@@ -104,9 +105,10 @@ object LibraryDependencies {
 	}
 
 	object Koin {
-		const val Main                       =  "org.koin:koin-android:${CoreVersion.KOIN}"
-		const val Scope                      =  "org.koin:koin-android-scope:${CoreVersion.KOIN}"
-		const val ViewModel                  =  "org.koin:koin-android-viewmodel:${CoreVersion.KOIN}"
+		const val Core                       =  "org.koin:koin-core:${CoreVersion.KOIN}"
+		const val Scope                      =  "org.koin:koin-androidx-scope:${CoreVersion.KOIN}"
+		const val ViewModel                  =  "org.koin:koin-androidx-viewmodel:${CoreVersion.KOIN}"
+		const val Ext                        =  "org.koin:koin-androidx-ext:${CoreVersion.KOIN}"
 		const val Test                       =  "org.koin:koin-test:${CoreVersion.KOIN}"
 	}
 	

@@ -1,7 +1,7 @@
-package com.yolisstorm.data_sources.network.covid_stats.helpers.models
+package com.yolisstorm.library.common.resultWrappers.network
 
 import com.google.gson.annotations.SerializedName
-import com.yolisstorm.data_sources.network.covid_stats.enums.BadRequestOutputStates
+import com.yolisstorm.library.enums.BadRequestOutputStates
 
 data class BadRequestOutput(
 	@SerializedName("error")

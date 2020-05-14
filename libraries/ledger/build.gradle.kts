@@ -2,6 +2,7 @@ plugins {
     id(GradlePluginId.ANDROID_LIBRARY)
     id(GradlePluginId.KOTLIN_ANDROID)
     id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
+    kotlin("kapt")
 }
 
 android {
@@ -15,6 +16,9 @@ android {
         versionName = AndroidDefaultConfig.VERSION_NAME
 
         testInstrumentationRunner = AndroidDefaultConfig.TEST_INSTRUMENTATION_RUNNER
+
+        buildConfigFieldFromGradleProperty("isNeedCommonLog", "Boolean")
+
     }
 
     buildTypes {
@@ -48,7 +52,37 @@ android {
 dependencies {
 
     api(LibraryDependencies.Main.Timber)
-    implementation(LibraryDependencies.Koin.Main)
+    implementation(project(ModuleDependency.LibraryCommon))
+    implementation(LibraryDependencies.Koin.Core)
     implementation(LibraryDependencies.Firebase.Crashlytics)
 
+    implementation(LibraryDependencies.Main.Gson)
+
+    implementation(LibraryDependencies.Room.Runtime)
+    implementation(LibraryDependencies.Room.Ktx)
+    kapt(LibraryDependencies.Room.Compiler)
+
+    api(LibraryDependencies.Kotlin.Coroutines.Android)
+
+    api(LibraryDependencies.AndroidSupport.Paging)
+
+    addTestDependencies()
+
+}
+
+fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }
+
+fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigFieldFromGradleProperty(
+    gradlePropertyName: String,
+    type: String = "String"
+) {
+    val propertyValue =
+        project.properties[gradlePropertyName] as? String ?: com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
+            projectDir
+        )
+            .getProperty(gradlePropertyName) as? String
+    checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
+
+    val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
+    buildConfigField(type, androidResourceName, propertyValue)
 }

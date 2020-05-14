@@ -5,7 +5,7 @@ import androidx.annotation.RequiresPermission
 import com.yolisstorm.data_sources.network.covid_stats.dto.Country
 import com.yolisstorm.data_sources.network.covid_stats.dto.FullCase
 import com.yolisstorm.data_sources.network.covid_stats.dto.Summary
-import com.yolisstorm.data_sources.network.covid_stats.helpers.models.NetworkResultWrapper
+import com.yolisstorm.library.common.resultWrappers.network.NetworkResultWrapper
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 
