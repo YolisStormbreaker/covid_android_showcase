@@ -24,8 +24,8 @@ private const val DATABASE_NAME = "main_database"
 @TypeConverters(CommonConverters::class, LatLngConverter::class)
 internal abstract class MainDatabase : RoomDatabase() {
 
-	abstract fun countriesDao() : CountriesDao
-	abstract fun casesDao() : CasesDao
+	abstract fun countriesDao(): CountriesDao
+	abstract fun casesDao(): CasesDao
 
 	companion object {
 

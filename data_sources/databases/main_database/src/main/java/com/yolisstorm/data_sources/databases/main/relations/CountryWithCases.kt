@@ -6,10 +6,10 @@ import com.yolisstorm.data_sources.databases.main.entities.Case
 import com.yolisstorm.data_sources.databases.main.entities.Country
 
 
-data class CountryWithCases (
+data class CountryWithCases(
 	@Embedded
-	val country : Country,
-	@Relation (
+	val country: Country,
+	@Relation(
 		parentColumn = "id",
 		entityColumn = "countryId"
 	)

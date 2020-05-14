@@ -7,7 +7,7 @@ import java.util.*
 @Entity(
 	tableName = "cases",
 	indices = [
-		Index (
+		Index(
 			value = ["country_id"],
 			unique = true
 		)
@@ -22,20 +22,20 @@ import java.util.*
 		)
 	]
 )
-data class Case (
+data class Case(
 	@PrimaryKey(autoGenerate = true)
 	@ColumnInfo(name = "id")
-	val id : Long = 0L,
+	val id: Long = 0L,
 	@ColumnInfo(name = "location")
-	val location : LatLng? = null,
+	val location: LatLng? = null,
 	@ColumnInfo(name = "country_id")
-	val countryId : Long,
+	val countryId: Long,
 	@ColumnInfo(name = "date")
 	val date: Date,
 	@ColumnInfo(name = "confirmed")
-	val confirmed : Int,
+	val confirmed: Int,
 	@ColumnInfo(name = "deaths")
-	val deaths : Int,
+	val deaths: Int,
 	@ColumnInfo(name = "recovered")
-	val recovered : Int
+	val recovered: Int
 )

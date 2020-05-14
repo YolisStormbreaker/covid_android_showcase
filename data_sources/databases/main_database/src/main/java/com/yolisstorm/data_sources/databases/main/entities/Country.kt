@@ -8,10 +8,10 @@ import java.util.*
 @Entity(
 	tableName = "countries"
 )
-data class Country (
+data class Country(
 	@PrimaryKey(autoGenerate = true)
 	@ColumnInfo(name = "id")
-	val id : Long = 0L,
+	val id: Long = 0L,
 	@ColumnInfo(name = "country_code")
 	val locale: Locale,
 	@ColumnInfo(name = "country_slug")
