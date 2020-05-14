@@ -79,6 +79,7 @@ dependencies {
 	debugImplementation(LibraryDependencies.Main.Leakcanary)
 
 	implementation(LibraryDependencies.Koin.Core)
+	implementation(LibraryDependencies.Koin.Ext)
 
 	api(LibraryDependencies.AndroidSupport.Design.ConstraintLayout)
 	api(LibraryDependencies.AndroidSupport.Design.Material)

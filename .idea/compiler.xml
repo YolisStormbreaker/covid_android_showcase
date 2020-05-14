@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="libraries" target="1.7" />
+      <module name="main_database" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

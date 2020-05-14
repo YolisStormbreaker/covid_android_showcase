@@ -42,7 +42,7 @@ class DispenserForSoloItemFactory<ItemType : DispenserSimpleItem<Long>> construc
 			if (referenceType == null)
 				emit(DispenserResponse.NotFound)
 			val entries =
-				ledgerProvider.getLedgersEntriesWithReferenceType(referenceType.referenceId)
+				ledgerProvider.getLedgersEntriesWithReferenceType(referenceType!!.referenceId)
 			when {
 				entries.entriesList.size > 1 -> {
 					Timber.e("getItemFromStorage() - refType = $referenceType - Entries more than one. Logic error!")
