@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
 	id(GradlePluginId.ANDROID_LIBRARY)
 	id(GradlePluginId.KOTLIN_ANDROID)
@@ -18,7 +20,6 @@ android {
 		testInstrumentationRunner = AndroidDefaultConfig.TEST_INSTRUMENTATION_RUNNER
 
 		buildConfigFieldFromGradleProperty("isNeedCommonLog", "Boolean")
-
 	}
 
 	buildTypes {
@@ -31,11 +32,17 @@ android {
 			isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
 		}
 
+		testOptions {
+			unitTests.isReturnDefaultValues = TestOptions.IS_RETURN_DEFAULT_VALUES
+		}
+
 		compileOptions {
 			sourceCompatibility = JavaVersion.VERSION_1_8
 			targetCompatibility = JavaVersion.VERSION_1_8
 		}
 	}
+
+
 
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_1_8
@@ -45,16 +52,21 @@ android {
 	kotlinOptions {
 		jvmTarget = JavaVersion.VERSION_1_8.toString()
 	}
-
-	buildFeatures.dataBinding = true
 }
 
 dependencies {
 
-	api(LibraryDependencies.Main.Timber)
-	implementation(project(ModuleDependency.LibraryCommon))
-	implementation(LibraryDependencies.Koin.Core)
 	implementation(LibraryDependencies.Firebase.Crashlytics)
+	implementation(project(ModuleDependency.LibraryCommon))
+
+	api(LibraryDependencies.Main.Timber)
+
+	api(LibraryDependencies.Kotlin.Coroutines.Android)
+	api(LibraryDependencies.AndroidSupport.CoreKtx)
+	implementation(LibraryDependencies.AndroidSupport.Gms.PlayServices.Maps)
+
+	implementation(LibraryDependencies.Koin.Core)
+	implementation(LibraryDependencies.Koin.Ext)
 
 	implementation(LibraryDependencies.Main.Gson)
 
@@ -62,13 +74,13 @@ dependencies {
 	implementation(LibraryDependencies.Room.Ktx)
 	kapt(LibraryDependencies.Room.Compiler)
 
-	api(LibraryDependencies.Kotlin.Coroutines.Android)
-
 	api(LibraryDependencies.AndroidSupport.Paging)
+
 
 	addTestDependencies()
 
 }
+
 
 fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }
 
@@ -77,9 +89,7 @@ fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigFieldFromGradleP
 	type: String = "String"
 ) {
 	val propertyValue =
-		project.properties[gradlePropertyName] as? String ?: com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
-			projectDir
-		)
+		project.properties[gradlePropertyName] as? String ?: gradleLocalProperties(projectDir)
 			.getProperty(gradlePropertyName) as? String
 	checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
 

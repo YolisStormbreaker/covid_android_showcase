@@ -6,15 +6,15 @@ import androidx.room.PrimaryKey
 import kotlin.reflect.KClass
 
 @Entity (
-	foreignKeys = [
+	/*foreignKeys = [
 		ForeignKey(
 			entity = LedgerEntry::class,
-			parentColumns = ["referenceId"],
-			childColumns = ["referenceTypeId"],
+			parentColumns = ["referenceTypeId"],
+			childColumns = ["referenceId"],
 			onDelete = ForeignKey.CASCADE,
 			onUpdate = ForeignKey.RESTRICT
 		)
-	]
+	]*/
 )
 data class LedgerReferenceType (
 	@PrimaryKey(autoGenerate = true)
