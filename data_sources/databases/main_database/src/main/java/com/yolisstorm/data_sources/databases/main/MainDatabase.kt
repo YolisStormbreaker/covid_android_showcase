@@ -5,14 +5,21 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.yolisstorm.data_sources.databases.main.converters.CommonConverters
+import com.yolisstorm.data_sources.databases.main.converters.LatLngConverter
+import com.yolisstorm.data_sources.databases.main.entities.Case
+import com.yolisstorm.data_sources.databases.main.entities.Country
 
 const val DATABASE_NAME = "main_database"
 
 @Database(
-	entities = [],
+	entities = [
+		Case::class,
+		Country::class
+	],
 	version = 1
 )
-@TypeConverters(CommonConverters::class)
+@TypeConverters(CommonConverters::class, LatLngConverter::class)
 abstract class MainDatabase : RoomDatabase() {
 
 

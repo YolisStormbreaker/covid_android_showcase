@@ -22,7 +22,7 @@ object GradlePluginId {
 	const val KOTLIN_ANDROID                =   "org.jetbrains.kotlin.android"
 	const val KOTLIN_ANDROID_EXTENSIONS     =   "org.jetbrains.kotlin.android.extensions"
 	const val KOTLIN_SERIALIZATION          =   "org.jetbrains.kotlin.serialization"
-	const val KOTLIN_KAPT                   =   "org.jetbrains.kotlin.kapt"
+	const val KOTLIN_KAPT                   =   "kotlin-kapt"
 	const val GOOGLE_GMS_PLUGIN             =   "com.google.gms.google-services"
 	const val CRASHLYTICS_PLUGIN            =   "com.google.firebase.crashlytics"
 	const val GRADLE_UPDATE_PLUGIN          =   "com.github.ben-manes.versions"

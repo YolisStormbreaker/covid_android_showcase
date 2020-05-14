@@ -1,88 +1,88 @@
 plugins {
-    id(GradlePluginId.ANDROID_LIBRARY)
-    id(GradlePluginId.KOTLIN_ANDROID)
-    id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
-    kotlin("kapt")
+	id(GradlePluginId.ANDROID_LIBRARY)
+	id(GradlePluginId.KOTLIN_ANDROID)
+	id(GradlePluginId.KOTLIN_KAPT)
+	id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
 }
 
 android {
-    compileSdkVersion(AndroidDefaultConfig.COMPILE_SDK_VERSION)
-    buildToolsVersion(AndroidDefaultConfig.BUILD_TOOLS_VERSION)
+	compileSdkVersion(AndroidDefaultConfig.COMPILE_SDK_VERSION)
+	buildToolsVersion(AndroidDefaultConfig.BUILD_TOOLS_VERSION)
 
-    defaultConfig {
-        minSdkVersion(AndroidDefaultConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AndroidDefaultConfig.TARGET_SDK_VERSION)
-        versionCode = AndroidDefaultConfig.VERSION_CODE
-        versionName = AndroidDefaultConfig.VERSION_NAME
+	defaultConfig {
+		minSdkVersion(AndroidDefaultConfig.MIN_SDK_VERSION)
+		targetSdkVersion(AndroidDefaultConfig.TARGET_SDK_VERSION)
+		versionCode = AndroidDefaultConfig.VERSION_CODE
+		versionName = AndroidDefaultConfig.VERSION_NAME
 
-        testInstrumentationRunner = AndroidDefaultConfig.TEST_INSTRUMENTATION_RUNNER
+		testInstrumentationRunner = AndroidDefaultConfig.TEST_INSTRUMENTATION_RUNNER
 
-        buildConfigFieldFromGradleProperty("isNeedCommonLog", "Boolean")
+		buildConfigFieldFromGradleProperty("isNeedCommonLog", "Boolean")
 
-    }
+	}
 
-    buildTypes {
-        getByName(BuildType.RELEASE) {
-            isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
-            proguardFiles("proguard-android.txt", "proguard-rules.pro")
-        }
+	buildTypes {
+		getByName(BuildType.RELEASE) {
+			isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
+			proguardFiles("proguard-android.txt", "proguard-rules.pro")
+		}
 
-        getByName(BuildType.DEBUG) {
-            isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
-        }
+		getByName(BuildType.DEBUG) {
+			isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
+		}
 
-        compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
-        }
-    }
+		compileOptions {
+			sourceCompatibility = JavaVersion.VERSION_1_8
+			targetCompatibility = JavaVersion.VERSION_1_8
+		}
+	}
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+	compileOptions {
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
+	}
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
+	kotlinOptions {
+		jvmTarget = JavaVersion.VERSION_1_8.toString()
+	}
 
-    buildFeatures.dataBinding = true
+	buildFeatures.dataBinding = true
 }
 
 dependencies {
 
-    api(LibraryDependencies.Main.Timber)
-    implementation(project(ModuleDependency.LibraryCommon))
-    implementation(LibraryDependencies.Koin.Core)
-    implementation(LibraryDependencies.Firebase.Crashlytics)
+	api(LibraryDependencies.Main.Timber)
+	implementation(project(ModuleDependency.LibraryCommon))
+	implementation(LibraryDependencies.Koin.Core)
+	implementation(LibraryDependencies.Firebase.Crashlytics)
 
-    implementation(LibraryDependencies.Main.Gson)
+	implementation(LibraryDependencies.Main.Gson)
 
-    implementation(LibraryDependencies.Room.Runtime)
-    implementation(LibraryDependencies.Room.Ktx)
-    kapt(LibraryDependencies.Room.Compiler)
+	implementation(LibraryDependencies.Room.Runtime)
+	implementation(LibraryDependencies.Room.Ktx)
+	kapt(LibraryDependencies.Room.Compiler)
 
-    api(LibraryDependencies.Kotlin.Coroutines.Android)
+	api(LibraryDependencies.Kotlin.Coroutines.Android)
 
-    api(LibraryDependencies.AndroidSupport.Paging)
+	api(LibraryDependencies.AndroidSupport.Paging)
 
-    addTestDependencies()
+	addTestDependencies()
 
 }
 
 fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }
 
 fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigFieldFromGradleProperty(
-    gradlePropertyName: String,
-    type: String = "String"
+	gradlePropertyName: String,
+	type: String = "String"
 ) {
-    val propertyValue =
-        project.properties[gradlePropertyName] as? String ?: com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
-            projectDir
-        )
-            .getProperty(gradlePropertyName) as? String
-    checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
+	val propertyValue =
+		project.properties[gradlePropertyName] as? String ?: com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(
+			projectDir
+		)
+			.getProperty(gradlePropertyName) as? String
+	checkNotNull(propertyValue) { "Gradle property $gradlePropertyName is null" }
 
-    val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
-    buildConfigField(type, androidResourceName, propertyValue)
+	val androidResourceName = "GRADLE_${gradlePropertyName.toSnakeCase()}".toUpperCase()
+	buildConfigField(type, androidResourceName, propertyValue)
 }

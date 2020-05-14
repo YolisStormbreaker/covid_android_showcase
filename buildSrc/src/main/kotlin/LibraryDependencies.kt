@@ -24,6 +24,7 @@ private object LibraryVersion {
 	const val G_MAPS_LOCATION               =   "17.0.0"
 	const val G_MAPS_PLACES                 =   "2.2.0"
 	const val G_MAPS_UTILS_KTX              =   "0.3.1"
+	const val G_PLAY_SERVICES               =   "17.0.0"
 	const val GSON                          =   "2.8.6"
 	const val LEAKCANARY                    =   "2.3"
 	const val LIFECYCLE                     =   "2.2.0"
@@ -75,7 +76,10 @@ object LibraryDependencies {
 		}
 
 		object Gms {
-			const val GoogleGms                 =   "com.google.gms:google-services:${CoreVersion.GMS_GOOGLE_SERVICES}"
+			const val GoogleServices                 =   "com.google.gms:google-services:${CoreVersion.GMS_GOOGLE_SERVICES}"
+			object PlayServices {
+				const val Maps                           =  "com.google.android.gms:play-services-maps:${LibraryVersion.G_PLAY_SERVICES}"
+			}
 		}
 	}
 

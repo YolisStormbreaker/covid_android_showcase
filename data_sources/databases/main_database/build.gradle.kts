@@ -3,8 +3,8 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
 	id(GradlePluginId.ANDROID_LIBRARY)
 	id(GradlePluginId.KOTLIN_ANDROID)
+	id(GradlePluginId.KOTLIN_KAPT)
 	id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
-	kotlin("kapt")
 }
 
 android {
@@ -63,6 +63,7 @@ dependencies {
 
 	api(LibraryDependencies.Kotlin.Coroutines.Android)
 	api(LibraryDependencies.AndroidSupport.CoreKtx)
+	implementation(LibraryDependencies.AndroidSupport.Gms.PlayServices.Maps)
 
 	implementation(LibraryDependencies.Koin.Core)
 

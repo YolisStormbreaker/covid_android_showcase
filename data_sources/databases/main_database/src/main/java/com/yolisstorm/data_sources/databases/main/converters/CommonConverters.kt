@@ -1,4 +1,4 @@
-package com.yolisstorm.data_sources.databases.main
+package com.yolisstorm.data_sources.databases.main.converters
 
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
@@ -12,5 +12,11 @@ class CommonConverters {
 
 	@TypeConverter
 	fun longToDate(inputLong: Long) : Date? = if (inputLong == -1L) null else Date(inputLong)
+
+	@TypeConverter
+	fun countryCodeToLocale(inputCountryCode : String) : Locale = Locale(Locale.getDefault().language, inputCountryCode)
+
+	@TypeConverter
+	fun localeToCountryCode(inputLocale: Locale) : String = inputLocale.country
 
 }
