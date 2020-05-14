@@ -66,6 +66,7 @@ dependencies {
 	implementation(LibraryDependencies.AndroidSupport.Gms.PlayServices.Maps)
 
 	implementation(LibraryDependencies.Koin.Core)
+	implementation(LibraryDependencies.Koin.Ext)
 
 	implementation(LibraryDependencies.Main.Gson)
 

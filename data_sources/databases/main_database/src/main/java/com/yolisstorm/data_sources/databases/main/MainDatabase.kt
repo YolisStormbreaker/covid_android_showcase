@@ -7,10 +7,12 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.yolisstorm.data_sources.databases.main.converters.CommonConverters
 import com.yolisstorm.data_sources.databases.main.converters.LatLngConverter
+import com.yolisstorm.data_sources.databases.main.dao.CasesDao
+import com.yolisstorm.data_sources.databases.main.dao.CountriesDao
 import com.yolisstorm.data_sources.databases.main.entities.Case
 import com.yolisstorm.data_sources.databases.main.entities.Country
 
-const val DATABASE_NAME = "main_database"
+private const val DATABASE_NAME = "main_database"
 
 @Database(
 	entities = [
@@ -20,8 +22,10 @@ const val DATABASE_NAME = "main_database"
 	version = 1
 )
 @TypeConverters(CommonConverters::class, LatLngConverter::class)
-abstract class MainDatabase : RoomDatabase() {
+internal abstract class MainDatabase : RoomDatabase() {
 
+	abstract fun countriesDao() : CountriesDao
+	abstract fun casesDao() : CasesDao
 
 	companion object {
 

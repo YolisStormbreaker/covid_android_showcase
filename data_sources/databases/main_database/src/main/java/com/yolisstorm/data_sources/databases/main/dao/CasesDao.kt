@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.yolisstorm.data_sources.databases.main.entities.Case
-import com.yolisstorm.data_sources.databases.main.relations.CountryWithCases
 
 @Dao
 interface CasesDao {
@@ -17,7 +16,7 @@ interface CasesDao {
 	suspend fun insertNewCases(cases: List<Case>)
 
 	@Query("SELECT * FROM cases WHERE cases.country_id = :countryId ORDER BY cases.date DESC")
-	suspend fun getCasesByCountry(countryId : Long) : DataSource.Factory<Int, Case>
+	fun getCasesByCountry(countryId : Long) : DataSource.Factory<Int, Case>
 
 	@Query("SELECT * FROM cases WHERE cases.country_id = :countryId ORDER BY cases.date DESC LIMIT 2")
 	suspend fun getLastTwoCasesByCountry(countryId: Long) : List<Case>

@@ -17,8 +17,8 @@ import java.util.*
 			entity = Country::class,
 			parentColumns = ["id"],
 			childColumns = ["country_id"],
-			onUpdate = ForeignKey.NO_ACTION,
-			onDelete = ForeignKey.NO_ACTION
+			onUpdate = ForeignKey.CASCADE,
+			onDelete = ForeignKey.CASCADE
 		)
 	]
 )
