@@ -1,6 +1,6 @@
 package com.yolisstorm.data_sources.databases.main.helpers
 
-import com.yolisstorm.data_sources.network.covid_stats.BuildConfig
+import com.yolisstorm.data_sources.databases.main.BuildConfig
 import timber.log.Timber
 
 fun dLogIf(msg: String, isNeedLog: Boolean = BuildConfig.DEBUG && BuildConfig.GRADLE_IS_NEED_COMMON_LOG) {
