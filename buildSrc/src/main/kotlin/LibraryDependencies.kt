@@ -57,6 +57,7 @@ object LibraryDependencies {
 		const val AppCompat                 =   "androidx.appcompat:appcompat:${LibraryVersion.APPCOMPAT}"
 		const val CoreKtx                   =   "androidx.core:core-ktx:${LibraryVersion.CORE_KTX}"
 		const val CoreUtils                 =   "androidx.legacy:legacy-support-core-utils:${LibraryVersion.SUPPORT_CORE_UTILS}"
+		const val Paging                    =   "androidx.paging:paging-runtime:${LibraryVersion.PAGING}"
 		const val PlayCore                  =   "com.google.android.play:core:${LibraryVersion.PLAY_CORE}"
 
 		object Design {

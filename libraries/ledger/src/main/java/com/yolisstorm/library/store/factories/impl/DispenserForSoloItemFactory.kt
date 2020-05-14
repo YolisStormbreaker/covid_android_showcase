@@ -56,7 +56,8 @@ class DispenserForSoloItemFactory<ItemType : DispenserSimpleItem<Long>> construc
 								|item = $item
 								|ledgerEntry = ${entries.entriesList.first()}
 								) - Ledger Entry exist but item in database is missing
-							""".trimMargin())
+							""".trimMargin()
+						)
 						throw IllegalArgumentException()
 					}
 					val resultResponse =

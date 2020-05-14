@@ -36,6 +36,8 @@ interface LedgerOperationsDao {
 
 	@Delete
 	suspend fun removeEntry(ledgerEntry: LedgerEntry)
+	@Query("DELETE FROM LedgerEntry WHERE LedgerEntry.objectIdInRefTable = :objectInTableId")
+	suspend fun removeEntry(objectInTableId: Long)
 	@Delete
 	suspend fun removeReferenceAndAllEntriesOfIt(ledgerEntryReferenceType: LedgerReferenceType)
 	@Query("DELETE FROM LedgerReferenceType WHERE LedgerReferenceType.referenceClass = :referenceTypeClass")

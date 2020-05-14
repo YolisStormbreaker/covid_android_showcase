@@ -11,6 +11,7 @@ import java.util.*
 data class LedgerEntry (
 	@PrimaryKey(autoGenerate = true)
 	val entryId: Long = 0,
+	@PrimaryKey(autoGenerate = false)
 	val objectIdInRefTable: Long,
 	val referenceTypeId: Long,
 	val creationDate : Date = Date(),

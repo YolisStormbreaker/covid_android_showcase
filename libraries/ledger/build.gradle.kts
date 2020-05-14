@@ -64,6 +64,8 @@ dependencies {
 
     api(LibraryDependencies.Kotlin.Coroutines.Android)
 
+    api(LibraryDependencies.AndroidSupport.Paging)
+
     addTestDependencies()
 
 }
