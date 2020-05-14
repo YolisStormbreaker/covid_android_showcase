@@ -33,7 +33,7 @@ class DispenserForListOfItemsFactory<ItemType : DispenserSimpleItem<Long>>(
 	}
 
 	override suspend fun getItemsListFromStorage(): DispenserResponse<PagedList<ItemType>> {
-		
+
 	}
 
 	override suspend fun updateItemsListInStorage(newList: List<ItemType>) {
