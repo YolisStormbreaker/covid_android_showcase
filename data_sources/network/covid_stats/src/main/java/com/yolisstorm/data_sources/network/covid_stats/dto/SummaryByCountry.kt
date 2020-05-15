@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class SummaryByCountry(
-	val country: Country,
+	val country: CountryDto,
 	@SerializedName("Date")
 	val date: Date,
 	@SerializedName("NewConfirmed")

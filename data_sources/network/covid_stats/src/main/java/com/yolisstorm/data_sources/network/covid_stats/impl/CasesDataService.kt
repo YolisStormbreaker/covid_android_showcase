@@ -2,7 +2,7 @@ package com.yolisstorm.data_sources.network.covid_stats.impl
 
 import android.Manifest
 import androidx.annotation.RequiresPermission
-import com.yolisstorm.data_sources.network.covid_stats.dto.Country
+import com.yolisstorm.data_sources.network.covid_stats.dto.CountryDto
 import com.yolisstorm.data_sources.network.covid_stats.dto.Summary
 import com.yolisstorm.data_sources.network.covid_stats.helpers.safeApiInFlowCall
 import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICasesDataService
@@ -30,7 +30,7 @@ internal class CasesDataService(
 
 	@RequiresPermission(Manifest.permission.INTERNET)
 	override suspend fun getCasesByCountryBetweenTwoDates(
-		country: Country,
+		country: CountryDto,
 		dateRange: Pair<Date, Date>?
 	) =
 		safeApiInFlowCall(dispatcher) {

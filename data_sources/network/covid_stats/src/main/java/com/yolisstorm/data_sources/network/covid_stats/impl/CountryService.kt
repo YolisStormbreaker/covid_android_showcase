@@ -2,7 +2,7 @@ package com.yolisstorm.data_sources.network.covid_stats.impl
 
 import android.Manifest
 import androidx.annotation.RequiresPermission
-import com.yolisstorm.data_sources.network.covid_stats.dto.Country
+import com.yolisstorm.data_sources.network.covid_stats.dto.CountryDto
 import com.yolisstorm.data_sources.network.covid_stats.helpers.safeApiInFlowCall
 import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICountryService
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.ICountriesApi
@@ -19,7 +19,7 @@ internal class CountryService(
 ) : ICountryService {
 
 	@RequiresPermission(Manifest.permission.INTERNET)
-	override suspend fun getListOfCountries(): Flow<NetworkResultWrapper<List<Country>>> =
+	override suspend fun getListOfCountries(): Flow<NetworkResultWrapper<List<CountryDto>>> =
 		safeApiInFlowCall(dispatcher) {
 			countriesApi.getAvailableCountriesList()
 		}

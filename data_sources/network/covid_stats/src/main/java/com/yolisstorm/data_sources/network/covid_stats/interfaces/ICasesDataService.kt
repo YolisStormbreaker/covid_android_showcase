@@ -2,7 +2,7 @@ package com.yolisstorm.data_sources.network.covid_stats.interfaces
 
 import android.Manifest
 import androidx.annotation.RequiresPermission
-import com.yolisstorm.data_sources.network.covid_stats.dto.Country
+import com.yolisstorm.data_sources.network.covid_stats.dto.CountryDto
 import com.yolisstorm.data_sources.network.covid_stats.dto.FullCase
 import com.yolisstorm.data_sources.network.covid_stats.dto.Summary
 import com.yolisstorm.library.common.resultWrappers.network.NetworkResultWrapper
@@ -16,7 +16,7 @@ interface ICasesDataService {
 
 	@RequiresPermission(Manifest.permission.INTERNET)
 	suspend fun getCasesByCountryBetweenTwoDates(
-		country: Country,
+		country: CountryDto,
 		dateRange: Pair<Date, Date>? = null
 	) : Flow<NetworkResultWrapper<List<FullCase>>>
 

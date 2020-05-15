@@ -1,7 +1,7 @@
 package com.yolisstorm.data_sources.network.covid_stats.raw_api
 
 import com.yolisstorm.data_sources.network.covid_stats.BuildConfig
-import com.yolisstorm.data_sources.network.covid_stats.dto.Country
+import com.yolisstorm.data_sources.network.covid_stats.dto.CountryDto
 import retrofit2.http.GET
 import retrofit2.http.Header
 
@@ -15,6 +15,6 @@ interface ICountriesApi {
 	suspend fun getAvailableCountriesList(
 		@Header(BuildConfig.GRADLE_API_HEADER_TOKEN_TITLE)
 		accessToken: String = BuildConfig.GRADLE_API_TOKEN
-	) : List<Country>
+	) : List<CountryDto>
 
 }
