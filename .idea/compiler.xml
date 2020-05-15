@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="covid_stats_repo" target="1.7" />
       <module name="libraries" target="1.7" />
       <module name="main_database" target="1.7" />
     </bytecodeTargetLevel>

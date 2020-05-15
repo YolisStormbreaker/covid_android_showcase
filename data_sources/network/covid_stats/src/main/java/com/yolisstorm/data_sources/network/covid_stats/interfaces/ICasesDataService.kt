@@ -9,7 +9,7 @@ import com.yolisstorm.library.common.resultWrappers.network.NetworkResultWrapper
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 
-interface ICasesDataRepository {
+interface ICasesDataService {
 
 	@RequiresPermission(Manifest.permission.INTERNET)
 	suspend fun getTodaySummary() : Flow<NetworkResultWrapper<Summary>>

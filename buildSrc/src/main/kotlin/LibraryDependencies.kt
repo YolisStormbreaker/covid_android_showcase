@@ -32,7 +32,7 @@ private object LibraryVersion {
 	const val MATERIAL                      =   "1.2.0-alpha06"
 	const val OKHTTP_3                      =   "4.6.0"
 	const val OKHTTP_LOGGING_INTERCEPTOR    =   "4.6.0"
-	const val PAGING                        =   "2.1.2"
+	const val PAGING                        =   "3.0.0-SNAPSHOT"
 	const val PLAY_CORE                     =   "1.7.2"
 	const val RECYCLER_VIEW_SELECTION       =   "1.1.0-rc01"
 	const val RECYCLER_VIEW                 =   "1.2.0-alpha03"

@@ -4,7 +4,7 @@ import android.Manifest
 import androidx.annotation.RequiresPermission
 import com.yolisstorm.data_sources.network.covid_stats.dto.Country
 import com.yolisstorm.data_sources.network.covid_stats.helpers.safeApiInFlowCall
-import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICountryRepository
+import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICountryService
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.ICountriesApi
 import com.yolisstorm.library.common.resultWrappers.network.NetworkResultWrapper
 import kotlinx.coroutines.CoroutineDispatcher
@@ -13,10 +13,10 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 
 @ExperimentalCoroutinesApi
-class CountryRepository(
+internal class CountryService(
 	private val countriesApi: ICountriesApi,
 	private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) : ICountryRepository {
+) : ICountryService {
 
 	@RequiresPermission(Manifest.permission.INTERNET)
 	override suspend fun getListOfCountries(): Flow<NetworkResultWrapper<List<Country>>> =
@@ -26,7 +26,7 @@ class CountryRepository(
 
 	companion object {
 		@Volatile
-		private var instance: ICountryRepository? = null
+		private var instance: ICountryService? = null
 		fun getInstance(
 			countriesApi: ICountriesApi,
 			dispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -34,7 +34,7 @@ class CountryRepository(
 			instance
 				?: synchronized(this) {
 					instance
-						?: CountryRepository(
+						?: CountryService(
 							countriesApi,
 							dispatcher
 						).also { instance = it }
