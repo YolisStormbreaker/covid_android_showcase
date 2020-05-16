@@ -1,4 +1,3 @@
-
 rootProject.name = "COVID Pulse"
 rootProject.buildFileName = "build.gradle.kts"
 include(":app")
@@ -9,3 +8,4 @@ include(":libraries:google_maps_places")
 include(":libraries:ledger")
 include(":data_sources:network:covid_stats")
 include(":data_sources:databases:main_database")
+include(":data_sources:repositories:covid_stats_repo")

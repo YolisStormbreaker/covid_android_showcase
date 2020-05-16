@@ -41,4 +41,5 @@ fun addRepos(handler : RepositoryHandler) {
 	handler.google()
 	handler.jcenter()
 	handler.maven { url = URI.create("https://jitpack.io") }
+	handler.maven { url = URI.create("https://androidx-dev-prod.appspot.com/snapshots/builds/6455973/artifacts/repository") }
 }

@@ -1,10 +1,10 @@
 package com.yolisstorm.data_sources.network.covid_stats
 
 import com.yolisstorm.data_sources.network.covid_stats.helpers.RetrofitFactory
-import com.yolisstorm.data_sources.network.covid_stats.impl.CasesDataRepository
-import com.yolisstorm.data_sources.network.covid_stats.impl.CountryRepository
-import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICasesDataRepository
-import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICountryRepository
+import com.yolisstorm.data_sources.network.covid_stats.impl.CasesService
+import com.yolisstorm.data_sources.network.covid_stats.impl.CountryService
+import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICasesService
+import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICountryService
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.ICountriesApi
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.IDateRangedApi
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.ISummaryCasesApi
@@ -18,7 +18,7 @@ val covidStatsNetworkKoinModule = module {
 			.retrofit(BuildConfig.GRADLE_API_BASE_URL)
 			.create(ICountriesApi::class.java)
 	}
-	single<ICountryRepository> { CountryRepository.getInstance(get()) }
+	single<ICountryService> { CountryService.getInstance(get()) }
 
 	single<IDateRangedApi> {
 		RetrofitFactory
@@ -30,6 +30,6 @@ val covidStatsNetworkKoinModule = module {
 			.retrofit(BuildConfig.GRADLE_API_BASE_URL)
 			.create(ISummaryCasesApi::class.java)
 	}
-	single<ICasesDataRepository> { CasesDataRepository.getInstance(get(), get()) }
+	single<ICasesService> { CasesService.getInstance(get(), get()) }
 
 }
