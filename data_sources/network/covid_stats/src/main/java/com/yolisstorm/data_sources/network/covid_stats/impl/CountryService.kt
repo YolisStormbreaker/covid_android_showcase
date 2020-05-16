@@ -13,7 +13,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 
 @ExperimentalCoroutinesApi
-internal class CountryService(
+internal class CountryService private constructor (
 	private val countriesApi: ICountriesApi,
 	private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ICountryService {

@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.flow
 import java.io.IOException
 import kotlin.time.ExperimentalTime
 
-internal class CasesRepository (
+internal class CasesRepository private constructor (
 	private val casesDao: CasesDao,
 	private val casesService: ICasesService,
 	private val countriesRepository: ICountriesRepository

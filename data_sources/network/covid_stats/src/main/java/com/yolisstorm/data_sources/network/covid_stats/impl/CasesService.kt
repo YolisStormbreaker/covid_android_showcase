@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 @ExperimentalCoroutinesApi
-internal class CasesService(
+internal class CasesService private constructor (
 	private val summaryCasesApi: ISummaryCasesApi,
 	private val dateRangedApi: IDateRangedApi,
 	private val dispatcher: CoroutineDispatcher = Dispatchers.IO
