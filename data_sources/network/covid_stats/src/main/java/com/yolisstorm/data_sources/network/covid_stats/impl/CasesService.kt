@@ -5,7 +5,7 @@ import androidx.annotation.RequiresPermission
 import com.yolisstorm.data_sources.network.covid_stats.dto.CountryDto
 import com.yolisstorm.data_sources.network.covid_stats.dto.Summary
 import com.yolisstorm.data_sources.network.covid_stats.helpers.safeApiInFlowCall
-import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICasesDataService
+import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICasesService
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.IDateRangedApi
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.ISummaryCasesApi
 import com.yolisstorm.library.common.resultWrappers.network.NetworkResultWrapper
@@ -16,11 +16,11 @@ import kotlinx.coroutines.flow.Flow
 import java.util.*
 
 @ExperimentalCoroutinesApi
-internal class CasesDataService(
+internal class CasesService(
 	private val summaryCasesApi: ISummaryCasesApi,
 	private val dateRangedApi: IDateRangedApi,
 	private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) : ICasesDataService {
+) : ICasesService {
 
 	@RequiresPermission(Manifest.permission.INTERNET)
 	override suspend fun getTodaySummary(): Flow<NetworkResultWrapper<Summary>> =
@@ -44,7 +44,7 @@ internal class CasesDataService(
 
 	companion object {
 		@Volatile
-		private var instance: ICasesDataService? = null
+		private var instance: ICasesService? = null
 		fun getInstance(
 			summaryCasesApi: ISummaryCasesApi,
 			dateRangedApi: IDateRangedApi,
@@ -53,7 +53,7 @@ internal class CasesDataService(
 			instance
 				?: synchronized(this) {
 					instance
-						?: CasesDataService(
+						?: CasesService(
 							summaryCasesApi,
 							dateRangedApi,
 							dispatcher

@@ -51,3 +51,9 @@ inline fun <reified C : Any> C.classToReadableString(): String {
 	stringBuffer.append("\n } \n")
 	return stringBuffer.toString()
 }
+
+fun <T> Pair<T, T>.toList() : List<T> =
+	listOf(
+		this.first,
+		this.second
+	)

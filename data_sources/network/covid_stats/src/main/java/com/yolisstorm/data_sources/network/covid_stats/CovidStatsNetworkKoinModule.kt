@@ -1,9 +1,9 @@
 package com.yolisstorm.data_sources.network.covid_stats
 
 import com.yolisstorm.data_sources.network.covid_stats.helpers.RetrofitFactory
-import com.yolisstorm.data_sources.network.covid_stats.impl.CasesDataService
+import com.yolisstorm.data_sources.network.covid_stats.impl.CasesService
 import com.yolisstorm.data_sources.network.covid_stats.impl.CountryService
-import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICasesDataService
+import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICasesService
 import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICountryService
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.ICountriesApi
 import com.yolisstorm.data_sources.network.covid_stats.raw_api.IDateRangedApi
@@ -30,6 +30,6 @@ val covidStatsNetworkKoinModule = module {
 			.retrofit(BuildConfig.GRADLE_API_BASE_URL)
 			.create(ISummaryCasesApi::class.java)
 	}
-	single<ICasesDataService> { CasesDataService.getInstance(get(), get()) }
+	single<ICasesService> { CasesService.getInstance(get(), get()) }
 
 }

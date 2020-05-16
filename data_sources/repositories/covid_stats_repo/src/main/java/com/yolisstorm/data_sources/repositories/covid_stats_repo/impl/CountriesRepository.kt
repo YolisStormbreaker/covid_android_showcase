@@ -7,7 +7,7 @@ import com.yolisstorm.data_sources.databases.main.dao.CountriesDao
 import com.yolisstorm.data_sources.databases.main.entities.Country
 import com.yolisstorm.data_sources.network.covid_stats.helpers.Extensions.convertIntoResult
 import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICountryService
-import com.yolisstorm.data_sources.repositories.covid_stats_repo.converters.CountryToCountry.toEntity
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.converters.CountryDtoToCountry.toEntity
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICountriesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

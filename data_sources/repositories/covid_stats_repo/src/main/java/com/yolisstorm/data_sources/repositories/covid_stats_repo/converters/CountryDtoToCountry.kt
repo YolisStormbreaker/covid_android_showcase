@@ -3,7 +3,7 @@ package com.yolisstorm.data_sources.repositories.covid_stats_repo.converters
 import com.yolisstorm.data_sources.databases.main.entities.Country
 import com.yolisstorm.data_sources.network.covid_stats.dto.CountryDto
 
-object CountryToCountry {
+object CountryDtoToCountry {
 
 	fun CountryDto.toEntity(): Country =
 		Country(

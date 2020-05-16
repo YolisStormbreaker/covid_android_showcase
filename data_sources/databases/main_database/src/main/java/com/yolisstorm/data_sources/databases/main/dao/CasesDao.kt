@@ -1,10 +1,13 @@
 package com.yolisstorm.data_sources.databases.main.dao
 
 import androidx.paging.DataSource
+import androidx.paging.LoadType
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import com.yolisstorm.data_sources.databases.main.entities.Case
+import java.util.*
 
 @Dao
 interface CasesDao {
@@ -20,5 +23,24 @@ interface CasesDao {
 
 	@Query("SELECT * FROM cases WHERE cases.country_id = :countryId ORDER BY cases.date DESC LIMIT 2")
 	suspend fun getLastTwoCasesByCountry(countryId: Long): List<Case>
+
+	@Query("DELETE FROM cases WHERE cases.country_id = :countryId")
+	suspend fun deleteCasesFromTableByCountryId(countryId: Long)
+
+	@Transaction
+	suspend fun clearTableIfNeedAndInsertCases(loadType: LoadType, cases: List<Case>) {
+		cases.filter { it.countryId > 0 }.let { actualCases ->
+			if (actualCases.isNotEmpty()) {
+				if (loadType == LoadType.REFRESH) {
+					actualCases
+						.map { it.countryId }
+						.forEach { id ->
+							deleteCasesFromTableByCountryId(id)
+						}
+				}
+				insertNewCases(actualCases)
+			}
+		}
+	}
 
 }
