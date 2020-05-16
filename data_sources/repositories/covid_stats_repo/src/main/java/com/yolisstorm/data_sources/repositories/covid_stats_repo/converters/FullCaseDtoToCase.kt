@@ -5,7 +5,7 @@ import com.yolisstorm.data_sources.databases.main.entities.Case
 import com.yolisstorm.data_sources.databases.main.entities.Country
 import com.yolisstorm.data_sources.network.covid_stats.dto.FullCase
 
-object FullCaseDtoToCase {
+internal object FullCaseDtoToCase {
 
 	fun FullCase.toEntity(countries: Collection<Country>) : Case? =
 		countries.find {

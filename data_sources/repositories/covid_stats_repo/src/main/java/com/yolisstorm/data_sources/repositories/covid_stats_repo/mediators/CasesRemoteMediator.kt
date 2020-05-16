@@ -20,7 +20,7 @@ import java.io.InvalidObjectException
 import java.util.*
 
 @OptIn(ExperimentalPagingApi::class)
-class CasesRemoteMediator (
+internal class CasesRemoteMediator (
 	private val casesDao: CasesDao,
 	private val casesService: ICasesService,
 	private val country: Country

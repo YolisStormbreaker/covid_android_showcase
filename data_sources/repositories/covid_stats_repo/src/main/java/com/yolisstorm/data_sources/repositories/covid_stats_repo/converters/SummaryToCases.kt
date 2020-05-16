@@ -6,7 +6,7 @@ import com.yolisstorm.data_sources.network.covid_stats.dto.Summary
 import com.yolisstorm.data_sources.network.covid_stats.dto.SummaryByCountry
 import com.yolisstorm.library.extensions.yesterday
 
-object SummaryToCases {
+internal object SummaryToCases {
 
 	/**
 	 * Метод для преобразования Dto объекта Summary в понятный для БД объект

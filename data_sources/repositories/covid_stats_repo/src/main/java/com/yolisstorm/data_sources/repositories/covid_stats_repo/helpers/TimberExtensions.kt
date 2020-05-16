@@ -3,7 +3,7 @@ package com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.BuildConfig
 import timber.log.Timber
 
-fun dLogIf(
+internal fun dLogIf(
 	msg: String,
 	isNeedLog: Boolean = BuildConfig.DEBUG && BuildConfig.GRADLE_IS_NEED_COMMON_LOG
 ) {
@@ -11,7 +11,7 @@ fun dLogIf(
 		Timber.d(msg)
 }
 
-fun eLogIf(
+internal fun eLogIf(
 	msg: Throwable,
 	isNeedLog: Boolean = BuildConfig.DEBUG && BuildConfig.GRADLE_IS_NEED_COMMON_LOG
 ) {
@@ -19,7 +19,7 @@ fun eLogIf(
 		Timber.e(msg)
 }
 
-fun eLogIf(
+internal fun eLogIf(
 	msg: String,
 	isNeedLog: Boolean = BuildConfig.DEBUG && BuildConfig.GRADLE_IS_NEED_COMMON_LOG
 ) {
@@ -27,7 +27,7 @@ fun eLogIf(
 		Timber.e(msg)
 }
 
-fun wLogIf(
+internal fun wLogIf(
 	msg: String,
 	isNeedLog: Boolean = BuildConfig.DEBUG && BuildConfig.GRADLE_IS_NEED_COMMON_LOG
 ) {
@@ -35,7 +35,7 @@ fun wLogIf(
 		Timber.w(msg)
 }
 
-fun wLogIf(
+internal fun wLogIf(
 	msg: Throwable,
 	isNeedLog: Boolean = BuildConfig.DEBUG && BuildConfig.GRADLE_IS_NEED_COMMON_LOG
 ) {
