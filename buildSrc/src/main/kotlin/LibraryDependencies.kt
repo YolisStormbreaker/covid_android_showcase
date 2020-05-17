@@ -123,11 +123,11 @@ object LibraryDependencies {
 	}
 
 	object Koin {
-		const val Core = "org.koin:koin-core:${CoreVersion.KOIN}"
-		const val Scope = "org.koin:koin-androidx-scope:${CoreVersion.KOIN}"
-		const val ViewModel = "org.koin:koin-androidx-viewmodel:${CoreVersion.KOIN}"
-		const val Ext = "org.koin:koin-androidx-ext:${CoreVersion.KOIN}"
-		const val Test = "org.koin:koin-test:${CoreVersion.KOIN}"
+		const val Core              =   "org.koin:koin-core:${CoreVersion.KOIN}"
+		const val Scope             =   "org.koin:koin-androidx-scope:${CoreVersion.KOIN}"
+		const val ViewModel         =   "org.koin:koin-androidx-viewmodel:${CoreVersion.KOIN}"
+		const val Ext               =   "org.koin:koin-androidx-ext:${CoreVersion.KOIN}"
+		const val Test              =   "org.koin:koin-test:${CoreVersion.KOIN}"
 	}
 
 	object Kotlin {
