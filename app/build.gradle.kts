@@ -27,11 +27,6 @@ android {
 	}
 	flavorDimensions("version")
 	productFlavors {
-		create(WithAddPulse.flavorName) {
-			applicationIdSuffix  = WithAddPulse.applicationIdSuffix
-			versionCode = WithAddPulse.versionCode
-			versionNameSuffix  = WithAddPulse.versionNameSuffix
-		}
 		create(FullPulse.flavorName) {
 			applicationIdSuffix  = FullPulse.applicationIdSuffix
 			versionCode = FullPulse.versionCode
@@ -86,6 +81,7 @@ dependencies {
 
 	api(LibraryDependencies.Navigation.FragmentKtx)
 	api(LibraryDependencies.Navigation.UiKtx)
+	api(LibraryDependencies.Navigation.DynamicFeature)
 
 	addTestDependencies()
 }
@@ -99,7 +95,7 @@ fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigFieldFromGradleP
 }
 
 fun getDynamicFeatureModuleNames() = ModuleDependency.getDynamicFeatureModules()
-	.map { it.replace(":feature_", "") }
+	.map { it.replace(":feature:", "") }
 	.toSet()
 
 fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }

@@ -173,9 +173,6 @@ object LibraryDependencies {
 			"androidx.navigation:navigation-runtime-ktx:${CoreVersion.NAVIGATION}"
 		const val DynamicFeature =
 			"androidx.navigation:navigation-dynamic-features-fragment:${CoreVersion.NAVIGATION}"
-		const val SafeArgsPlugin =
-			"androidx.navigation:navigation-safe-args-gradle-plugin:${CoreVersion.NAVIGATION}"
-		const val SafeArgsApplyPlugin = "androidx.navigation.safeargs.kotlin"
 	}
 
 	object Okhttp {

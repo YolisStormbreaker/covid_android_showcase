@@ -2,6 +2,13 @@
 <navigation
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/nav_graph">
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/summary_graph">
+
+	<include-dynamic
+		android:id="@+id/summary_graph"
+		app:moduleName="@string/summary_module_name"
+		app:graphResName="summary_graph"
+		app:graphPackage="com.yolisstorm.features.summary" />
 
 </navigation>

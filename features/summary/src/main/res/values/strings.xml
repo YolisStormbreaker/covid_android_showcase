@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">COVID Pulse</string>
-	<string name="covid_pulse_logo">Logo</string>
+
 	<string name="summary_module_name" translatable="false">Summary Screen</string>
+
+
 </resources>
