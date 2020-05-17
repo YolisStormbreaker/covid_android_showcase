@@ -37,10 +37,12 @@ android {
 		getByName(BuildType.RELEASE) {
 			isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
 			proguardFiles("proguard-android.txt", "proguard-rules.pro")
+			manifestPlaceholders = mapOf("enableCrashReporting" to "true", "enableFirebaseAnalyticsReporting" to "true")
 		}
 
 		getByName(BuildType.DEBUG) {
 			isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
+			manifestPlaceholders = mapOf("enableCrashReporting" to "false", "enableFirebaseAnalyticsReporting" to "false")
 		}
 
 		compileOptions {

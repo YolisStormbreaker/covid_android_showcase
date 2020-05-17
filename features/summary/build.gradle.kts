@@ -57,6 +57,7 @@ android {
 
 dependencies {
     implementation(project(ModuleDependency.app))
+    implementation(project(ModuleDependency.DataSourceRepositoryCovidStats))
 
     addTestDependencies()
 }
