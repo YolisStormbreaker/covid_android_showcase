@@ -50,42 +50,33 @@ object LibraryDependencies {
 
 	object AndroidSupport {
 
-		const val ActivityKtx = "androidx.activity:activity-ktx:${LibraryVersion.ACTIVITY}"
+		const val ActivityKtx   =   "androidx.activity:activity-ktx:${LibraryVersion.ACTIVITY}"
 
-		const val AppCompat = "androidx.appcompat:appcompat:${LibraryVersion.APPCOMPAT}"
-		const val CoreKtx = "androidx.core:core-ktx:${LibraryVersion.CORE_KTX}"
-		const val CoreUtils =
-			"androidx.legacy:legacy-support-core-utils:${LibraryVersion.SUPPORT_CORE_UTILS}"
-		const val Paging = "androidx.paging:paging-runtime:${LibraryVersion.PAGING}"
-		const val PlayCore = "com.google.android.play:core:${LibraryVersion.PLAY_CORE}"
+		const val AppCompat     =   "androidx.appcompat:appcompat:${LibraryVersion.APPCOMPAT}"
+		const val CoreKtx       =   "androidx.core:core-ktx:${LibraryVersion.CORE_KTX}"
+		const val CoreUtils     =   "androidx.legacy:legacy-support-core-utils:${LibraryVersion.SUPPORT_CORE_UTILS}"
+		const val Paging        =   "androidx.paging:paging-runtime:${LibraryVersion.PAGING}"
+		const val PlayCore      =   "com.google.android.play:core:${LibraryVersion.PLAY_CORE}"
 
 		object Design {
-			const val CardView = "androidx.cardview:cardview:${LibraryVersion.SUPPORT_CARD_VIEW}"
-			const val ConstraintLayout =
-				"androidx.constraintlayout:constraintlayout:${LibraryVersion.CONSTRAINT_LAYOUT}"
-			const val CoordinatorLayout =
-				"androidx.coordinatorlayout:coordinatorlayout:${LibraryVersion.COORDINATOR_LAYOUT}"
-			const val Material = "com.google.android.material:material:${LibraryVersion.MATERIAL}"
-			const val Recyclerview =
-				"androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLER_VIEW}"
-			const val RecyclerviewSelection =
-				"androidx.recyclerview:recyclerview-selection:${LibraryVersion.RECYCLER_VIEW_SELECTION}"
+			const val CardView              =   "androidx.cardview:cardview:${LibraryVersion.SUPPORT_CARD_VIEW}"
+			const val ConstraintLayout      =   "androidx.constraintlayout:constraintlayout:${LibraryVersion.CONSTRAINT_LAYOUT}"
+			const val CoordinatorLayout     =   "androidx.coordinatorlayout:coordinatorlayout:${LibraryVersion.COORDINATOR_LAYOUT}"
+			const val Material              =   "com.google.android.material:material:${LibraryVersion.MATERIAL}"
+			const val Recyclerview          =   "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLER_VIEW}"
+			const val RecyclerviewSelection =   "androidx.recyclerview:recyclerview-selection:${LibraryVersion.RECYCLER_VIEW_SELECTION}"
 		}
 
 		object Fragment {
-			const val FragmentRuntimeKtx =
-				"androidx.fragment:fragment-ktx:${LibraryVersion.FRAGMENT}"
-			const val FragmentTesting =
-				"androidx.fragment:fragment-testing:${LibraryVersion.FRAGMENT}"
+			const val FragmentRuntimeKtx    =   "androidx.fragment:fragment-ktx:${LibraryVersion.FRAGMENT}"
+			const val FragmentTesting       =   "androidx.fragment:fragment-testing:${LibraryVersion.FRAGMENT}"
 		}
 
 		object Gms {
-			const val GoogleServices =
-				"com.google.gms:google-services:${CoreVersion.GMS_GOOGLE_SERVICES}"
+			const val GoogleServices        =  "com.google.gms:google-services:${CoreVersion.GMS_GOOGLE_SERVICES}"
 
 			object PlayServices {
-				const val Maps =
-					"com.google.android.gms:play-services-maps:${LibraryVersion.G_PLAY_SERVICES}"
+					const val Maps              =   "com.google.android.gms:play-services-maps:${LibraryVersion.G_PLAY_SERVICES}"
 			}
 		}
 	}

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<data>
 		<variable
@@ -9,7 +12,41 @@
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:theme="@style/AppTheme"
+		android:background="?attr/colorPrimary">
+
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/last_update_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@color/colorPrimaryText"
+			android:layout_marginTop="16dp"
+			android:fontFamily="@font/comfortaa_light"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			android:text="Сегодня в 18:06"
+			tools:text="Сегодня в 18:06"
+			/>
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/choose_location_country_btn"
+			style="@style/Widget.MaterialComponents.Button.TextButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textColor="@color/colorPrimaryText"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			android:layout_marginBottom="16dp"
+			app:icon="@drawable/ic_baseline_location_on_24"
+			app:iconTint="@color/colorPrimaryText"
+			android:text="Выберите страну"
+			tools:text="Выберите страну"/>
+
+
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

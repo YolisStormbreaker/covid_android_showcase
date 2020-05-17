@@ -53,6 +53,8 @@ android {
 	testOptions {
 		unitTests.isReturnDefaultValues = TestOptions.IS_RETURN_DEFAULT_VALUES
 	}
+
+	buildFeatures.dataBinding = true
 }
 
 dependencies {
@@ -63,6 +65,8 @@ dependencies {
 	implementation(LibraryDependencies.Koin.Ext)
 	implementation(LibraryDependencies.Koin.ViewModel)
 	implementation(LibraryDependencies.Koin.Scope)
+
+	implementation(LibraryDependencies.AndroidSupport.Design.Material)
 
 	addTestDependencies()
 }

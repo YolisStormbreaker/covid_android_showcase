@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="summary_module_name" translatable="false">Summary Screen</string>
+	<string name="summary_module_name" translatable="false">feature_summary</string>
 
 
 </resources>
