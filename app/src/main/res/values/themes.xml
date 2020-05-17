@@ -1,0 +1,21 @@
+<resources>
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+		<!-- Customize your theme here. -->
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorOnPrimary">@color/colorOnPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorPrimaryVariant">@color/colorPrimaryLight</item>
+		<item name="colorPrimarySurface">@color/colorPrimarySurface</item>
+		<item name="colorSecondary">@color/colorSecondary</item>
+		<item name="colorSecondaryVariant">@color/colorSecondaryDark</item>
+		<item name="colorOnSecondary">@color/colorOnSecondary</item>
+		<item name="colorAccent">@color/colorAccent</item>
+
+		<item name="fontFamily">@font/comfortaa</item>
+
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:background">@color/colorPrimary</item>
+	</style>
+
+</resources>
