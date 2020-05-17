@@ -56,6 +56,22 @@
                motion:motionTarget="@+id/logo_imageView"
                motion:framePosition="100"
                android:scaleX="50" />
+           <KeyAttribute
+               motion:motionTarget="@+id/logo_imageView"
+               motion:framePosition="0"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/logo_imageView"
+               motion:framePosition="58"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/logo_imageView"
+               motion:framePosition="80"
+               android:alpha="0.1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/logo_imageView"
+               motion:framePosition="100"
+               android:alpha="0.1" />
        </KeyFrameSet>
         <KeyFrameSet>
 

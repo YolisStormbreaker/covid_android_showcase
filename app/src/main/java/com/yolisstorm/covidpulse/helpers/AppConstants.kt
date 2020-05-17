@@ -1,4 +1,4 @@
-package com.yolisstorm.covidpulse
+package com.yolisstorm.covidpulse.helpers
 
 class AppConstants {
 	companion object {
