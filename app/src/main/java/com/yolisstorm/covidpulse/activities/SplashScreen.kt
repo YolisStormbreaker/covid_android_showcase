@@ -17,7 +17,6 @@ import com.yolisstorm.covidpulse.helpers.FirebaseAnalyticsEvents
 import com.yolisstorm.covidpulse.R
 import com.yolisstorm.covidpulse.helpers.startImmediateUpdate
 import kotlinx.android.synthetic.main.activity_splash_screen.*
-import maes.tech.intentanim.CustomIntent
 import timber.log.Timber
 
 class SplashScreen : AppCompatActivity() {
