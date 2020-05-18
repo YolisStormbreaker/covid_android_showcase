@@ -16,15 +16,6 @@ android {
 		versionName = AndroidDefaultConfig.VERSION_NAME
 		testInstrumentationRunner = AndroidDefaultConfig.TEST_INSTRUMENTATION_RUNNER
 	}
-
-	flavorDimensions("version")
-	productFlavors {
-		create(FullPulse.flavorName) {
-			applicationIdSuffix  = FullPulse.applicationIdSuffix
-			versionCode = FullPulse.versionCode
-			versionNameSuffix  = FullPulse.versionNameSuffix
-		}
-	}
 	buildTypes {
 		getByName(BuildType.RELEASE) {
 			proguardFiles("proguard-android.txt", "proguard-rules.pro")

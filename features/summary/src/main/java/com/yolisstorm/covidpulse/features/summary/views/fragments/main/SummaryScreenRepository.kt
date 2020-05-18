@@ -1,4 +1,4 @@
-package com.yolisstorm.features.summary.views.fragments.main
+package com.yolisstorm.covidpulse.features.summary.views.fragments.main
 
 class SummaryScreenRepository private constructor(
 ) {

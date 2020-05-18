@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/nav_graph"
-	app:startDestination="@id/summary_graph">
+	app:startDestination="@id/nestedGraph">
 
-	<include-dynamic
-		android:id="@+id/summary_graph"
+	<navigation
+		android:id="@+id/nestedGraph"
 		app:moduleName="@string/summary_module_name"
-		app:graphResName="summary_graph"
-		app:graphPackage="com.yolisstorm.features.summary" />
+		app:startDestination="@id/summaryScreenFragment">
+		<fragment
+			android:id="@+id/summaryScreenFragment"
+			android:name="com.yolisstorm.covidpulse.features.summary.views.fragments.main.SummaryScreenFragment"
+			app:moduleName="@string/summary_module_name"
+			tools:layout="@layout/fragment_summary_screen_layout"
+			android:label="SummaryScreenFragment" />
+	</navigation>
+
+
+
 
 </navigation>

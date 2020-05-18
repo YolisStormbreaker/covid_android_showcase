@@ -56,8 +56,7 @@ android {
 	}
 
 	// Each feature module that is included in settings.gradle.kts is added here as dynamic feature
-	//dynamicFeatures = ModuleDependency.getDynamicFeatureModules().toMutableSet()
-	dynamicFeatures = mutableSetOf(":features:summary")
+	dynamicFeatures = ModuleDependency.getDynamicFeatureModules().toMutableSet()
 
 	compileOptions {
 		sourceCompatibility = JavaVersion.VERSION_1_8

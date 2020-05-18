@@ -1,4 +1,4 @@
-package com.yolisstorm.features.summary.views.fragments.main
+package com.yolisstorm.covidpulse.features.summary.views.fragments.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.yolisstorm.covidpulse.features.summary.R
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.CovidStatsRepositoryKoinModule
-import com.yolisstorm.features.summary.R
-import com.yolisstorm.features.summary.databinding.FragmentSummaryScreenLayoutBinding
+import com.yolisstorm.covidpulse.features.summary.databinding.FragmentSummaryScreenLayoutBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules

@@ -1,7 +1,7 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:dist="http://schemas.android.com/apk/distribution"
-	package="com.yolisstorm.features.summary">
+	package="com.yolisstorm.covidpulse.features.summary">
 	<dist:module
 		dist:instant="false"
 		dist:title="@string/summary_module_name">

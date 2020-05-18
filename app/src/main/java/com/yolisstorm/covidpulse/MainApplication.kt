@@ -2,6 +2,7 @@ package com.yolisstorm.covidpulse
 
 import android.app.Application
 import com.crashlytics.android.core.CrashlyticsCore
+import com.google.android.play.core.splitcompat.SplitCompatApplication
 import com.yolisstorm.covidpulse.helpers.ReleaseTimberTree
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -10,7 +11,7 @@ import org.koin.core.logger.Logger
 import org.koin.core.logger.MESSAGE
 import timber.log.Timber
 
-class MainApplication : Application() {
+class MainApplication : SplitCompatApplication() {
 
 	override fun onCreate() {
 		super.onCreate()
