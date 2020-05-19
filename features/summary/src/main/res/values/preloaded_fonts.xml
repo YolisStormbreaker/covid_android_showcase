@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<array>
+		<item>@font/jura_semibold</item>
+	</array>
 </resources>

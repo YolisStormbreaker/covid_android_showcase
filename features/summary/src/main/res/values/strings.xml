@@ -2,4 +2,5 @@
 <resources>
 
 
+	<string name="picture_counter_description">Picture counter description</string>
 </resources>
