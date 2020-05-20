@@ -26,7 +26,7 @@ internal class CasesRemoteMediator (
 	private val country: Country
 ) : RemoteMediator<Int, Case>() {
 
-	@RequiresPermission(Manifest.permission.INTERNET)
+
 	override suspend fun load(loadType: LoadType, state: PagingState<Int, Case>): MediatorResult {
 		val page: Date = when (loadType) {
 			LoadType.REFRESH -> {

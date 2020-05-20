@@ -11,10 +11,10 @@ import java.util.*
 
 interface ICasesService {
 
-	@RequiresPermission(Manifest.permission.INTERNET)
+
 	suspend fun getTodaySummary() : Flow<NetworkResultWrapper<Summary>>
 
-	@RequiresPermission(Manifest.permission.INTERNET)
+
 	suspend fun getCasesByCountryBetweenTwoDates(
 		country: CountryDto,
 		dateRange: Pair<Date, Date>? = null

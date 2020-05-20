@@ -1,11 +1,14 @@
 package com.yolisstorm.covidpulse.features.summary.views.fragments.main
 
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.yolisstorm.covidpulse.features.summary.R
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.CovidStatsRepositoryKoinModule
 import com.yolisstorm.covidpulse.features.summary.databinding.FragmentSummaryScreenLayoutBinding
@@ -41,6 +44,10 @@ class SummaryScreenFragment : Fragment() {
 
 		val viewModel  by viewModel<SummaryScreenViewModel>()
 
+		lifecycleScope.launchWhenResumed {
+			viewModel.updateLastTwoCasesData()
+		}
+
 		binding.lifecycleOwner = this
 
 		binding.viewModel = viewModel
@@ -48,7 +55,13 @@ class SummaryScreenFragment : Fragment() {
 		return binding.root
 	}
 
-	override fun onResume() {
-		super.onResume()
+	override fun onConfigurationChanged(newConfig: Configuration) {
+		super.onConfigurationChanged(newConfig)
+		val viewModel  by viewModel<SummaryScreenViewModel>()
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			viewModel.updateCurrentLocation(newConfig.locales.get(0))
+		} else {
+			viewModel.updateCurrentLocation(newConfig.locale)
+		}
 	}
 }

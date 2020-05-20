@@ -18,7 +18,7 @@ internal class CountryService private constructor (
 	private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ICountryService {
 
-	@RequiresPermission(Manifest.permission.INTERNET)
+
 	override suspend fun getListOfCountries(): Flow<NetworkResultWrapper<List<CountryDto>>> =
 		safeApiInFlowCall(dispatcher) {
 			countriesApi.getAvailableCountriesList()

@@ -27,7 +27,7 @@ internal class CasesRepository private constructor (
 	private val countriesRepository: ICountriesRepository
 ) : ICasesRepository {
 
-	@RequiresPermission(Manifest.permission.INTERNET)
+
 	override suspend fun getLastTwoCasesByCountry(country: Country): Flow<Result<Pair<Case, Case>>> =
 		flow <Result<Pair<Case, Case>>> {
 			val local = casesDao.getLastTwoCasesByCountry(country.id)
@@ -61,7 +61,7 @@ internal class CasesRepository private constructor (
 		}
 
 	@ExperimentalTime
-	@RequiresPermission(Manifest.permission.INTERNET)
+
 	override suspend fun getCasesByCountry(country: Country): Flow<PagingData<Case>> =
 		Pager(
 			config = PagingConfig(pageSize = NETWORK_PAGE_SIZE),

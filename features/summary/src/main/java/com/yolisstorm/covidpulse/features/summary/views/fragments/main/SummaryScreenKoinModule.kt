@@ -5,7 +5,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val SummaryScreenKoinModule = module {
-	single { SummaryScreenRepository.getInstance() }
+	single { SummaryScreenRepository.getInstance(get(), get()) }
 	viewModel {
 		SummaryScreenViewModel(
 			get(),

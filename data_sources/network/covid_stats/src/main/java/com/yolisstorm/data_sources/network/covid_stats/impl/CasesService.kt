@@ -22,13 +22,13 @@ internal class CasesService private constructor (
 	private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ICasesService {
 
-	@RequiresPermission(Manifest.permission.INTERNET)
+
 	override suspend fun getTodaySummary(): Flow<NetworkResultWrapper<Summary>> =
 		safeApiInFlowCall(dispatcher) {
 			summaryCasesApi.getDailySummaryInfoAboutCasesInAllCounties()
 		}
 
-	@RequiresPermission(Manifest.permission.INTERNET)
+
 	override suspend fun getCasesByCountryBetweenTwoDates(
 		country: CountryDto,
 		dateRange: Pair<Date, Date>?

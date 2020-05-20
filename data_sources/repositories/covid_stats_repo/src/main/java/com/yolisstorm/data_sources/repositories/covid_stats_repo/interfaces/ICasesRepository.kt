@@ -9,10 +9,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface ICasesRepository {
 
-	@RequiresPermission(Manifest.permission.INTERNET)
 	suspend fun getLastTwoCasesByCountry(country: Country): Flow<Result<Pair<Case, Case>>>
 
-	@RequiresPermission(Manifest.permission.INTERNET)
 	suspend fun getCasesByCountry(country: Country) : Flow<PagingData<Case>>
 
 }

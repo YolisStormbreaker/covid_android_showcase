@@ -1,8 +1,6 @@
 package com.yolisstorm.data_sources.repositories.covid_stats_repo.impl
 
-import android.Manifest
 import android.content.res.Resources
-import androidx.annotation.RequiresPermission
 import com.yolisstorm.data_sources.databases.main.dao.CountriesDao
 import com.yolisstorm.data_sources.databases.main.entities.Country
 import com.yolisstorm.data_sources.network.covid_stats.helpers.Extensions.convertIntoResult
@@ -13,12 +11,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.util.*
 
-internal class CountriesRepository private constructor (
+internal class CountriesRepository private constructor(
 	private val countriesDao: CountriesDao,
 	private val countryService: ICountryService
 ) : ICountriesRepository {
 
-	@RequiresPermission(Manifest.permission.INTERNET)
 	override suspend fun getListOfCountries(): Flow<Result<List<Country>>> =
 		flow<Result<List<Country>>> {
 			val local = countriesDao.getListOfCountries()
@@ -35,7 +32,6 @@ internal class CountriesRepository private constructor (
 			}
 		}
 
-	@RequiresPermission(Manifest.permission.INTERNET)
 	override suspend fun getCountryByISO639Code(countryCode: String): Flow<Result<Country>> =
 		flow<Result<Country>> {
 			val local =
