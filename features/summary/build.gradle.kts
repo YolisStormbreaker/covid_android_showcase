@@ -58,6 +58,7 @@ dependencies {
 	implementation(LibraryDependencies.Koin.Scope)
 
 	implementation(LibraryDependencies.AndroidSupport.Design.Material)
+	implementation(LibraryDependencies.AndroidSupport.Design.SwipeToRefreshLayout)
 
 	addTestDependencies()
 }

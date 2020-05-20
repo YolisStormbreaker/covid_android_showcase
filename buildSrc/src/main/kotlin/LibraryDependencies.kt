@@ -38,6 +38,7 @@ private object LibraryVersion {
 	const val ROUNDED_IMAGEVIEW = "2.3.0"
 	const val SERIALIZATION_RUNTIME = "0.20.0"
 	const val SHIMMER = "0.5.0"
+	const val SWIPTE_TO_REFRESH_LAYOUT = "1.1.0-rc01"
 	const val SUPPORT = "1.1.0"
 	const val SUPPORT_CARD_VIEW = "1.0.0"
 	const val SUPPORT_CORE_UTILS = "1.0.0"
@@ -65,6 +66,7 @@ object LibraryDependencies {
 			const val Material              =   "com.google.android.material:material:${LibraryVersion.MATERIAL}"
 			const val Recyclerview          =   "androidx.recyclerview:recyclerview:${LibraryVersion.RECYCLER_VIEW}"
 			const val RecyclerviewSelection =   "androidx.recyclerview:recyclerview-selection:${LibraryVersion.RECYCLER_VIEW_SELECTION}"
+			const val SwipeToRefreshLayout  =   "androidx.swiperefreshlayout:swiperefreshlayout:${LibraryVersion.SWIPTE_TO_REFRESH_LAYOUT}"
 		}
 
 		object Fragment {

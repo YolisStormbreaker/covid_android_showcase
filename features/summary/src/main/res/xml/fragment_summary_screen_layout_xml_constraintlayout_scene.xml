@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+	<Transition
+		motion:constraintSetEnd="@+id/end"
+		motion:constraintSetStart="@id/start"
+		motion:duration="500">
+
+		<KeyFrameSet >
+			<KeyAttribute
+				motion:motionTarget="@+id/last_update_title"
+				motion:framePosition="100"
+				android:translationY="-120dp" />
+			<KeyAttribute
+				motion:motionTarget="@+id/last_update_icon"
+				motion:framePosition="100"
+				android:translationY="-120dp" />
+			<KeyAttribute
+				motion:motionTarget="@+id/last_update_label"
+				motion:framePosition="100"
+				android:translationY="-120dp" />
+			<KeyAttribute
+				motion:motionTarget="@+id/last_update_title"
+				motion:framePosition="35"
+				android:translationY="3dp" />
+			<KeyAttribute
+				motion:motionTarget="@+id/last_update_icon"
+				motion:framePosition="35"
+				android:translationY="3dp" />
+			<KeyAttribute
+				motion:motionTarget="@+id/last_update_label"
+				motion:framePosition="35"
+				android:translationY="3dp" />
+			<KeyAttribute
+				motion:motionTarget="@+id/card_covid"
+				motion:framePosition="100"
+				android:translationZ="60dp" />
+			<KeyAttribute
+				motion:motionTarget="@+id/card_deaths"
+				motion:framePosition="100"
+				android:translationZ="60dp" />
+			<KeyAttribute
+				motion:motionTarget="@+id/card_health"
+				motion:framePosition="100"
+				android:translationZ="60dp" />
+		</KeyFrameSet>
+		<OnClick />
+	</Transition>
+
+	<ConstraintSet android:id="@+id/start">
+	</ConstraintSet>
+
+	<ConstraintSet android:id="@+id/end">
+		<Constraint
+			android:id="@+id/last_update_title"
+			motion:layout_constraintEnd_toEndOf="parent"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			motion:layout_constraintTop_toTopOf="parent"
+			motion:layout_constraintStart_toStartOf="parent"
+			android:layout_marginTop="16dp">
+			<CustomAttribute
+				motion:attributeName="translationY"
+				motion:customFloatValue="-120" />
+		</Constraint>
+		<Constraint
+			android:id="@+id/last_update_icon"
+			motion:layout_constraintEnd_toStartOf="@id/last_update_label"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			motion:layout_constraintBottom_toBottomOf="@id/last_update_label"
+			android:layout_marginEnd="5dp"
+			motion:layout_constraintTop_toTopOf="@id/last_update_label"
+			motion:layout_constraintStart_toStartOf="@id/last_update_title">
+			<CustomAttribute
+				motion:attributeName="translationY"
+				motion:customFloatValue="-120" />
+		</Constraint>
+		<Constraint
+			android:id="@+id/last_update_label"
+			motion:layout_constraintEnd_toStartOf="@id/last_update_label"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			motion:layout_constraintBottom_toBottomOf="@id/last_update_label"
+			android:layout_marginEnd="5dp"
+			motion:layout_constraintTop_toTopOf="@id/last_update_label"
+			motion:layout_constraintStart_toStartOf="@id/last_update_title">
+			<CustomAttribute
+				motion:attributeName="translationY"
+				motion:customFloatValue="-120" />
+		</Constraint>
+		<Constraint
+			android:id="@+id/card_covid"
+			motion:layout_constraintEnd_toEndOf="parent"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"
+			motion:layout_constraintBottom_toTopOf="@id/card_health"
+			motion:layout_constraintVertical_bias="0.45"
+			motion:layout_constraintVertical_chainStyle="packed"
+			motion:layout_constraintTop_toTopOf="parent"
+			motion:layout_constraintStart_toStartOf="parent"
+			android:layout_marginLeft="16dp"
+			android:layout_marginRight="16dp">
+			<CustomAttribute
+				motion:attributeName="translationZ"
+				motion:customFloatValue="60" />
+		</Constraint>
+		<Constraint
+			android:id="@+id/card_health"
+			motion:layout_constraintEnd_toEndOf="parent"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"
+			motion:layout_constraintBottom_toTopOf="@id/card_deaths"
+			motion:layout_constraintTop_toBottomOf="@id/card_covid"
+			motion:layout_constraintStart_toStartOf="parent"
+			android:layout_marginRight="16dp"
+			android:layout_marginLeft="16dp">
+			<CustomAttribute
+				motion:attributeName="translationZ"
+				motion:customFloatValue="60" />
+		</Constraint>
+		<Constraint
+			android:id="@+id/card_deaths"
+			motion:layout_constraintEnd_toEndOf="parent"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"
+			motion:layout_constraintBottom_toBottomOf="parent"
+			motion:layout_constraintTop_toBottomOf="@id/card_health"
+			motion:layout_constraintStart_toStartOf="parent"
+			android:layout_marginRight="16dp"
+			android:layout_marginLeft="16dp">
+			<CustomAttribute
+				motion:attributeName="translationZ"
+				motion:customFloatValue="60" />
+		</Constraint>
+	</ConstraintSet>
+	<ConstraintSet
+		android:id="@+id/update"
+		motion:deriveConstraintsFrom="@+id/end" >
+		<Constraint
+			android:id="@+id/card_covid"
+			motion:layout_constraintEnd_toEndOf="parent"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"
+			motion:layout_constraintVertical_chainStyle="packed"
+			motion:layout_constraintTop_toTopOf="parent"
+			motion:layout_constraintStart_toStartOf="parent"
+			motion:layout_constraintBottom_toTopOf="@id/card_health"
+			motion:layout_constraintVertical_bias="0.45"
+			android:translationZ="0dp" />
+		<Constraint
+			android:id="@+id/card_health"
+			motion:layout_constraintEnd_toEndOf="parent"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			motion:layout_constraintBottom_toTopOf="@id/card_deaths"
+			motion:layout_constraintTop_toBottomOf="@id/card_covid"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"
+			android:translationZ="0dp"
+			motion:layout_constraintStart_toStartOf="parent" />
+		<Constraint
+			android:id="@+id/card_deaths"
+			motion:layout_constraintEnd_toEndOf="parent"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			motion:layout_constraintBottom_toBottomOf="parent"
+			motion:layout_constraintTop_toBottomOf="@id/card_health"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"
+			android:translationZ="0dp"
+			motion:layout_constraintStart_toStartOf="parent" />
+	</ConstraintSet>
+	<Transition
+		motion:constraintSetStart="@+id/end"
+		motion:constraintSetEnd="@+id/update"
+		motion:autoTransition="animateToEnd" />
+	<Transition
+		motion:constraintSetStart="@+id/update"
+		motion:constraintSetEnd="@+id/end"
+		motion:autoTransition="animateToEnd" />
+</MotionScene>
