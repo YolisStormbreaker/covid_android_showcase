@@ -24,6 +24,8 @@ private val loadModules by lazy {
 @ExperimentalCoroutinesApi
 private fun injectFeatures() = loadModules
 
+private lateinit var binding : FragmentSummaryScreenLayoutBinding
+
 @ExperimentalCoroutinesApi
 class SummaryScreenFragment : Fragment() {
 
@@ -35,7 +37,7 @@ class SummaryScreenFragment : Fragment() {
 
 		injectFeatures()
 
-		val binding : FragmentSummaryScreenLayoutBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_summary_screen_layout, container, false)
+		binding = DataBindingUtil.inflate(inflater, R.layout.fragment_summary_screen_layout, container, false)
 
 		val viewModel  by viewModel<SummaryScreenViewModel>()
 
@@ -44,5 +46,9 @@ class SummaryScreenFragment : Fragment() {
 		binding.viewModel = viewModel
 
 		return binding.root
+	}
+
+	override fun onResume() {
+		super.onResume()
 	}
 }
