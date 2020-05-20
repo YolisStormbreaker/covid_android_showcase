@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="percent_template" translatable="false">%1$+.2f%%</string>
+	<string name="big_counter_template" translatable="false">%1$010d</string>
+</resources>

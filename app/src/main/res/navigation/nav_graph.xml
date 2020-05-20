@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/nav_graph">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/nestedGraph">
+
+	<navigation
+		android:id="@+id/nestedGraph"
+		app:moduleName="@string/summary_module_name"
+		app:startDestination="@id/summaryScreenFragment">
+		<fragment
+			android:id="@+id/summaryScreenFragment"
+			android:name="com.yolisstorm.covidpulse.features.summary.views.fragments.main.SummaryScreenFragment"
+			app:moduleName="@string/summary_module_name"
+			tools:layout="@layout/fragment_summary_screen_layout"
+			android:label="SummaryScreenFragment" />
+	</navigation>
+
+
+
 
 </navigation>
