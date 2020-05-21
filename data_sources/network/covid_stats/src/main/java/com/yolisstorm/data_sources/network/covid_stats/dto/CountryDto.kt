@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class CountryDto(
-	@SerializedName("Country", alternate = ["Country"])
+	@SerializedName("Country")
 	val name: String,
 	@SerializedName("ISO2", alternate = ["CountryCode"])
 	val locale: Locale,

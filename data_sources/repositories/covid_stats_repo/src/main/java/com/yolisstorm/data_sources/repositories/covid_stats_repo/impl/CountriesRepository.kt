@@ -1,6 +1,7 @@
 package com.yolisstorm.data_sources.repositories.covid_stats_repo.impl
 
 import android.content.res.Resources
+import com.yolisstorm.data_sources.databases.main.converters.CommonConverters
 import com.yolisstorm.data_sources.databases.main.dao.CountriesDao
 import com.yolisstorm.data_sources.databases.main.entities.Country
 import com.yolisstorm.data_sources.network.covid_stats.helpers.Extensions.convertIntoResult
@@ -35,7 +36,7 @@ internal class CountriesRepository private constructor(
 	override suspend fun getCountryByISO639Code(countryCode: String): Flow<Result<Country>> =
 		flow<Result<Country>> {
 			val local =
-				countriesDao.getCountryByLocale(Locale(Locale.getDefault().language, countryCode))
+				countriesDao.getCountryByLocale(CommonConverters().countryCodeToLocale(countryCode))
 			if (local != null)
 				emit(Result.success(local))
 			else {
@@ -43,8 +44,9 @@ internal class CountriesRepository private constructor(
 					val country = countriesDao
 						.insertCountriesAndGetOneBackByLocale(
 							value.toEntity(),
-							Locale(Locale.getDefault().language, countryCode)
+							CommonConverters().countryCodeToLocale(countryCode)
 						)
+					val countries = countriesDao.getListOfCountries()
 					if (country == null)
 						emit(Result.failure(Resources.NotFoundException()))
 					else

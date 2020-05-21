@@ -14,7 +14,7 @@ class ISO2toLocaleDeserializer : JsonDeserializer<Locale> {
 	): Locale {
 		return Locale(
 			Locale.getDefault().language,
-			json.toString()
+			json?.asString
 		)
 	}
 }

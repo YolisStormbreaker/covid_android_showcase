@@ -34,4 +34,7 @@ interface CountriesDao {
 	@Query("SELECT country_slug FROM countries WHERE id = :countryId")
 	suspend fun getCountrySlugById(countryId: Long): String?
 
+	@Query("DELETE FROM countries")
+	suspend fun removeAllCountries()
+
 }

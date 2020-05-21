@@ -9,7 +9,7 @@ internal object FullCaseDtoToCase {
 
 	fun FullCase.toEntity(countries: Collection<Country>) : Case? =
 		countries.find {
-			it.locale.language == countryCode
+			it.countryCode.language == countryCode
 		}?.let {  country ->
 			Case(
 				location = if (lat > 0.0 && lon > 0.0) LatLng(lat, lon) else null,
@@ -22,7 +22,7 @@ internal object FullCaseDtoToCase {
 		}
 
 	fun FullCase.toEntityBySpecificCountry(country: Country) : Case? =
-		if (countryCode != country.locale.language)
+		if (countryCode != country.countryCode.language)
 			null
 		else
 			Case(

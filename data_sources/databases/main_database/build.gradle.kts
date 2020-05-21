@@ -30,6 +30,7 @@ android {
 
 		getByName(BuildType.DEBUG) {
 			isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
+			isDebuggable = true
 		}
 
 		testOptions {

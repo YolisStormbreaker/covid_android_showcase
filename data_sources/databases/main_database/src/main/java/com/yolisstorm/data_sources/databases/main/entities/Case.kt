@@ -8,7 +8,7 @@ import java.util.*
 	tableName = "cases",
 	indices = [
 		Index(
-			value = ["country_id"],
+			value = ["id", "country_id"],
 			unique = true
 		)
 	],

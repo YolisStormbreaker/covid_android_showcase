@@ -1,7 +1,5 @@
 package com.yolisstorm.data_sources.repositories.covid_stats_repo.impl
 
-import android.Manifest
-import androidx.annotation.RequiresPermission
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -17,6 +15,7 @@ import com.yolisstorm.data_sources.repositories.covid_stats_repo.mediators.Cases
 import com.yolisstorm.library.extensions.second
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
 import kotlin.time.ExperimentalTime
@@ -28,9 +27,13 @@ internal class CasesRepository private constructor (
 ) : ICasesRepository {
 
 
-	override suspend fun getLastTwoCasesByCountry(country: Country): Flow<Result<Pair<Case, Case>>> =
+	override suspend fun getLastTwoCasesByCountry(country: Country?): Flow<Result<Pair<Case, Case>>> =
 		flow <Result<Pair<Case, Case>>> {
-			val local = casesDao.getLastTwoCasesByCountry(country.id)
+			if (country == null) {
+				emit(Result.failure(IllegalArgumentException()))
+				return@flow
+			}
+			val local = casesDao.getLastTwoCasesByCountry(country.id).asReversed()
 			if (local.size == 2) {
 				emit(Result.success(local.first() to local.second()))
 			} else {
@@ -60,8 +63,14 @@ internal class CasesRepository private constructor (
 			}
 		}
 
-	@ExperimentalTime
+	override suspend fun getLastTwoCasesByCountryCode(countryCode: String): Flow<Result<Pair<Case, Case>>> =
+		countriesRepository
+			.getCountryByISO639Code(countryCode)
+			.flatMapConcat {
+				getLastTwoCasesByCountry(it.getOrNull())
+			}
 
+	@ExperimentalTime
 	override suspend fun getCasesByCountry(country: Country): Flow<PagingData<Case>> =
 		Pager(
 			config = PagingConfig(pageSize = NETWORK_PAGE_SIZE),

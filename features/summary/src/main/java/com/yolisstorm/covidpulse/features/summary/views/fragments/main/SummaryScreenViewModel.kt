@@ -7,7 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.yolisstorm.data_sources.databases.main.entities.Case
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
 import java.util.*
@@ -35,6 +37,7 @@ class SummaryScreenViewModel(
 		_currentLocation.value = Locale.getDefault()
 	}
 
+	@FlowPreview
 	@ExperimentalCoroutinesApi
 	suspend fun updateLastTwoCasesData() {
 		currentLocation.value?.let { locale ->
@@ -44,6 +47,7 @@ class SummaryScreenViewModel(
 			casesCovid = getCovid(lastTwoCasesFlow)
 			casesRecovered = getRecovered(lastTwoCasesFlow)
 			lastTwoCases = lastTwoCasesFlow.asLiveData()
+			lastTwoCasesFlow.collect()
 		}
 	}
 

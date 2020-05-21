@@ -34,6 +34,7 @@ private object LibraryVersion {
 	const val RECYCLER_VIEW_SELECTION = "1.1.0-rc01"
 	const val RECYCLER_VIEW = "1.2.0-alpha03"
 	const val RETROFIT = "2.7.2"
+	const val RETROFIT_COROUTINES   =   "0.9.2"
 	const val ROOM = "2.2.4"
 	const val ROUNDED_IMAGEVIEW = "2.3.0"
 	const val SERIALIZATION_RUNTIME = "0.20.0"
@@ -188,6 +189,7 @@ object LibraryDependencies {
 	object Retrofit {
 		const val Runtime = "com.squareup.retrofit2:retrofit:${LibraryVersion.RETROFIT}"
 		const val Mock = "com.squareup.retrofit2:retrofit-mock:${LibraryVersion.RETROFIT}"
+		const val Coroutine = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${LibraryVersion.RETROFIT_COROUTINES}"
 
 		object Converters {
 			const val Gson = "com.squareup.retrofit2:converter-gson:${LibraryVersion.RETROFIT}"

@@ -3,7 +3,9 @@ package com.yolisstorm.covidpulse.features.summary.views.fragments.main
 import com.yolisstorm.data_sources.databases.main.entities.Case
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICasesRepository
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICountriesRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import java.util.*
 
@@ -12,26 +14,23 @@ class SummaryScreenRepository private constructor(
 	private val countriesRepository: ICountriesRepository
 ) {
 
+	suspend fun getLastTwo(locale: Locale) =
+		countriesRepository
+			.getCountryByISO639Code(locale.country)
+			.flatMapConcat { country ->
+				casesRepository
+					.getLastTwoCasesByCountry(country.getOrNull())
+			}.map {
+				it.getOrNull()
+			}
+
+	@FlowPreview
 	@ExperimentalCoroutinesApi
 	suspend fun getLastTwoCasesByLocale(locale: Locale): Flow<Pair<Case, Case>?> =
-		flow {
-			countriesRepository
-				.getCountryByISO639Code(locale.country)
-				.onEach { if (it.isFailure) emit(null) }
-				.filter { it.isSuccess }
-				.map { it.getOrNull() }
-				.filter { it != null }
-				.collect { country ->
-					casesRepository
-						.getLastTwoCasesByCountry(country!!)
-						.onEach { if (it.isFailure) emit(null) }
-						.filter { it.isSuccess }
-						.map { it.getOrNull() }
-						.collect {
-							emit(it)
-						}
-				}
-		}
+		casesRepository
+			.getLastTwoCasesByCountryCode(locale.country)
+			.map { it.getOrNull() }
+
 
 	companion object {
 		//Для Singleton
