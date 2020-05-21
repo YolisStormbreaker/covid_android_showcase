@@ -5,7 +5,12 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class SummaryByCountry(
-	val country: CountryDto,
+	@SerializedName("Country")
+	val name: String,
+	@SerializedName("CountryCode")
+	val locale: Locale,
+	@SerializedName("Slug")
+	val slug: String,
 	@SerializedName("Date")
 	val date: Date,
 	@SerializedName("NewConfirmed")
@@ -20,4 +25,9 @@ data class SummaryByCountry(
 	val totalDeaths: Int,
 	@SerializedName("TotalRecovered")
 	val totalRecovered: Int
-)
+) {
+	fun getCountryDto() =
+		CountryDto(
+			name, locale, slug
+		)
+}

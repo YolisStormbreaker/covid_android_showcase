@@ -35,6 +35,7 @@ android {
 		}
 
 		getByName(BuildType.DEBUG) {
+			isDebuggable = true
 			isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
 		}
 
@@ -77,6 +78,7 @@ dependencies {
 	implementation(LibraryDependencies.Okhttp.LoggingInterceptor)
 	implementation(LibraryDependencies.Retrofit.Runtime)
 	implementation(LibraryDependencies.Retrofit.Converters.Gson)
+	implementation(LibraryDependencies.Retrofit.Coroutine)
 
 	addTestDependencies()
 

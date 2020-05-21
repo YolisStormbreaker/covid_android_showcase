@@ -8,10 +8,10 @@
 			name="icon"
 			type="android.graphics.drawable.Drawable" />
 		<variable
-			name="counter"
+			name="counterData"
 			type="Long" />
 		<variable
-			name="percent"
+			name="percentData"
 			type="Double" />
 		<variable
 			name="gradient"
@@ -82,7 +82,7 @@
 				android:maxLength="10"
 				android:maxLines="100"
 				android:scrollHorizontally="false"
-				android:text="@{String.format(@string/big_counter_template, counter)}"
+				android:text="@{String.format(@string/big_counter_template, counterData)}"
 				android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
 				android:textColor="?attr/colorPrimaryDark"
 				app:fontFamily="@font/orbitron"
@@ -99,7 +99,7 @@
 				android:layout_marginTop="8dp"
 				android:layout_marginBottom="15dp"
 				android:letterSpacing="0.002"
-				android:text="@{String.format(@string/percent_template, percent)}"
+				android:text="@{String.format(@string/percent_template, percentData)}"
 				android:textAlignment="viewEnd"
 				android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
 				android:textColor="?attr/colorPrimaryDark"

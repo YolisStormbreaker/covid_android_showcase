@@ -8,7 +8,7 @@ import java.lang.reflect.Type
 
 class LatLngConverter {
 	@TypeConverter
-	fun stringToModel(json: String?): LatLng {
+	fun stringToModel(json: String?): LatLng? {
 		val gson = Gson()
 		val type: Type = object : TypeToken<LatLng?>() {}.getType()
 		return gson.fromJson(json, type)

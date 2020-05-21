@@ -15,7 +15,7 @@ interface ISummaryCasesApi {
 	 * сгруппированные по дням с меткой местоположения страны, начиная с первого дня заражения.
 	 */
 	@GET("/summary")
-	fun getDailySummaryInfoAboutCasesInAllCounties(
+	suspend fun getDailySummaryInfoAboutCasesInAllCounties(
 		@Header(BuildConfig.GRADLE_API_HEADER_TOKEN_TITLE)
 		accessToken: String = BuildConfig.GRADLE_API_TOKEN
 	): Summary

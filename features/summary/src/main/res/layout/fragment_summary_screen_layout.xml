@@ -28,7 +28,7 @@
 			app:layout_constraintTop_toTopOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
-			android:text="Последнее обновление"/>
+			android:text="@string/last_updated"/>
 
 		<ImageView
 			android:id="@+id/last_update_icon"
@@ -62,8 +62,8 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			app:icon="@{@drawable/ic_covid}"
-			app:counter="@{1000023100L}"
-			app:percent="@{-102.0}"
+			app:counterData="@{safeUnbox(viewModel.casesCovid.component1())}"
+			app:percentData="@{safeUnbox(viewModel.casesCovid.component2())}"
 			app:gradient="@{@drawable/covid_gradient}"
 			android:layout_margin="15dp"
 			app:layout_constraintVertical_bias="0.25"
@@ -79,8 +79,8 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			app:icon="@{@drawable/ic_health}"
-			app:counter="@{32456123L}"
-			app:percent="@{12.0}"
+			app:counterData="@{safeUnbox(viewModel.casesRecovered.component1())}"
+			app:percentData="@{safeUnbox(viewModel.casesRecovered.component2())}"
 			app:gradient="@{@drawable/health_gradient}"
 			android:layout_margin="15dp"
 			app:layout_constraintTop_toBottomOf="@id/card_covid"
@@ -94,8 +94,8 @@
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			app:icon="@{@drawable/ic_skull_bones}"
-			app:counter="@{123L}"
-			app:percent="@{10.01}"
+			app:counterData="@{safeUnbox(viewModel.casesDeath.component1())}"
+			app:percentData="@{safeUnbox(viewModel.casesDeath.component2())}"
 			app:gradient="@{@drawable/death_gradient}"
 			android:layout_margin="15dp"
 			app:layout_constraintTop_toBottomOf="@id/card_health"
@@ -116,7 +116,7 @@
 			android:layout_marginBottom="16dp"
 			app:icon="@drawable/ic_undefined_location_24"
 			app:iconTint="@color/colorPrimaryText"
-			android:text="Выберите страну"
+			android:text="@{viewModel.currentLocation.getDisplayCountry()}"
 			tools:text="Выберите страну"/>
 
 

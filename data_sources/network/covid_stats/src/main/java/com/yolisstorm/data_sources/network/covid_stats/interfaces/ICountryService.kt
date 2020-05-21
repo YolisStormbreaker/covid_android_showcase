@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ICountryService {
 
-	@RequiresPermission(Manifest.permission.INTERNET)
+
 	suspend fun getListOfCountries() : Flow<NetworkResultWrapper<List<CountryDto>>>
 
 }

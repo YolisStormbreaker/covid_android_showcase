@@ -7,7 +7,7 @@ internal object CountryDtoToCountry {
 
 	fun CountryDto.toEntity(): Country =
 		Country(
-			locale = locale,
+			countryCode = locale,
 			slug = slug
 		)
 
@@ -18,8 +18,8 @@ internal object CountryDtoToCountry {
 
 	fun Country.toDto(): CountryDto =
 		CountryDto(
-			locale.displayName,
-			locale = locale,
+			countryCode.displayName,
+			locale = countryCode,
 			slug = slug
 		)
 

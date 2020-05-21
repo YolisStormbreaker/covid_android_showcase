@@ -19,7 +19,7 @@ internal object SummaryToCases {
 		this.countries
 			.mapNotNull { summaryByCountry ->
 				val country = countries.find {
-					it.slug == summaryByCountry.country.slug
+					it.slug == summaryByCountry.getCountryDto().slug
 				}
 				if (country != null)
 					country to summaryByCountry.splitIntoCases(country)
@@ -31,17 +31,17 @@ internal object SummaryToCases {
 		Pair(
 			Case (
 				countryId = country.id,
-				date = date.yesterday(),
-				confirmed = totalConfirmed - newConfirmed,
-				deaths = totalDeaths - newDeaths,
-				recovered = totalRecovered - newRecovered
-			),
-			Case (
-				countryId = country.id,
 				date = this.date,
 				confirmed = totalConfirmed,
 				deaths = totalDeaths,
 				recovered = totalRecovered
+			),
+			Case (
+				countryId = country.id,
+				date = date.yesterday(),
+				confirmed = totalConfirmed - newConfirmed,
+				deaths = totalDeaths - newDeaths,
+				recovered = totalRecovered - newRecovered
 			)
 		)
 
