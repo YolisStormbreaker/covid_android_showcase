@@ -11,7 +11,7 @@ interface ILiveSharedPrefsManager {
 		clazz: Class<DataType>,
 		key: String,
 		defaultValue: DataType
-	): MutableLiveData<DataType?>
+	): MutableLiveData<DataType>
 
 	fun cancelSubscriptions()
 

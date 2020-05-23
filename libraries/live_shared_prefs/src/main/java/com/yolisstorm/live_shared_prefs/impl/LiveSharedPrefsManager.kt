@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.yolisstorm.live_shared_prefs.MutableLivePreference
 import com.yolisstorm.live_shared_prefs.interfaces.ILiveSharedPrefsManager
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.BroadcastChannel
 import kotlinx.coroutines.channels.Channel
@@ -12,9 +13,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class LiveSharedPrefsManager
-private constructor(
+constructor(
 	private val _sharedPrefs: SharedPreferences,
-	private val scope: CoroutineScope
+	private val scope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 ) : ILiveSharedPrefsManager {
 
 	private val pipeLine: BroadcastChannel<String> = BroadcastChannel(Channel.BUFFERED)
@@ -37,7 +38,7 @@ private constructor(
 		clazz: Class<DataType>,
 		key: String,
 		defaultValue: DataType
-	): MutableLiveData<DataType?> =
+	): MutableLiveData<DataType> =
 		MutableLivePreference(
 			clazz,
 			pipeLine.openSubscription(),
