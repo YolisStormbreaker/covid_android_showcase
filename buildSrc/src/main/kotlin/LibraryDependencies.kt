@@ -1,20 +1,20 @@
 
 private object LibraryVersion {
 
-	const val ACTIVITY = "1.1.0"
-	const val APPCOMPAT = "1.2.0-beta01"
+	const val ACTIVITY = "1.2.0-alpha05"
+	const val APPCOMPAT = "1.3.0-alpha01"
 	const val BTN_WITH_CIRCLE_LOADER = "2.2.0"
 	const val CIRCLE_IMAGEVIEW = "3.0.1"
 	const val CONSTRAINT_LAYOUT = "2.0.0-beta4"
 	const val COORDINATOR_LAYOUT = "1.1.0"
-	const val CORE_KTX = "1.3.0-rc01"
+	const val CORE_KTX = "1.4.0-alpha01"
 	const val FIREBASE_AUTH = "19.1.0"
 	const val FIREBASE_CRASHLYTICS = "2.10.1"
 	const val FIREBASE_CORE = "17.2.0"
 	const val FIREBASE_KTX = "19.1.0"
 	const val FIREBASE_MESSAGING = "20.0.0"
 	const val FLOATING_SEARCH_VIEW = "2.1.1"
-	const val FRAGMENT = "1.2.2"
+	const val FRAGMENT = "1.3.0-alpha05"
 	const val GLIDE = "4.11.0"
 	const val G_MAPS = "17.0.0"
 	const val G_MAPS_KTX = "0.3.1"
@@ -24,7 +24,8 @@ private object LibraryVersion {
 	const val G_PLAY_SERVICES = "17.0.0"
 	const val GSON = "2.8.6"
 	const val LEAKCANARY = "2.3"
-	const val LIFECYCLE = "2.2.0"
+	const val LIFECYCLE = "2.3.0-alpha03"
+	const val LIFECYCLE_EXT = "2.2.0"
 	const val MATERIAL_CALENDAR = "1.7.0"
 	const val MATERIAL = "1.2.0-alpha06"
 	const val OKHTTP_3 = "4.6.0"
@@ -43,7 +44,7 @@ private object LibraryVersion {
 	const val SUPPORT_CARD_VIEW = "1.0.0"
 	const val SUPPORT_CORE_UTILS = "1.0.0"
 	const val TIMBER = "4.7.1"
-	const val WORK_MANAGER = "2.3.2"
+	const val WORK_MANAGER = "2.4.0-beta01"
 
 }
 
@@ -138,16 +139,13 @@ object LibraryDependencies {
 	}
 
 	object Lifecycle {
-		const val Compiler = "androidx.lifecycle:lifecycle-compiler:${LibraryVersion.LIFECYCLE}"
-		const val Coroutines =
-			"androidx.lifecycle:lifecycle-livedata-ktx:${LibraryVersion.LIFECYCLE}"
-		const val Java8 = "androidx.lifecycle:lifecycle-common-java8:${LibraryVersion.LIFECYCLE}"
-		const val Extensions = "androidx.lifecycle:lifecycle-extensions:${LibraryVersion.LIFECYCLE}"
-		const val LivedataKtx =
-			"androidx.lifecycle:lifecycle-livedata-ktx:${LibraryVersion.LIFECYCLE}"
-		const val ViewModelKtx =
-			"androidx.lifecycle:lifecycle-viewmodel-ktx:${LibraryVersion.LIFECYCLE}"
-		const val Runtime = "androidx.lifecycle:lifecycle-runtime:${LibraryVersion.LIFECYCLE}"
+		const val Compiler      =   "androidx.lifecycle:lifecycle-compiler:${LibraryVersion.LIFECYCLE}"
+		const val Coroutines    =   "androidx.lifecycle:lifecycle-livedata-ktx:${LibraryVersion.LIFECYCLE}"
+		const val Java8         =   "androidx.lifecycle:lifecycle-common-java8:${LibraryVersion.LIFECYCLE}"
+		const val Extensions    =   "androidx.lifecycle:lifecycle-extensions:${LibraryVersion.LIFECYCLE_EXT}"
+		const val LivedataKtx   =   "androidx.lifecycle:lifecycle-livedata-ktx:${LibraryVersion.LIFECYCLE}"
+		const val ViewModelKtx  =   "androidx.lifecycle:lifecycle-viewmodel-ktx:${LibraryVersion.LIFECYCLE}"
+		const val Runtime       =   "androidx.lifecycle:lifecycle-runtime:${LibraryVersion.LIFECYCLE}"
 	}
 
 	object Main {
