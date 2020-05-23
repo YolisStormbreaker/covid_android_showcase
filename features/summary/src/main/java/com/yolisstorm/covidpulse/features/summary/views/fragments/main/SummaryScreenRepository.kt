@@ -14,15 +14,7 @@ class SummaryScreenRepository private constructor(
 	private val countriesRepository: ICountriesRepository
 ) {
 
-	suspend fun getLastTwo(locale: Locale) =
-		countriesRepository
-			.getCountryByISO639Code(locale.country)
-			.flatMapConcat { country ->
-				casesRepository
-					.getLastTwoCasesByCountry(country.getOrNull())
-			}.map {
-				it.getOrNull()
-			}
+
 
 	@FlowPreview
 	@ExperimentalCoroutinesApi
@@ -30,6 +22,8 @@ class SummaryScreenRepository private constructor(
 		casesRepository
 			.getLastTwoCasesByCountryCode(locale.country)
 			.map { it.getOrNull() }
+
+
 
 
 	companion object {
