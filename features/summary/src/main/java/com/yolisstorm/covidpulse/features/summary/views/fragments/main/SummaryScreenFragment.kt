@@ -66,8 +66,7 @@ class SummaryScreenFragment : Fragment() {
 				Timber.d("covid = $it")
 				it?.let {
 					DataBindingUtil.bind<CaseCardBinding>(card_covid)?.counterData = it.first
-					DataBindingUtil.bind<CaseCardBinding>(card_covid)?.percentData =
-						it.second
+					DataBindingUtil.bind<CaseCardBinding>(card_covid)?.percentData = it.second
 				}
 			})
 			viewModel.casesRecovered.observe(viewLifecycleOwner, Observer {
@@ -89,10 +88,6 @@ class SummaryScreenFragment : Fragment() {
 				}
 			})
 		}
-
-
-
-
 
 		return binding.root
 	}

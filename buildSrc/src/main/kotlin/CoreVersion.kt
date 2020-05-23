@@ -8,5 +8,5 @@ object CoreVersion {
 	const val KOTLIN_REFLECTION             =   "1.3.72"
 	const val KTLINT                        =   "0.36.0"
 	const val GMS_GOOGLE_SERVICES           =   "4.3.3"
-	const val NAVIGATION                    =   "2.3.0-alpha06"
+	const val NAVIGATION                    =   "2.3.0-beta01"
 }
