@@ -33,7 +33,7 @@ internal class CasesRepository private constructor (
 				emit(Result.failure(IllegalArgumentException()))
 				return@flow
 			}
-			val local = casesDao.getLastTwoCasesByCountry(country.id).asReversed()
+			val local = casesDao.getFirstTwoCasesByCountrySinceDate(country.id).asReversed()
 			if (local.size == 2) {
 				emit(Result.success(local.first() to local.second()))
 			} else {
