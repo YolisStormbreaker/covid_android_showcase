@@ -26,6 +26,17 @@ fun Date.tomorrow() : Date =
 			it.add(Calendar.DATE, 1)
 		}.time
 
+fun Date.resetTime() : Date =
+	Calendar
+		.getInstance()
+		.also { calendar ->
+			calendar.time = this
+			calendar.set(Calendar.HOUR_OF_DAY, 0);
+			calendar.set(Calendar.MINUTE, 0);
+			calendar.set(Calendar.SECOND, 0);
+			calendar.set(Calendar.MILLISECOND, 0);
+		}.time
+
 fun Date.addDays(days: Int) : Date =
 	Calendar
 		.getInstance()

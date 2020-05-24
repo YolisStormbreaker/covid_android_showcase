@@ -5,6 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.yolisstorm.data_sources.databases.main.converters.CommonConverters
 import com.yolisstorm.data_sources.databases.main.converters.LatLngConverter
 import com.yolisstorm.data_sources.databases.main.dao.CasesDao
@@ -43,6 +45,9 @@ internal abstract class MainDatabase : RoomDatabase() {
 							MainDatabase::class.java,
 							DATABASE_NAME
 						)
+						/*.addMigrations(
+							MIGRATION_1_2
+						)*/
 						.build()
 					INSTANCE = instance
 				}
@@ -50,5 +55,7 @@ internal abstract class MainDatabase : RoomDatabase() {
 				return instance
 			}
 		}
+
+
 	}
 }

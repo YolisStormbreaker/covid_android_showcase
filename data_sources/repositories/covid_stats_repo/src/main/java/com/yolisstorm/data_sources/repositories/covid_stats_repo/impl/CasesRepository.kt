@@ -1,4 +1,4 @@
-package com.yolisstorm.data_sources.repositories.covid_stats_repo.impl
+ package com.yolisstorm.data_sources.repositories.covid_stats_repo.impl
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -15,10 +15,9 @@ import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICas
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICountriesRepository
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.mediators.CasesRemoteMediator
 import com.yolisstorm.library.extensions.second
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flatMapConcat
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
+import timber.log.Timber
 import java.io.IOException
 import kotlin.time.ExperimentalTime
 
@@ -38,7 +37,8 @@ internal class CasesRepository private constructor (
 				emit(RepositoryResponse.Error(IllegalArgumentException()))
 				return@flow
 			}
-			val local = casesDao.getFirstTwoCasesByCountryLastTwoDays(country.id)
+			val local = casesDao.getLastTwoCasesByCountryWithinTwoLastDays(country.id).asReversed()
+			val all = casesDao.getFirstTwoCasesByCountryAll(country.id)
 			if (local.size == 2 && isUrgentUpdateNeeded.not()) {
 				emit(RepositoryResponse.Success(local.first() to local.second(), DataWays.LocalStore))
 			} else {
@@ -66,8 +66,12 @@ internal class CasesRepository private constructor (
 					}
 				}
 			}
+		}.catch {
+			Timber.e(it.cause)
+			emit(RepositoryResponse.Error(it))
 		}
 
+	@ExperimentalCoroutinesApi
 	override suspend fun getLastTwoCasesByCountryCode(
 		countryCode: String,
 		isUrgentUpdateNeeded: Boolean
@@ -76,6 +80,9 @@ internal class CasesRepository private constructor (
 			.getCountryByISO639Code(countryCode)
 			.flatMapConcat {
 				getLastTwoCasesByCountry(it.getOrNull(), isUrgentUpdateNeeded)
+			}.catch {
+				Timber.e(it.cause)
+				emit(RepositoryResponse.Error(it))
 			}
 
 	@ExperimentalTime
