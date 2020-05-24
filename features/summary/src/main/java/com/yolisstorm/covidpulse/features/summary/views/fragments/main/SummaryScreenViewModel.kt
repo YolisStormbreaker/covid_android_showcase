@@ -7,6 +7,7 @@ import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.DataWay
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.RepositoryResponse
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICasesRepository
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.IUserPrefsRepository
+import com.yolisstorm.library.utils.Event
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
@@ -46,6 +47,13 @@ class SummaryScreenViewModel(
 	private val _lastUpdate = sharedPrefs.getLastUpdate()
 	val lastUpdate : LiveData<Date>
 	    get() = _lastUpdate
+
+	private val _wantToChooserCountry = MutableLiveData<Event<Unit>>()
+	val wantToChooserCountry: LiveData<Event<Unit>>
+		get() = _wantToChooserCountry
+	fun isTimeToChooserCountry() {
+		_wantToChooserCountry.value = Event(Unit)
+	}
 
 	fun updateCurrentLocation(newLocale: Locale) {
 		Timber.d("Updating locale")

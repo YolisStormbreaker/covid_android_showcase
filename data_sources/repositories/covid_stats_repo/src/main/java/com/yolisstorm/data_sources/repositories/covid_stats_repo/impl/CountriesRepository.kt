@@ -10,14 +10,18 @@ import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.DataWay
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.RepositoryResponse
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.convertIntoResult
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICountriesRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import timber.log.Timber
 
 internal class CountriesRepository private constructor(
 	private val countriesDao: CountriesDao,
 	private val countryService: ICountryService
 ) : ICountriesRepository {
 
+	@ExperimentalCoroutinesApi
 	override suspend fun getListOfCountries(): Flow<RepositoryResponse<List<Country>>> =
 		flow<RepositoryResponse<List<Country>>> {
 			val local = countriesDao.getListOfCountries()
@@ -33,8 +37,12 @@ internal class CountriesRepository private constructor(
 					)
 				}
 			}
+		}.catch {
+			Timber.e(it.cause)
+			emit(RepositoryResponse.Error(it))
 		}
 
+	@ExperimentalCoroutinesApi
 	override suspend fun getCountryByISO639Code(countryCode: String): Flow<RepositoryResponse<Country>> =
 		flow<RepositoryResponse<Country>> {
 			val local =
@@ -55,6 +63,9 @@ internal class CountriesRepository private constructor(
 						emit(RepositoryResponse.Success(country, DataWays.Network))
 				}
 			}
+		}.catch {
+			Timber.e(it.cause)
+			emit(RepositoryResponse.Error(it))
 		}
 
 	companion object {

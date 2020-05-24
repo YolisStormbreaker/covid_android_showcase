@@ -120,6 +120,7 @@
 				app:layout_constraintEnd_toEndOf="parent"
 				android:layout_marginBottom="16dp"
 				app:iconTint="@color/colorPrimaryText"
+				android:onClick="@{() -> viewModel.isTimeToChooserCountry()}"
 				app:location="@{viewModel.currentLocation}"
 				tools:icon="@drawable/ic_undefined_location_24"
 				tools:text="Выберите страну"/>

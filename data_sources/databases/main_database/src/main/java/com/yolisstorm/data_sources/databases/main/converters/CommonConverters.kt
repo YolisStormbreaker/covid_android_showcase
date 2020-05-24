@@ -1,6 +1,7 @@
 package com.yolisstorm.data_sources.databases.main.converters
 
 import androidx.room.TypeConverter
+import com.yolisstorm.library.extensions.resetTime
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*

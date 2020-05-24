@@ -10,7 +10,7 @@ interface CountriesDao {
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
 	suspend fun insertCountriesList(countries: List<Country>)
 
-	@Query("SELECT * FROM countries ORDER BY country_slug ASC")
+	@Query("SELECT * FROM countries ORDER BY country_code ASC")
 	suspend fun getListOfCountries(): List<Country>
 
 	@Transaction
