@@ -19,6 +19,7 @@ import com.yolisstorm.library.utils.EventObserver
 import com.yolisstorm.library.utils.ExtCountDownTimer
 import kotlinx.android.synthetic.main.fragment_summary_screen_layout.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -46,8 +47,9 @@ class SummaryScreenFragment(
 ) : Fragment() {
 
 
-	private val timer: ExtCountDownTimer by ExtCountDownTimer(Duration.INFINITE, 1.seconds)
+	private val timer = ExtCountDownTimer(Duration.INFINITE, 1.seconds)
 
+	@OptIn(FlowPreview::class)
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -70,35 +72,40 @@ class SummaryScreenFragment(
 		binding.viewModel = viewModel
 
 		lifecycleScope.launchWhenResumed {
-			viewModel.updateLastTwoCasesData()
-			viewModel.lastTwoCases.observe(viewLifecycleOwner, Observer {
-				Timber.d("result = $it")
-			})
-			viewModel.casesCovid.observe(viewLifecycleOwner, Observer {
-				Timber.d("covid = $it")
-				it?.let {
-					DataBindingUtil.bind<CaseCardBinding>(card_covid)?.counterData = it.first
-					DataBindingUtil.bind<CaseCardBinding>(card_covid)?.percentData = it.second
-				}
-			})
-			viewModel.casesRecovered.observe(viewLifecycleOwner, Observer {
-				Timber.d("Recovered = $it")
-				it?.let {
-					DataBindingUtil.bind<CaseCardBinding>(card_health)?.counterData =
-						it.first
-					DataBindingUtil.bind<CaseCardBinding>(card_health)?.percentData =
-						it.second
-				}
-			})
-			viewModel.casesDeath.observe(viewLifecycleOwner, Observer {
-				Timber.d("Death = $it")
-				it?.let {
-					DataBindingUtil.bind<CaseCardBinding>(card_deaths)?.counterData =
-						it.first
-					DataBindingUtil.bind<CaseCardBinding>(card_deaths)?.percentData =
-						it.second
-				}
-			})
+			with (viewModel) {
+				updateLastTwoCasesData()
+				lastTwoCases.observe(viewLifecycleOwner, Observer {
+					Timber.d("result = $it")
+					updateDeaths(it)
+					updateCovid(it)
+					updateRecovered(it)
+				})
+				casesCovid.observe(viewLifecycleOwner, Observer {
+					Timber.d("covid = $it")
+					it?.let {
+						DataBindingUtil.bind<CaseCardBinding>(card_covid)?.counterData = it.first
+						DataBindingUtil.bind<CaseCardBinding>(card_covid)?.percentData = it.second
+					}
+				})
+				casesRecovered.observe(viewLifecycleOwner, Observer {
+					Timber.d("Recovered = $it")
+					it?.let {
+						DataBindingUtil.bind<CaseCardBinding>(card_health)?.counterData =
+							it.first
+						DataBindingUtil.bind<CaseCardBinding>(card_health)?.percentData =
+							it.second
+					}
+				})
+				casesDeath.observe(viewLifecycleOwner, Observer {
+					Timber.d("Death = $it")
+					it?.let {
+						DataBindingUtil.bind<CaseCardBinding>(card_deaths)?.counterData =
+							it.first
+						DataBindingUtil.bind<CaseCardBinding>(card_deaths)?.percentData =
+							it.second
+					}
+				})
+			}
 			timer.startTimer()
 			timer.timerTick.observe(viewLifecycleOwner, EventObserver {
 				binding.lastUpdateLabel.setRelativeDate(viewModel.lastUpdate.value)

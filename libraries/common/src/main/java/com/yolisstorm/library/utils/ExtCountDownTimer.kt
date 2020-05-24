@@ -13,10 +13,6 @@ class ExtCountDownTimer constructor(
 	private val countDownInterval : Duration
 ) {
 
-	operator fun getValue(thisRef: Any?, property: KProperty<*>): ExtCountDownTimer {
-		return ExtCountDownTimer(duration, countDownInterval)
-	}
-
 	private val _timerStarted = MutableLiveData<Event<Boolean>>()
 	val timerStarted : LiveData<Event<Boolean>>
 	    get() = _timerStarted
@@ -31,8 +27,8 @@ class ExtCountDownTimer constructor(
 
 	fun startTimer() {
 		timer.start()
-		_timerStarted.value = Event(true)
-		_timerFinished.value = Event(false)
+		_timerStarted.postValue(Event(true))
+		_timerFinished.postValue(Event(false))
 	}
 
 	fun finishTimer() {
@@ -47,10 +43,10 @@ class ExtCountDownTimer constructor(
 	private val timer: CountDownTimer =
 		object : CountDownTimer(duration.toLongMilliseconds(), countDownInterval.toLongMilliseconds()) {
 			override fun onTick(millisUntilFinished: Long) {
-				_timerTick.value = Event(Unit)
+				_timerTick.postValue(Event(Unit))
 			}
 			override fun onFinish() {
-				_timerFinished.value = Event(true)
+				_timerFinished.postValue(Event(true))
 			}
 		}
 

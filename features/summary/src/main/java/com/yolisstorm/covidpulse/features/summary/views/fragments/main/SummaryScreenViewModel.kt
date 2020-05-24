@@ -25,9 +25,18 @@ class SummaryScreenViewModel(
 ) : AndroidViewModel(application) {
 
 	var lastTwoCases: LiveData<Pair<Case, Case>?> = MutableLiveData(null)
-	var casesDeath: LiveData<Pair<Long, Double>?> = MutableLiveData(null)
-	var casesCovid: LiveData<Pair<Long, Double>?> = MutableLiveData(null)
-	var casesRecovered: LiveData<Pair<Long, Double>?> = MutableLiveData(null)
+
+	private val _casesDeath = MutableLiveData<Pair<Long, Double>?>(null)
+	val casesDeath : LiveData<Pair<Long, Double>?>
+	    get() = _casesDeath
+
+	private val _casesCovid = MutableLiveData<Pair<Long, Double>?>(null)
+	val casesCovid : LiveData<Pair<Long, Double>?>
+	    get() = _casesCovid
+
+	private val _casesRecovered = MutableLiveData<Pair<Long, Double>?>(null)
+	val casesRecovered : LiveData<Pair<Long, Double>?>
+	    get() = _casesRecovered
 
 	private val _currentLocation = sharedPrefs.getSelectedLocale()
 	val currentLocation: LiveData<Locale>
@@ -53,39 +62,63 @@ class SummaryScreenViewModel(
 						_lastUpdate.value = Date()
 					it.getOrNull()
 				}
-			casesDeath = getDeaths(lastTwoCasesFlow)
-			casesCovid = getCovid(lastTwoCasesFlow)
-			casesRecovered = getRecovered(lastTwoCasesFlow)
 			lastTwoCases = lastTwoCasesFlow.asLiveData()
 			lastTwoCasesFlow.collect()
 		}
 	}
 
+	fun updateDeaths(cases: Pair<Case, Case>?) {
+		_casesDeath.value =
+			if (cases == null) null
+			else getDeaths(cases)
+	}
+
+	fun getDeaths(cases: Pair<Case, Case>) : Pair<Long, Double>? =
+		Pair(
+			cases.second.deaths.toLong(),
+			(cases.second.deaths - cases.first.deaths).toDouble() / cases.second.deaths
+		)
+
 	private fun getDeaths(lastTwoCases: Flow<Pair<Case, Case>?>) : LiveData<Pair<Long, Double>?> =
 		lastTwoCases
 			.makeAction {
-				Pair(
-					it.second.deaths.toLong(),
-					(it.second.deaths - it.first.deaths).toDouble() / it.second.deaths
-				)
+				getDeaths(it)
 			}
+
+	fun updateCovid(cases: Pair<Case, Case>?) {
+		_casesCovid.value =
+			if (cases == null) null
+			else getCovid(cases)
+	}
+
+	fun getCovid(cases: Pair<Case, Case>) : Pair<Long, Double>? =
+		Pair(
+			cases.second.confirmed.toLong(),
+			(cases.second.confirmed - cases.first.confirmed).toDouble() / cases.second.confirmed
+		)
 
 	private fun getCovid(lastTwoCases: Flow<Pair<Case, Case>?>) : LiveData<Pair<Long, Double>?> =
 		lastTwoCases
 			.makeAction {
-				Pair(
-					it.second.confirmed.toLong(),
-					(it.second.confirmed - it.first.confirmed).toDouble() / it.second.confirmed
-				)
+				getCovid(it)
 			}
+
+	fun updateRecovered(cases: Pair<Case, Case>?) {
+		_casesRecovered.value =
+			if (cases == null) null
+			else getRecovered(cases)
+	}
+
+	fun getRecovered(cases: Pair<Case, Case>) : Pair<Long, Double>? =
+		Pair(
+			cases.second.recovered.toLong(),
+			(cases.second.recovered - cases.first.recovered).toDouble() / cases.second.recovered
+		)
 
 	private fun getRecovered(lastTwoCases: Flow<Pair<Case, Case>?>) : LiveData<Pair<Long, Double>?> =
 		lastTwoCases
 			.makeAction {
-				Pair(
-					it.second.recovered.toLong(),
-					(it.second.recovered - it.first.recovered).toDouble() / it.second.recovered
-				)
+				getRecovered(it)
 			}
 
 
