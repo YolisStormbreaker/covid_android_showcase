@@ -10,11 +10,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.yolisstorm.covidpulse.features.summary.R
 import com.yolisstorm.covidpulse.features.summary.databinding.CaseCardBinding
 import com.yolisstorm.covidpulse.features.summary.databinding.FragmentSummaryScreenLayoutBinding
+import com.yolisstorm.covidpulse.features.summary.views.dialogs.chooseCountry.ChooseCountryDialogKoinModule
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.CovidStatsRepositoryKoinModule
 import com.yolisstorm.library.bindingAdapters.setRelativeDate
+import com.yolisstorm.library.extensions.safeNavigateTo
 import com.yolisstorm.library.utils.EventObserver
 import com.yolisstorm.library.utils.ExtCountDownTimer
 import kotlinx.android.synthetic.main.fragment_summary_screen_layout.*
@@ -32,7 +35,7 @@ import kotlin.time.seconds
 @ExperimentalCoroutinesApi
 private val loadModules by lazy {
 	val modules: List<Module> =
-		CovidStatsRepositoryKoinModule.getModules().union(listOf(SummaryScreenKoinModule)).toList()
+		CovidStatsRepositoryKoinModule.getModules().union(listOf(SummaryScreenKoinModule, ChooseCountryDialogKoinModule)).toList()
 	loadKoinModules(modules)
 }
 
@@ -116,7 +119,19 @@ class SummaryScreenFragment(
 							it.second
 					}
 				})
+				wantToChooserCountry.observe(viewLifecycleOwner, EventObserver {
+					findNavController()
+						.navigate(SummaryScreenFragmentDirections.actionSummaryScreenFragmentToChooseCountryDialogFragment())
+				})
+				currentLocation.observe(viewLifecycleOwner, Observer {
+					lifecycleScope.launch {
+						updateLastTwoCasesData(true)
+					}
+				})
 			}
+		}
+
+		lifecycleScope.launchWhenStarted {
 			timer.startTimer()
 			timer.timerTick.observe(viewLifecycleOwner, EventObserver {
 				binding.lastUpdateLabel.setRelativeDate(viewModel.lastUpdate.value)
@@ -135,6 +150,11 @@ class SummaryScreenFragment(
 		} else {
 			viewModel.updateCurrentLocation(newConfig.locale)
 		}
+	}
+
+	override fun onStart() {
+		super.onStart()
+		timer.startTimer()
 	}
 
 	override fun onStop() {

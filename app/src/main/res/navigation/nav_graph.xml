@@ -14,7 +14,18 @@
 			android:name="com.yolisstorm.covidpulse.features.summary.views.fragments.main.SummaryScreenFragment"
 			app:moduleName="@string/summary_module_name"
 			tools:layout="@layout/fragment_summary_screen_layout"
-			android:label="SummaryScreenFragment" />
+			android:label="SummaryScreenFragment" >
+			<action
+				android:id="@+id/action_summaryScreenFragment_to_chooseCountryDialogFragment"
+				app:destination="@id/chooseCountryDialogFragment" />
+		</fragment>
+
+		<dialog
+			android:id="@+id/chooseCountryDialogFragment"
+			android:name="com.yolisstorm.covidpulse.features.summary.views.dialogs.chooseCountry.ChooseCountryDialogFragment"
+			android:label="chooserCountryDialogFragment"
+			tools:layout="@layout/dialog_choose_country" />
+
 	</navigation>
 
 
