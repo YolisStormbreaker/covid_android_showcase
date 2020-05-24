@@ -20,6 +20,7 @@ import com.yolisstorm.library.utils.ExtCountDownTimer
 import kotlinx.android.synthetic.main.fragment_summary_screen_layout.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
@@ -73,9 +74,17 @@ class SummaryScreenFragment(
 
 		lifecycleScope.launchWhenResumed {
 			with (viewModel) {
+				binding.swipeToRefresh.isRefreshing = false
+				binding.swipeToRefresh.setOnRefreshListener {
+					lifecycleScope.launch {
+						updateLastTwoCasesData()
+					}
+				}
+
 				updateLastTwoCasesData()
 				lastTwoCases.observe(viewLifecycleOwner, Observer {
 					Timber.d("result = $it")
+					binding.swipeToRefresh.isRefreshing = false
 					updateDeaths(it)
 					updateCovid(it)
 					updateRecovered(it)
