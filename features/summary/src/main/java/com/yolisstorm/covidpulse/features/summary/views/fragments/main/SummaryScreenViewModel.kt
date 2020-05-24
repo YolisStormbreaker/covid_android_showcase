@@ -6,6 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.yolisstorm.data_sources.databases.main.entities.Case
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.DataWays
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.RepositoryResponse
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICasesRepository
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.IUserPrefsRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -16,7 +19,7 @@ import timber.log.Timber
 import java.util.*
 
 class SummaryScreenViewModel(
-	private val repository: SummaryScreenRepository,
+	private val casesRepository: ICasesRepository,
 	private val sharedPrefs : IUserPrefsRepository,
 	application: Application
 ) : AndroidViewModel(application) {
@@ -43,14 +46,18 @@ class SummaryScreenViewModel(
 	@ExperimentalCoroutinesApi
 	suspend fun updateLastTwoCasesData() {
 		currentLocation.value?.let { locale ->
-			val lastTwoCasesFlow = repository
-				.getLastTwoCasesByLocale(locale)
+			val lastTwoCasesFlow = casesRepository
+				.getLastTwoCasesByCountryCode(locale.country)
+				.map {
+					if (it is RepositoryResponse.Success && it.dataFlowWay == DataWays.Network)
+						_lastUpdate.value = Date()
+					it.getOrNull()
+				}
 			casesDeath = getDeaths(lastTwoCasesFlow)
 			casesCovid = getCovid(lastTwoCasesFlow)
 			casesRecovered = getRecovered(lastTwoCasesFlow)
 			lastTwoCases = lastTwoCasesFlow.asLiveData()
 			lastTwoCasesFlow.collect()
-			_lastUpdate.value = Date()
 		}
 	}
 

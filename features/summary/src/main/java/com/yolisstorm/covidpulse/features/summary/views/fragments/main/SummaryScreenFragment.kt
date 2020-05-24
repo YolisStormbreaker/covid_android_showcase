@@ -14,12 +14,18 @@ import com.yolisstorm.covidpulse.features.summary.R
 import com.yolisstorm.covidpulse.features.summary.databinding.CaseCardBinding
 import com.yolisstorm.covidpulse.features.summary.databinding.FragmentSummaryScreenLayoutBinding
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.CovidStatsRepositoryKoinModule
+import com.yolisstorm.library.bindingAdapters.setRelativeDate
+import com.yolisstorm.library.utils.EventObserver
+import com.yolisstorm.library.utils.ExtCountDownTimer
 import kotlinx.android.synthetic.main.fragment_summary_screen_layout.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import timber.log.Timber
+import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
+import kotlin.time.seconds
 
 @ExperimentalCoroutinesApi
 private val loadModules by lazy {
@@ -33,8 +39,14 @@ private fun injectFeatures() = loadModules
 
 private lateinit var binding: FragmentSummaryScreenLayoutBinding
 
+@ExperimentalTime
 @ExperimentalCoroutinesApi
-class SummaryScreenFragment : Fragment() {
+class SummaryScreenFragment(
+
+) : Fragment() {
+
+
+	private val timer: ExtCountDownTimer by ExtCountDownTimer(Duration.INFINITE, 1.seconds)
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -87,16 +99,15 @@ class SummaryScreenFragment : Fragment() {
 						it.second
 				}
 			})
-			viewModel.lastUpdate.observe(viewLifecycleOwner, Observer {
-				Timber.d("LastUpdate - $it")
-			})
-			viewModel.currentLocation.observe(viewLifecycleOwner, Observer {
-				Timber.d("CurrentLocation = $it")
+			timer.startTimer()
+			timer.timerTick.observe(viewLifecycleOwner, EventObserver {
+				binding.lastUpdateLabel.setRelativeDate(viewModel.lastUpdate.value)
 			})
 		}
 
 		return binding.root
 	}
+
 
 	override fun onConfigurationChanged(newConfig: Configuration) {
 		super.onConfigurationChanged(newConfig)
@@ -106,5 +117,10 @@ class SummaryScreenFragment : Fragment() {
 		} else {
 			viewModel.updateCurrentLocation(newConfig.locale)
 		}
+	}
+
+	override fun onStop() {
+		super.onStop()
+		timer.finishTimer()
 	}
 }

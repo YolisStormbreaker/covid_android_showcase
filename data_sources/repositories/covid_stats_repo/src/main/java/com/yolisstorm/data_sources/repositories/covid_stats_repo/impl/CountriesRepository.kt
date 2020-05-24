@@ -4,41 +4,43 @@ import android.content.res.Resources
 import com.yolisstorm.data_sources.databases.main.converters.CommonConverters
 import com.yolisstorm.data_sources.databases.main.dao.CountriesDao
 import com.yolisstorm.data_sources.databases.main.entities.Country
-import com.yolisstorm.data_sources.network.covid_stats.helpers.Extensions.convertIntoResult
 import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICountryService
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.converters.CountryDtoToCountry.toEntity
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.DataWays
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.RepositoryResponse
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.convertIntoResult
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICountriesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.util.*
 
 internal class CountriesRepository private constructor(
 	private val countriesDao: CountriesDao,
 	private val countryService: ICountryService
 ) : ICountriesRepository {
 
-	override suspend fun getListOfCountries(): Flow<Result<List<Country>>> =
-		flow<Result<List<Country>>> {
+	override suspend fun getListOfCountries(): Flow<RepositoryResponse<List<Country>>> =
+		flow<RepositoryResponse<List<Country>>> {
 			val local = countriesDao.getListOfCountries()
 			if (local.isNotEmpty())
-				emit(Result.success(local))
+				emit(RepositoryResponse.Success(local, DataWays.LocalStore))
 			else {
 				countryService.getListOfCountries().convertIntoResult(this) { value ->
 					emit(
-						Result.success(
-							countriesDao.insertCountriesAndGetItBackInOrder(value.toEntity())
+						RepositoryResponse.Success(
+							countriesDao.insertCountriesAndGetItBackInOrder(value.toEntity()),
+							DataWays.Network
 						)
 					)
 				}
 			}
 		}
 
-	override suspend fun getCountryByISO639Code(countryCode: String): Flow<Result<Country>> =
-		flow<Result<Country>> {
+	override suspend fun getCountryByISO639Code(countryCode: String): Flow<RepositoryResponse<Country>> =
+		flow<RepositoryResponse<Country>> {
 			val local =
 				countriesDao.getCountryByLocale(CommonConverters().countryCodeToLocale(countryCode))
 			if (local != null)
-				emit(Result.success(local))
+				emit(RepositoryResponse.Success(local, DataWays.LocalStore))
 			else {
 				countryService.getListOfCountries().convertIntoResult(this) { value ->
 					val country = countriesDao
@@ -48,9 +50,9 @@ internal class CountriesRepository private constructor(
 						)
 					val countries = countriesDao.getListOfCountries()
 					if (country == null)
-						emit(Result.failure(Resources.NotFoundException()))
+						emit(RepositoryResponse.Error(Resources.NotFoundException()))
 					else
-						emit(Result.success(country))
+						emit(RepositoryResponse.Success(country, DataWays.Network))
 				}
 			}
 		}
