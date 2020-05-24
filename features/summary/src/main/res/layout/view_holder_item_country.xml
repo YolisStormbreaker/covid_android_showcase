@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+		<variable
+			name="country"
+			type="com.yolisstorm.data_sources.databases.main.entities.Country" />
+		<variable
+			name="clickListener"
+			type="com.yolisstorm.covidpulse.features.summary.views.dialogs.chooseCountry.CountryClickListener" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:onClick="@{() -> clickListener.onClick(country)}"
+		android:background="?attr/colorOnPrimarySurface">
+
+		<com.google.android.material.textview.MaterialTextView
+			android:id="@+id/last_update_title"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+			android:textColor="?attr/colorSecondary"
+			android:textAlignment="center"
+			android:gravity="center"
+			android:text="@{country.component2().getDisplayCountry()}"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
+			tools:text="@string/unknown_location"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -3,6 +3,7 @@ package com.yolisstorm.data_sources.network.covid_stats.helpers
 import android.net.Uri
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.yolisstorm.data_sources.network.covid_stats.BuildConfig
 import com.yolisstorm.data_sources.network.covid_stats.helpers.`de-serializers`.ISO2toLocaleDeserializer
 import okhttp3.Interceptor
@@ -33,11 +34,13 @@ internal object RetrofitFactory {
 
 	//Not logging the authkey if not debug
 	private val client =
-		if (BuildConfig.DEBUG && BuildConfig.GRADLE_IS_NEED_OK_HTTP_LOG) {
-			OkHttpClient().newBuilder()
-				.addInterceptor(authInterceptor)
-				.addInterceptor(loggingInterceptor)
-				.build()
+		if (BuildConfig.DEBUG) {
+			with (OkHttpClient().newBuilder()) {
+				addInterceptor(authInterceptor)
+				if (BuildConfig.GRADLE_IS_NEED_OK_HTTP_LOG)
+					addInterceptor(loggingInterceptor)
+				build()
+			}
 		} else {
 			OkHttpClient()
 				.newBuilder()
@@ -56,7 +59,7 @@ internal object RetrofitFactory {
 					.create()
 			)
 		)
-		//.addCallAdapterFactory(CoroutineCallAdapterFactory())
+		.addCallAdapterFactory(CoroutineCallAdapterFactory())
 		.build()
 
 }

@@ -27,11 +27,6 @@ android {
 	}
 	flavorDimensions("version")
 	productFlavors {
-		create(WithAddPulse.flavorName) {
-			applicationIdSuffix  = WithAddPulse.applicationIdSuffix
-			versionCode = WithAddPulse.versionCode
-			versionNameSuffix  = WithAddPulse.versionNameSuffix
-		}
 		create(FullPulse.flavorName) {
 			applicationIdSuffix  = FullPulse.applicationIdSuffix
 			versionCode = FullPulse.versionCode
@@ -42,10 +37,12 @@ android {
 		getByName(BuildType.RELEASE) {
 			isMinifyEnabled = BuildTypeRelease.isMinifyEnabled
 			proguardFiles("proguard-android.txt", "proguard-rules.pro")
+			manifestPlaceholders = mapOf("enableCrashReporting" to "true", "enableFirebaseAnalyticsReporting" to "true")
 		}
 
 		getByName(BuildType.DEBUG) {
 			isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
+			manifestPlaceholders = mapOf("enableCrashReporting" to "false", "enableFirebaseAnalyticsReporting" to "false")
 		}
 
 		compileOptions {
@@ -70,6 +67,8 @@ android {
 		jvmTarget = JavaVersion.VERSION_1_8.toString()
 	}
 
+	buildFeatures.dataBinding = true
+
 }
 
 dependencies {
@@ -79,12 +78,14 @@ dependencies {
 	debugImplementation(LibraryDependencies.Main.Leakcanary)
 
 	implementation(LibraryDependencies.Koin.Core)
+	implementation(LibraryDependencies.Koin.Ext)
 
 	api(LibraryDependencies.AndroidSupport.Design.ConstraintLayout)
 	api(LibraryDependencies.AndroidSupport.Design.Material)
 
 	api(LibraryDependencies.Navigation.FragmentKtx)
 	api(LibraryDependencies.Navigation.UiKtx)
+	api(LibraryDependencies.Navigation.DynamicFeature)
 
 	addTestDependencies()
 }
@@ -98,7 +99,7 @@ fun com.android.build.gradle.internal.dsl.BaseFlavor.buildConfigFieldFromGradleP
 }
 
 fun getDynamicFeatureModuleNames() = ModuleDependency.getDynamicFeatureModules()
-	.map { it.replace(":feature_", "") }
+	.map { it.replace(":feature:", "") }
 	.toSet()
 
 fun String.toSnakeCase() = this.split(Regex("(?=[A-Z])")).joinToString("_") { it.toLowerCase() }

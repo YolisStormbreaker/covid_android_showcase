@@ -6,7 +6,7 @@ private const val FEATURE_PREFIX = ":features"
 @Suppress("unused")
 object ModuleDependency {
 	// All consts are accessed via reflection
-	const val APP = ":app"
+	const val app = ":app"
 
 	/*    const val FEATURE_ALBUM = ":feature_album"
 		const val FEATURE_PROFILE = ":feature_profile"
@@ -15,7 +15,11 @@ object ModuleDependency {
 	const val LibraryFirebaseAnalytics = ":libraries:firebase_analytics"
 	const val LibraryFirebaseAuth = ":libraries:firebase_auth"
 	const val LibraryGoogleMapsAndPlaces = ":libraries:google_maps_places"
+	const val LibraryLiveSharedPrefs = ":libraries:live_shared_prefs"
 	const val DataSourceNetworkCovidStats = ":data_sources:network:covid_stats"
+	const val DataSourceDatabase = ":data_sources:databases:main_database"
+	const val DataSourceRepositoryCovidStats = ":data_sources:repositories:covid_stats_repo"
+	const val FeatureSummary = ":features:summary"
 	//const val LIBRARY_TEST_UTILS = ":library_test_utils"
 
 	// False positive" function can be private"

@@ -11,4 +11,6 @@
 
 	<string name="currency_monthly_placeholder">%1$s %2$.02f %3$s/Мес.</string>
 
+	<string name="unknown">Неизвестно</string>
+
 </resources>

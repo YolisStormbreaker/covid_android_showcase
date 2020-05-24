@@ -9,6 +9,7 @@ import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
 import com.google.android.material.textview.MaterialTextView
 import com.yolisstorm.library.common.R
 import com.yolisstorm.library.extensions.getFormattedDate
@@ -18,7 +19,7 @@ import java.text.DateFormat
 import java.util.*
 
 @BindingAdapter("app:count", "app:activeColor", requireAll = true)
-fun MaterialTextView.setBadgeText(count: Int?, activeColor: Int) {
+fun TextView.setBadgeText(count: Int?, activeColor: Int) {
 	count?.let {
 		when {
 			count <= 0 -> {
@@ -34,7 +35,7 @@ fun MaterialTextView.setBadgeText(count: Int?, activeColor: Int) {
 }
 
 @BindingAdapter("app:visibilityByNull", "app:stringForReplace", requireAll = false)
-fun MaterialTextView.setVisibilityByText(inputStr: String?, @StringRes stringResForReplace: Int?) {
+fun TextView.setVisibilityByText(inputStr: String?, @StringRes stringResForReplace: Int?) {
 	when {
 		inputStr == null && stringResForReplace == null -> {
 			visibility = View.GONE
@@ -51,7 +52,7 @@ fun MaterialTextView.setVisibilityByText(inputStr: String?, @StringRes stringRes
 }
 
 @BindingAdapter("app:pluralValue", "app:pluralResId", requireAll = true)
-fun MaterialTextView.setPlural(pluralValue: Int?, @PluralsRes pluralResId: Int?) {
+fun TextView.setPlural(pluralValue: Int?, @PluralsRes pluralResId: Int?) {
 	pluralValue?.let {
 		pluralResId?.let {
 			text = String.format(
@@ -62,7 +63,7 @@ fun MaterialTextView.setPlural(pluralValue: Int?, @PluralsRes pluralResId: Int?)
 }
 
 @BindingAdapter("app:intValue", "app:format", requireAll = true)
-fun MaterialTextView.setIntValue(intValue: Int?, format: String?) {
+fun TextView.setIntValue(intValue: Int?, format: String?) {
 	intValue?.let {
 		format?.let {
 			text = String.format(format, intValue)
@@ -71,7 +72,7 @@ fun MaterialTextView.setIntValue(intValue: Int?, format: String?) {
 }
 
 @BindingAdapter("app:longValue", "app:format", requireAll = true)
-fun MaterialTextView.setLongValue(longValue: Long?, format: String?) {
+fun TextView.setLongValue(longValue: Long?, format: String?) {
 	longValue?.let {
 		format?.let {
 			text = String.format(format, longValue)
@@ -79,8 +80,8 @@ fun MaterialTextView.setLongValue(longValue: Long?, format: String?) {
 	}
 }
 
-@BindingAdapter("app:currency_value", "app:prefix_res_id", "app:is_monthly", requireAll = false)
-fun MaterialTextView.setCurrencyValue(
+@BindingAdapter("app:currency_value", "app:currencySymbolResId", "app:prefix_res_id", "app:is_monthly", requireAll = false)
+fun TextView.setCurrencyValue(
 	value: Float?,
 	@StringRes currencySymbolResId : Int? = R.string.default_currency_symbol,
 	@StringRes prefixResId :Int? = null,
@@ -97,8 +98,8 @@ fun MaterialTextView.setCurrencyValue(
 	}
 }
 
-@BindingAdapter("app:formattedRelativeDate")
-fun MaterialTextView.setRelativeDate(relativeDate: Calendar?) {
+@BindingAdapter("app:formattedRelativeCalendar")
+fun TextView.setRelativeDate(relativeDate: Calendar?) {
 	relativeDate?.let {
 		text = DateUtils.getRelativeDateTimeString(
 			context,
@@ -110,8 +111,24 @@ fun MaterialTextView.setRelativeDate(relativeDate: Calendar?) {
 	}
 }
 
+
+@BindingAdapter("app:formattedRelativeDate")
+fun TextView.setRelativeDate(relativeDate: Date?) {
+	text =
+		if (relativeDate != null)
+			DateUtils.getRelativeDateTimeString(
+				context,
+				relativeDate.time,
+				DateUtils.SECOND_IN_MILLIS,
+				DateUtils.DAY_IN_MILLIS,
+				0
+			)
+		else
+			context.getString(R.string.unknown)
+}
+
 @BindingAdapter("app:formattedTime", "app:isNeedDifferentBetweenNow", requireAll = false)
-fun MaterialTextView.setTime(date: Calendar?, isNeedDifferentBetweenNow: Boolean?) {
+fun TextView.setTime(date: Calendar?, isNeedDifferentBetweenNow: Boolean?) {
 	date?.let {
 		var millis =
 			when (isNeedDifferentBetweenNow) {
@@ -146,25 +163,25 @@ fun MaterialTextView.setTime(date: Calendar?, isNeedDifferentBetweenNow: Boolean
 }
 
 @BindingAdapter("app:formattedCalendarDate")
-fun MaterialTextView.setCalendarDMY(date: Calendar?) {
+fun TextView.setCalendarDMY(date: Calendar?) {
 	date?.let {
 		setFormattedDate(it.time)
 	}
 }
 
 @BindingAdapter("app:formattedDate")
-fun MaterialTextView.setDateDMY(date: Date?) {
+fun TextView.setDateDMY(date: Date?) {
 	date?.let {
 		setFormattedDate(it)
 	}
 }
 
-private fun MaterialTextView.setFormattedDate(date: Date) {
+private fun TextView.setFormattedDate(date: Date) {
 	text = date.getFormattedDate()
 }
 
 @BindingAdapter("app:styledHtmlText")
-fun MaterialTextView.setStyledHtmlText(styledText: String?) {
+fun TextView.setStyledHtmlText(styledText: String?) {
 	styledText?.let {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 			setText(
@@ -184,7 +201,7 @@ fun MaterialTextView.setStyledHtmlText(styledText: String?) {
 	"app:stringResForReplace",
 	requireAll = false
 )
-fun MaterialTextView.setFormattedName(
+fun TextView.setFormattedName(
 	givenName: String?,
 	middleName: String?,
 	familyName: String?,

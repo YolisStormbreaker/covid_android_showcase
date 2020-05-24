@@ -2,8 +2,8 @@
 <resources>
 
 	<color name="button_default">@color/button_color</color>
-	<color name="button_enabled">#4e67fd</color>
-	<color name="button_disabled">#888C97</color>
-	<color name="button_pressed">#7681E2</color>
+	<color name="button_enabled">?attr/colorSecondary</color>
+	<color name="button_disabled">?attr/colorPrimaryVariant</color>
+	<color name="button_pressed">?attr/colorOnSecondary</color>
 
 </resources>
