@@ -13,11 +13,13 @@ import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICas
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICountriesRepository
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.mediators.CasesRemoteMediator
 import com.yolisstorm.library.extensions.second
+import com.yolisstorm.library.extensions.yesterday
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
+import java.util.*
 import kotlin.time.ExperimentalTime
 
 internal class CasesRepository private constructor (
@@ -33,7 +35,7 @@ internal class CasesRepository private constructor (
 				emit(Result.failure(IllegalArgumentException()))
 				return@flow
 			}
-			val local = casesDao.getFirstTwoCasesByCountrySinceDate(country.id).asReversed()
+			val local = casesDao.getFirstTwoCasesByCountryLastTwoDays(country.id).asReversed()
 			if (local.size == 2) {
 				emit(Result.success(local.first() to local.second()))
 			} else {

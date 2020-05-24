@@ -80,7 +80,7 @@ fun TextView.setLongValue(longValue: Long?, format: String?) {
 	}
 }
 
-@BindingAdapter("app:currency_value", "app:prefix_res_id", "app:is_monthly", requireAll = false)
+@BindingAdapter("app:currency_value", "app:currencySymbolResId", "app:prefix_res_id", "app:is_monthly", requireAll = false)
 fun TextView.setCurrencyValue(
 	value: Float?,
 	@StringRes currencySymbolResId : Int? = R.string.default_currency_symbol,
@@ -111,10 +111,6 @@ fun TextView.setRelativeDate(relativeDate: Calendar?) {
 	}
 }
 
-@BindingAdapter("app:formattedRelativeLiveDataDate")
-fun MaterialTextView.setRelativeLiveDataDate(relativeDate: LiveData<Date>) {
-	setRelativeDate(relativeDate.value)
-}
 
 @BindingAdapter("app:formattedRelativeDate")
 fun TextView.setRelativeDate(relativeDate: Date?) {

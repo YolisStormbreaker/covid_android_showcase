@@ -2,6 +2,7 @@ plugins {
 	id(GradlePluginId.ANDROID_DYNAMIC_FEATURE)
 	id(GradlePluginId.KOTLIN_ANDROID)
 	id(GradlePluginId.KOTLIN_ANDROID_EXTENSIONS)
+	kotlin("kapt")
 	id(GradlePluginId.SAFE_ARGS)
 }
 

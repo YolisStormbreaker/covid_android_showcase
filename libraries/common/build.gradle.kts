@@ -1,6 +1,7 @@
 plugins {
 	id(GradlePluginId.ANDROID_LIBRARY)
 	id(GradlePluginId.KOTLIN_ANDROID)
+	kotlin("kapt")
 }
 
 android {

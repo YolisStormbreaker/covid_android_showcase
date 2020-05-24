@@ -23,6 +23,7 @@ class MutableLivePreference<DType : Any> constructor(
 
 	init {
 		value = sharedPrefs.get(clazz, itemKey, defaultValue)
+		lastValue = value
 	}
 
 	override fun postValue(value: DType?) {
@@ -44,6 +45,8 @@ class MutableLivePreference<DType : Any> constructor(
 			if (lastValue != it) {
 				lastValue = it
 				postValue(it)
+			} else if (it == null) {
+				postValue(defaultValue)
 			}
 		}
 
