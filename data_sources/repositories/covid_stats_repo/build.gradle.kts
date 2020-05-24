@@ -61,6 +61,7 @@ dependencies {
 	implementation(project(ModuleDependency.LibraryCommon))
 	api(project(ModuleDependency.DataSourceDatabase))
 	implementation(project(ModuleDependency.DataSourceNetworkCovidStats))
+	implementation(project(ModuleDependency.LibraryLiveSharedPrefs))
 
 	api(LibraryDependencies.Main.Timber)
 

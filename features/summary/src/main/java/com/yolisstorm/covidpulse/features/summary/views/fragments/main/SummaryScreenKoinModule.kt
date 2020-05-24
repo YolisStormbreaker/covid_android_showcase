@@ -9,6 +9,7 @@ val SummaryScreenKoinModule = module {
 	viewModel {
 		SummaryScreenViewModel(
 			get(),
+			get(),
 			androidApplication()
 		)
 	}

@@ -87,6 +87,12 @@ class SummaryScreenFragment : Fragment() {
 						it.second
 				}
 			})
+			viewModel.lastUpdate.observe(viewLifecycleOwner, Observer {
+				Timber.d("LastUpdate - $it")
+			})
+			viewModel.currentLocation.observe(viewLifecycleOwner, Observer {
+				Timber.d("CurrentLocation = $it")
+			})
 		}
 
 		return binding.root

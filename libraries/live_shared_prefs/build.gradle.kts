@@ -1,7 +1,6 @@
 plugins {
 	id(GradlePluginId.ANDROID_LIBRARY)
 	id(GradlePluginId.KOTLIN_ANDROID)
-	kotlin("kapt")
 }
 
 android {
@@ -51,26 +50,10 @@ dependencies {
 	api(LibraryDependencies.Kotlin.Reflection)
 	api(LibraryDependencies.Kotlin.Coroutines.Android)
 
+	api(LibraryDependencies.Lifecycle.Extensions)
+
 	api(LibraryDependencies.Main.Gson)
 
-	api(LibraryDependencies.AndroidSupport.PlayCore)
-
 	api(LibraryDependencies.Main.Timber)
-	api(LibraryDependencies.AndroidSupport.AppCompat)
-	api(LibraryDependencies.AndroidSupport.CoreKtx)
-	api(LibraryDependencies.AndroidSupport.Fragment.FragmentRuntimeKtx)
-
-	api(LibraryDependencies.AndroidSupport.Design.Material)
-
-	api(LibraryDependencies.Navigation.RuntimeKtx)
-
-	api(LibraryDependencies.Lifecycle.Extensions)
-	api(LibraryDependencies.Lifecycle.LivedataKtx)
-	api(LibraryDependencies.Lifecycle.ViewModelKtx)
-
-	api(LibraryDependencies.Firebase.Crashlytics)
-	api(LibraryDependencies.Firebase.CommonKtx)
-
-	api(LibraryDependencies.Other.BtnWithCircleLoader)
 
 }

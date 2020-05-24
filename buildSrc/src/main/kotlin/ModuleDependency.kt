@@ -15,6 +15,7 @@ object ModuleDependency {
 	const val LibraryFirebaseAnalytics = ":libraries:firebase_analytics"
 	const val LibraryFirebaseAuth = ":libraries:firebase_auth"
 	const val LibraryGoogleMapsAndPlaces = ":libraries:google_maps_places"
+	const val LibraryLiveSharedPrefs = ":libraries:live_shared_prefs"
 	const val DataSourceNetworkCovidStats = ":data_sources:network:covid_stats"
 	const val DataSourceDatabase = ":data_sources:databases:main_database"
 	const val DataSourceRepositoryCovidStats = ":data_sources:repositories:covid_stats_repo"

@@ -1,6 +1,8 @@
 package com.yolisstorm.data_sources.databases.main.converters
 
 import androidx.room.TypeConverter
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -18,5 +20,4 @@ class CommonConverters {
 
 	@TypeConverter
 	fun localeToCountryCode(inputLocale: Locale): String = inputLocale.country
-
 }

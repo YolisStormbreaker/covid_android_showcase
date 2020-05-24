@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.yolisstorm.data_sources.databases.main.entities.Case
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.IUserPrefsRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
@@ -16,6 +17,7 @@ import java.util.*
 
 class SummaryScreenViewModel(
 	private val repository: SummaryScreenRepository,
+	private val sharedPrefs : IUserPrefsRepository,
 	application: Application
 ) : AndroidViewModel(application) {
 
@@ -24,17 +26,17 @@ class SummaryScreenViewModel(
 	var casesCovid: LiveData<Pair<Long, Double>?> = MutableLiveData(null)
 	var casesRecovered: LiveData<Pair<Long, Double>?> = MutableLiveData(null)
 
-	private val _currentLocation = MutableLiveData<Locale>()
+	private val _currentLocation = sharedPrefs.getSelectedLocale()
 	val currentLocation: LiveData<Locale>
 		get() = _currentLocation
+
+	private val _lastUpdate = sharedPrefs.getLastUpdate()
+	val lastUpdate : LiveData<Date>
+	    get() = _lastUpdate
 
 	fun updateCurrentLocation(newLocale: Locale) {
 		Timber.d("Updating locale")
 		_currentLocation.value = newLocale
-	}
-
-	init {
-		_currentLocation.value = Locale.getDefault()
 	}
 
 	@FlowPreview
@@ -48,6 +50,7 @@ class SummaryScreenViewModel(
 			casesRecovered = getRecovered(lastTwoCasesFlow)
 			lastTwoCases = lastTwoCasesFlow.asLiveData()
 			lastTwoCasesFlow.collect()
+			_lastUpdate.value = Date()
 		}
 	}
 
