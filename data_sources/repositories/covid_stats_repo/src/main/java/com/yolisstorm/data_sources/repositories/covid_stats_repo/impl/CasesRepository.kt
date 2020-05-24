@@ -6,20 +6,20 @@ import androidx.paging.PagingData
 import com.yolisstorm.data_sources.databases.main.dao.CasesDao
 import com.yolisstorm.data_sources.databases.main.entities.Case
 import com.yolisstorm.data_sources.databases.main.entities.Country
-import com.yolisstorm.data_sources.network.covid_stats.helpers.Extensions.convertIntoResult
 import com.yolisstorm.data_sources.network.covid_stats.interfaces.ICasesService
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.converters.SummaryToCases.toEntity
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.DataWays
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.RepositoryResponse
+import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.convertIntoResult
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICasesRepository
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.interfaces.ICountriesRepository
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.mediators.CasesRemoteMediator
 import com.yolisstorm.library.extensions.second
-import com.yolisstorm.library.extensions.yesterday
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
-import java.util.*
 import kotlin.time.ExperimentalTime
 
 internal class CasesRepository private constructor (
@@ -29,34 +29,37 @@ internal class CasesRepository private constructor (
 ) : ICasesRepository {
 
 
-	override suspend fun getLastTwoCasesByCountry(country: Country?): Flow<Result<Pair<Case, Case>>> =
-		flow <Result<Pair<Case, Case>>> {
+	override suspend fun getLastTwoCasesByCountry(
+		country: Country?,
+		isUrgentUpdateNeeded: Boolean
+	): Flow<RepositoryResponse<Pair<Case, Case>>> =
+		flow <RepositoryResponse<Pair<Case, Case>>> {
 			if (country == null) {
-				emit(Result.failure(IllegalArgumentException()))
+				emit(RepositoryResponse.Error(IllegalArgumentException()))
 				return@flow
 			}
-			val local = casesDao.getFirstTwoCasesByCountryLastTwoDays(country.id).asReversed()
-			if (local.size == 2) {
-				emit(Result.success(local.first() to local.second()))
+			val local = casesDao.getFirstTwoCasesByCountryLastTwoDays(country.id)
+			if (local.size == 2 && isUrgentUpdateNeeded.not()) {
+				emit(RepositoryResponse.Success(local.first() to local.second(), DataWays.LocalStore))
 			} else {
 				casesService.getTodaySummary().convertIntoResult(this) { value ->
 					countriesRepository.getListOfCountries().collect { countries ->
-						when {
-							countries.isFailure -> {
-								emit(Result.failure(countries.exceptionOrNull() ?: UnknownError()))
+						when (countries) {
+							is RepositoryResponse.Error -> {
+								emit(RepositoryResponse.Error(countries.cause ?: UnknownError()))
 							}
-							countries.isSuccess -> {
-								val countriesList = countries.getOrNull()
+							is RepositoryResponse.Success -> {
+								val countriesList = countries.value
 								if (countriesList == null || countriesList.isEmpty())
-									emit(Result.failure(IOException()))
+									emit(RepositoryResponse.Error(IOException()))
 								else {
 									val countriesWithCases = value.toEntity(countriesList)
 									casesDao.insertNewCases(countriesWithCases.flatMap { it.value.toList() })
 									val casesByCountry = countriesWithCases.get(country)
 									if (casesByCountry == null)
-										emit(Result.failure(IOException()))
+										emit(RepositoryResponse.Error(IOException()))
 									else
-										emit(Result.success(casesByCountry))
+										emit(RepositoryResponse.Success(casesByCountry, DataWays.Network))
 								}
 							}
 						}
@@ -65,11 +68,14 @@ internal class CasesRepository private constructor (
 			}
 		}
 
-	override suspend fun getLastTwoCasesByCountryCode(countryCode: String): Flow<Result<Pair<Case, Case>>> =
+	override suspend fun getLastTwoCasesByCountryCode(
+		countryCode: String,
+		isUrgentUpdateNeeded: Boolean
+	): Flow<RepositoryResponse<Pair<Case, Case>>> =
 		countriesRepository
 			.getCountryByISO639Code(countryCode)
 			.flatMapConcat {
-				getLastTwoCasesByCountry(it.getOrNull())
+				getLastTwoCasesByCountry(it.getOrNull(), isUrgentUpdateNeeded)
 			}
 
 	@ExperimentalTime

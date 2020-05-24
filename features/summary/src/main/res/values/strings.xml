@@ -4,4 +4,5 @@
 
 	<string name="picture_counter_description">Picture counter description</string>
 	<string name="last_updated">Last updated</string>
+	<string name="unknown_location">Unknowhere</string>
 </resources>
