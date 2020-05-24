@@ -25,7 +25,7 @@ interface CasesDao {
 	@Query("SELECT * FROM cases WHERE cases.country_id = :countryId AND cases.date BETWEEN  :sinceDate AND :belowDate ORDER BY cases.date DESC LIMIT 2")
 	suspend fun getFirstTwoCasesByCountryBetween(countryId: Long, sinceDate: Date = Date().yesterday(), belowDate: Date = Date() ): List<Case>
 
-	@Query("SELECT * FROM cases WHERE cases.country_id = :countryId AND cases.date >= :sinceDate ORDER BY cases.date DESC LIMIT 2")
+	@Query("SELECT * FROM cases WHERE cases.country_id = :countryId AND cases.date >= :sinceDate ORDER BY cases.date ASC LIMIT 2")
 	suspend fun getFirstTwoCasesByCountryLastTwoDays(countryId: Long, sinceDate: Date = Date().yesterday()): List<Case>
 
 	@Query("DELETE FROM cases WHERE cases.country_id = :countryId")

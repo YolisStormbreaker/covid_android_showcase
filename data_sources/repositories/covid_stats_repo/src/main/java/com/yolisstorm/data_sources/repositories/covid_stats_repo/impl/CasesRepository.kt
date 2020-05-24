@@ -29,14 +29,17 @@ internal class CasesRepository private constructor (
 ) : ICasesRepository {
 
 
-	override suspend fun getLastTwoCasesByCountry(country: Country?): Flow<RepositoryResponse<Pair<Case, Case>>> =
+	override suspend fun getLastTwoCasesByCountry(
+		country: Country?,
+		isUrgentUpdateNeeded: Boolean
+	): Flow<RepositoryResponse<Pair<Case, Case>>> =
 		flow <RepositoryResponse<Pair<Case, Case>>> {
 			if (country == null) {
 				emit(RepositoryResponse.Error(IllegalArgumentException()))
 				return@flow
 			}
-			val local = casesDao.getFirstTwoCasesByCountryLastTwoDays(country.id).asReversed()
-			if (local.size == 2) {
+			val local = casesDao.getFirstTwoCasesByCountryLastTwoDays(country.id)
+			if (local.size == 2 && isUrgentUpdateNeeded.not()) {
 				emit(RepositoryResponse.Success(local.first() to local.second(), DataWays.LocalStore))
 			} else {
 				casesService.getTodaySummary().convertIntoResult(this) { value ->
@@ -65,11 +68,14 @@ internal class CasesRepository private constructor (
 			}
 		}
 
-	override suspend fun getLastTwoCasesByCountryCode(countryCode: String): Flow<RepositoryResponse<Pair<Case, Case>>> =
+	override suspend fun getLastTwoCasesByCountryCode(
+		countryCode: String,
+		isUrgentUpdateNeeded: Boolean
+	): Flow<RepositoryResponse<Pair<Case, Case>>> =
 		countriesRepository
 			.getCountryByISO639Code(countryCode)
 			.flatMapConcat {
-				getLastTwoCasesByCountry(it.getOrNull())
+				getLastTwoCasesByCountry(it.getOrNull(), isUrgentUpdateNeeded)
 			}
 
 	@ExperimentalTime

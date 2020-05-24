@@ -8,9 +8,15 @@ import kotlinx.coroutines.flow.Flow
 
 interface ICasesRepository {
 
-	suspend fun getLastTwoCasesByCountry(country: Country?): Flow<RepositoryResponse<Pair<Case, Case>>>
+	suspend fun getLastTwoCasesByCountry(
+		country: Country?,
+		isUrgentUpdateNeeded: Boolean
+	): Flow<RepositoryResponse<Pair<Case, Case>>>
 
-	suspend fun getLastTwoCasesByCountryCode(countryCode: String): Flow<RepositoryResponse<Pair<Case, Case>>>
+	suspend fun getLastTwoCasesByCountryCode(
+		countryCode: String,
+		isUrgentUpdateNeeded: Boolean
+	): Flow<RepositoryResponse<Pair<Case, Case>>>
 
 	suspend fun getCasesByCountry(country: Country) : Flow<PagingData<Case>>
 

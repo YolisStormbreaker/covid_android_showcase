@@ -39,7 +39,7 @@ private val loadModules by lazy {
 @ExperimentalCoroutinesApi
 private fun injectFeatures() = loadModules
 
-private lateinit var binding: FragmentSummaryScreenLayoutBinding
+
 
 @ExperimentalTime
 @ExperimentalCoroutinesApi
@@ -49,6 +49,8 @@ class SummaryScreenFragment(
 
 
 	private val timer = ExtCountDownTimer(Duration.INFINITE, 1.seconds)
+	private lateinit var binding: FragmentSummaryScreenLayoutBinding
+
 
 	@OptIn(FlowPreview::class)
 	override fun onCreateView(
@@ -77,11 +79,11 @@ class SummaryScreenFragment(
 				binding.swipeToRefresh.isRefreshing = false
 				binding.swipeToRefresh.setOnRefreshListener {
 					lifecycleScope.launch {
-						updateLastTwoCasesData()
+						updateLastTwoCasesData(true)
 					}
 				}
 
-				updateLastTwoCasesData()
+				updateLastTwoCasesData(false)
 				lastTwoCases.observe(viewLifecycleOwner, Observer {
 					Timber.d("result = $it")
 					binding.swipeToRefresh.isRefreshing = false

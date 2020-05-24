@@ -1,10 +1,7 @@
 package com.yolisstorm.covidpulse.features.summary.views.fragments.main
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.*
 import com.yolisstorm.data_sources.databases.main.entities.Case
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.DataWays
 import com.yolisstorm.data_sources.repositories.covid_stats_repo.helpers.RepositoryResponse
@@ -15,6 +12,8 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.*
 
@@ -24,7 +23,9 @@ class SummaryScreenViewModel(
 	application: Application
 ) : AndroidViewModel(application) {
 
-	var lastTwoCases: LiveData<Pair<Case, Case>?> = MutableLiveData(null)
+	private val _lastTwoCases = MutableLiveData<Pair<Case, Case>?>()
+	val lastTwoCases : LiveData<Pair<Case, Case>?>
+	    get() = _lastTwoCases
 
 	private val _casesDeath = MutableLiveData<Pair<Long, Double>?>(null)
 	val casesDeath : LiveData<Pair<Long, Double>?>
@@ -51,20 +52,17 @@ class SummaryScreenViewModel(
 		_currentLocation.value = newLocale
 	}
 
+
 	@FlowPreview
 	@ExperimentalCoroutinesApi
-	suspend fun updateLastTwoCasesData() {
-		currentLocation.value?.let { locale ->
-			val lastTwoCasesFlow = casesRepository
-				.getLastTwoCasesByCountryCode(locale.country)
-				.map {
-					if (it is RepositoryResponse.Success && it.dataFlowWay == DataWays.Network)
-						_lastUpdate.value = Date()
-					it.getOrNull()
-				}
-			lastTwoCases = lastTwoCasesFlow.asLiveData()
-			lastTwoCasesFlow.collect()
-		}
+	suspend fun updateLastTwoCasesData(isUrgentUpdateNeeded: Boolean) {
+		casesRepository
+			.getLastTwoCasesByCountryCode(currentLocation.value?.country ?: Locale.getDefault().country, isUrgentUpdateNeeded)
+			.onEach {
+				if (it is RepositoryResponse.Success && it.dataFlowWay == DataWays.Network)
+					_lastUpdate.value = Date()
+				_lastTwoCases.value = it.getOrNull()
+			}.collect()
 	}
 
 	fun updateDeaths(cases: Pair<Case, Case>?) {

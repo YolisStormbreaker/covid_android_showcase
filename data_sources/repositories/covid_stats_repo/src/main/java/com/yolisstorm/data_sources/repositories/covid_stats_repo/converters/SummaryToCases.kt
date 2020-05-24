@@ -27,21 +27,21 @@ internal object SummaryToCases {
 					null
 			}.toMap()
 
-	fun SummaryByCountry.splitIntoCases(country: Country) : Pair<Case, Case> =
+	private fun SummaryByCountry.splitIntoCases(country: Country) : Pair<Case, Case> =
 		Pair(
-			Case (
-				countryId = country.id,
-				date = this.date,
-				confirmed = totalConfirmed,
-				deaths = totalDeaths,
-				recovered = totalRecovered
-			),
 			Case (
 				countryId = country.id,
 				date = date.yesterday(),
 				confirmed = totalConfirmed - newConfirmed,
 				deaths = totalDeaths - newDeaths,
 				recovered = totalRecovered - newRecovered
+			),
+			Case (
+				countryId = country.id,
+				date = this.date,
+				confirmed = totalConfirmed,
+				deaths = totalDeaths,
+				recovered = totalRecovered
 			)
 		)
 

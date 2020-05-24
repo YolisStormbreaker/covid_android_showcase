@@ -19,7 +19,7 @@ class SummaryScreenRepository private constructor(
 	@ExperimentalCoroutinesApi
 	suspend fun getLastTwoCasesByLocale(locale: Locale): Flow<Pair<Case, Case>?> =
 		casesRepository
-			.getLastTwoCasesByCountryCode(locale.country)
+			.getLastTwoCasesByCountryCode(locale.country, false)
 			.map { it.getOrNull() }
 
 
