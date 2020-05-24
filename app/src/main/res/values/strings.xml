@@ -1,3 +1,4 @@
 <resources>
 	<string name="app_name">COVID Pulse</string>
+	<string name="covid_pulse_logo">Logo</string>
 </resources>

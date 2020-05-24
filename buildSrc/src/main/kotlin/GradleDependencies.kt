@@ -2,7 +2,9 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler
 import java.net.URI
 
 object GradlePluginVersion {
-	const val ANDROID_GRADLE                =   "4.0.0-beta05"
+	const val ANDROID_GRADLE                =   "4.0.0-rc01"
+	const val KTLINT_GRADLE                 =   "9.1.1"
+	const val DETEKT                        =   "1.4.0"
 	const val CRASHLYTICS_GRADLE            =   CoreVersion.CRASHLYTICS_GRADLE
 	const val KOTLIN                        =   CoreVersion.KOTLIN
 	const val GOOGLE_GMS                    =   CoreVersion.GMS_GOOGLE_SERVICES
@@ -11,6 +13,8 @@ object GradlePluginVersion {
 }
 
 object GradlePluginId {
+	const val DETEKT                        =   "io.gitlab.arturbosch.detekt"
+	const val KTLINT_GRADLE                 =   "org.jlleitschuh.gradle.ktlint"
 	const val ANDROID_APPLICATION           =   "com.android.application"
 	const val ANDROID_DYNAMIC_FEATURE       =   "com.android.dynamic-feature"
 	const val ANDROID_LIBRARY               =   "com.android.library"
@@ -18,6 +22,7 @@ object GradlePluginId {
 	const val KOTLIN_ANDROID                =   "org.jetbrains.kotlin.android"
 	const val KOTLIN_ANDROID_EXTENSIONS     =   "org.jetbrains.kotlin.android.extensions"
 	const val KOTLIN_SERIALIZATION          =   "org.jetbrains.kotlin.serialization"
+	const val KOTLIN_KAPT                   =   "kotlin-kapt"
 	const val GOOGLE_GMS_PLUGIN             =   "com.google.gms.google-services"
 	const val CRASHLYTICS_PLUGIN            =   "com.google.firebase.crashlytics"
 	const val GRADLE_UPDATE_PLUGIN          =   "com.github.ben-manes.versions"
@@ -36,4 +41,5 @@ fun addRepos(handler : RepositoryHandler) {
 	handler.google()
 	handler.jcenter()
 	handler.maven { url = URI.create("https://jitpack.io") }
+	handler.maven { url = URI.create("https://androidx-dev-prod.appspot.com/snapshots/builds/6455973/artifacts/repository") }
 }

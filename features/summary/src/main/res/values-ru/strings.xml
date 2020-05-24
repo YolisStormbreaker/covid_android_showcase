@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="picture_counter_description">Описание счетчика изображений</string>
+	<string name="last_updated">Последнее обновление</string>
+	<string name="unknown_location">Незнамогде</string>
+	<string name="dialog_title_choose_country">Выберите Страну</string>
+	<string name="btn_title_choose_actual_country">Выбрать актуальную страну</string>
+</resources>

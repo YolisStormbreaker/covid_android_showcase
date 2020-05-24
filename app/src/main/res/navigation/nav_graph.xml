@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/nestedGraph">
+
+	<navigation
+		android:id="@+id/nestedGraph"
+		app:moduleName="@string/summary_module_name"
+		app:startDestination="@id/summaryScreenFragment">
+		<fragment
+			android:id="@+id/summaryScreenFragment"
+			android:name="com.yolisstorm.covidpulse.features.summary.views.fragments.main.SummaryScreenFragment"
+			app:moduleName="@string/summary_module_name"
+			tools:layout="@layout/fragment_summary_screen_layout"
+			android:label="SummaryScreenFragment" >
+			<action
+				android:id="@+id/action_summaryScreenFragment_to_chooseCountryDialogFragment"
+				app:destination="@id/chooseCountryDialogFragment" />
+		</fragment>
+
+		<dialog
+			android:id="@+id/chooseCountryDialogFragment"
+			android:name="com.yolisstorm.covidpulse.features.summary.views.dialogs.chooseCountry.ChooseCountryDialogFragment"
+			android:label="chooserCountryDialogFragment"
+			tools:layout="@layout/dialog_choose_country" />
+
+	</navigation>
+
+
+
+
+</navigation>

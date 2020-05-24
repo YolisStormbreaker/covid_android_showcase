@@ -82,3 +82,5 @@ lint/tmp/
 # lint/reports/
 
 app/google-services.json
+
+data_sources_network_covid_stats/private.gradle.properties

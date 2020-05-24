@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+	app:moduleName="@string/summary_module_name"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/summary_graph"
+	app:startDestination="@id/summaryScreenFragment">
+
+
+	<fragment
+		app:moduleName="@string/summary_module_name"
+		android:id="@+id/summaryScreenFragment"
+		android:name="com.yolisstorm.features.summary.views.fragments.main.SummaryScreenFragment"
+		android:label="SummaryScreenFragment"
+		tools:layout="@layout/fragment_summary_screen_layout" />
+
+</navigation>
